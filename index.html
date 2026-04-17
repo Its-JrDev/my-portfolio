@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | JR</title>
+    <link rel="shortcut icon" href="cyber-icon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">Its-JrDev</div>
+
+        <nav class="main-nav">
+            <a href="#about" class="nav-link">About</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="my_pets.html" class="nav-link">Pets</a>
+        </nav>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+
+        <!-- CYBER SECTION -->
+        <section class="home">
+            
+            <div class="main-content">
+                
+                <h1 class="full-name"> Jose D. Romero</h1>
+                
+                <p class="subtitle">Riwi Coder</p>
+                
+                <nav class="cyber-actions" aria-label="Main sections">
+                    <a href="#about" class="btn">About me</a>
+                    <a href="projects.html" class="btn">My projects</a>
+                </nav>
+
+                <div class="scroll-indicator" aria-hidden="true">
+                    <span class="arrow">↓</span>
+                </div>
+
+            </div>
+
+            <div class="cyber-illustration">
+                <img 
+                    src="cyber-paladin.svg" 
+                    class="cyber-image" 
+                    alt="Cybertron paladin illustration"
+                >
+            </div>
+
+        </section>
+
+        <!-- DIVIDER -->
+        <hr class="divider">
+
+        <!-- ABOUT -->
+        <section class="about" id="about">
+    
+                <h2>About Me</h2>
+
+            <p>
+                Hi! I'm Jose, a web developer who loves creating websites. 
+                I started learning HTML and CSS, and now I'm building cool projects.
+                When I'm not coding, I enjoy playing video games and spending time with my pets.
+            </p>
+        </section>
+
+        <!-- DIVIDER -->
+        <hr class="divider">
+
+        <!-- CONTACT -->
+        <section class="contact">
+                <h2>Get in Touch</h2>
+
+            <form class="contact-form">
+                <fieldset>
+                    <legend>Contact form</legend>
+
+                    <input type="text" placeholder="Your name" required>
+                    <input type="email" placeholder="Your email" required>
+                    <textarea placeholder="Your message" required></textarea>
+
+                    <button type="submit">Send</button>
+                </fieldset>
+            </form>
+
+            <nav class="social-icons" aria-label="Social media">
+                <a href="#" target="_blank">Discord</a>
+                <a href="https://github.com/Its-JrDev" target="_blank">GitHub</a>
+                <a href="#" target="_blank">LinkedIn</a>
+            </nav>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Jose David Romero Lara</p>
+    </footer>
+
+    <!-- SUCCESS MODAL -->
+    <div id="successModal" class="modal">
+        <div class="modal-content success-modal">
+            <span class="close success-close">&times;</span>
+            <div class="success-content">
+                <h2>Message Sent!</h2>
+                <p>Thank you for your message. I'll get back to you soon!</p>
+                <button class="btn success-btn" onclick="closeSuccessModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Form submission handler
+        const contactForm = document.querySelector('.contact-form');
+        const successModal = document.getElementById('successModal');
+        const successClose = document.querySelector('.success-close');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent actual form submission
+            
+            // Show success modal
+            successModal.style.display = 'block';
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Close success modal when clicking X
+        successClose.onclick = function() {
+            successModal.style.display = 'none';
+        }
+
+        // Close success modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == successModal) {
+                successModal.style.display = 'none';
+            }
+        }
+
+        // Function to close success modal
+        function closeSuccessModal() {
+            successModal.style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>

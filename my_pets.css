@@ -1,0 +1,123 @@
+/* Pets page specific styles */
+
+/* Pets overview section */
+.pets-overview {
+    padding: 60px clamp(50px, 10vw, 240px);
+    text-align: center;
+}
+
+.pets-overview h1 {
+    margin-bottom: 20px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    font-family: var(--font-code);
+    position: relative;
+    padding-left: 20px;
+}
+
+.pets-overview h1::before {
+    content: "#";
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.pets-overview p {
+    margin-bottom: 50px;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 20px;
+}
+
+.pets-overview p::before {
+    content: ">";
+    color: var(--accent);
+    position: absolute;
+    left: 20px;
+    font-weight: bold;
+}
+
+/* Pets grid layout */
+.pets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+/* Pet card styling */
+.pet-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.pet-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+}
+
+.pet-card h2 {
+    margin-bottom: 15px;
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.pet-card p {
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.pet-image {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* PET CARE */
+.pet-care {
+    padding: 0 clamp(50px, 10vw, 240px) 60px;
+    text-align: center;
+}
+
+.pet-care h2 {
+    margin-bottom: 30px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    font-family: var(--font-code);
+    position: relative;
+    padding-left: 20px;
+}
+
+.pet-care h2::before {
+    content: "#";
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.pet-care ul {
+    list-style: none;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.pet-care li {
+    margin-bottom: 15px;
+    padding-left: 20px;
+    position: relative;
+    font-family: var(--font-code);
+}
+
+.pet-care li::before {
+    content: "-";
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+}

@@ -1,0 +1,144 @@
+/* CSS Variables - Color scheme and typography */
+:root {
+  --bg-color: #1a1918;      /* Dark background */
+  --text-main: #f2ede4;     /* Light text */
+  --accent: #a69076;        /* Accent color */
+  --surface: #262422;       /* Card/surface background */
+  --border: #3d3a36;        /* Border color */
+
+  --font-code: 'JetBrains Mono', monospace;  /* Code font */
+  --font-name: 'Work Sans', sans-serif;      /* Display font */
+}
+
+/* Reset - Normalize browser defaults */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-code);
+}
+
+/* Base styles */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Typography utilities */
+.code-font, .logo, .btn {
+    font-family: var(--font-code);
+}
+
+/* Header - Navigation and branding */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 50px;
+    gap: 30px;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.main-nav {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    color: var(--text-main);
+    text-decoration: none;
+    font-family: var(--font-code);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent);
+}
+
+/* Modal - Popup overlays */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background-color: var(--surface);
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    animation: slideIn 0.3s ease;
+}
+
+.close {
+    color: var(--text-main);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover {
+    color: var(--accent);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+    font-size: 0.8rem;
+    font-family: var(--font-code);
+    position: relative;
+    padding-left: 20px;
+}
+
+footer::before {
+    content: "//";
+    color: var(--accent);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+}
+
+/* Divider - Section separators */
+.divider {
+    display: block;
+    width: 80%;
+    height: 2px;
+    background: var(--border);
+    margin: 60px auto;
+    border: none;
+}
