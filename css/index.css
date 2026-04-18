@@ -56,6 +56,7 @@ h1 {
     text-decoration: none;
     color: var(--text-main);
     border: 1px solid var(--border);
+    border-radius: 2px;
     background: var(--surface);
     padding: 14px 20px;
     font-size: 0.8rem;
@@ -135,93 +136,75 @@ h1 {
     font-weight: bold;
 }
 
-/* CONTACT FORM */
-.contact-form {
-    max-width: 400px;
-    margin: 30px auto;
-}
-
-.contact-form fieldset {
-    border: none;
+/* CONTACT & SOCIAL */
+.contact-content {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    flex-direction: row;
+    gap: 60px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0 30px;
 }
 
-.contact-form legend {
-    display: none;
+.contact-form { 
+    flex: 1; 
+    min-width: 280px; 
+    max-width: 450px; 
 }
-
-.contact-form input,
-.contact-form textarea {
+.contact-form fieldset { border: none; display: flex; flex-direction: column; gap: 12px; }
+.contact-form input, .contact-form textarea {
     padding: 12px;
     border: 1px solid var(--border);
     background: var(--surface);
+    border-radius: 2px;
     color: var(--text-main);
-    border-radius: 4px;
 }
 
 .contact-form textarea {
     resize: none;
+    field-sizing: content;
     min-height: 120px;
+    max-height: 240px;
 }
 
 .contact-form button {
     padding: 12px;
     background: var(--accent);
+    color: var(--bg-color);
+    font-weight: bold;
     border: none;
     cursor: pointer;
-    border-radius: 4px;
-    color: black;
-    font-weight: bold;
     transition: 0.3s;
 }
 
-.contact-form button:hover {
-    opacity: 0.8;
-}
-
-.contact p {
-    margin-bottom: 20px;
-    position: relative;
-    padding-left: 20px;
-    font-family: var(--font-code);
-}
-
-.contact p::before {
-    content: "/*";
-    color: var(--accent);
-    position: absolute;
-    left: 0;
-    font-weight: bold;
-}
-
-/* SOCIAL ICONS */
-.social-icons {
-    margin-top: 20px;
+.social-icons{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     gap: 25px;
     font-family: var(--font-code);
 }
 
+
+
 .social-icons a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
     color: var(--accent);
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s;
-    position: relative;
-    padding-left: 15px;
 }
 
-.social-icons a::before {
+
+.social-icons span::before {
     content: "[";
     color: var(--accent);
-    position: absolute;
-    left: 0;
 }
 
-.social-icons a::after {
+.social-icons span::after {
     content: "]";
     color: var(--accent);
     margin-left: 2px;
@@ -229,6 +212,16 @@ h1 {
 
 .social-icons a:hover {
     color: var(--text-main);
+}
+
+.social-icons img {
+    color: var(--accent);
+    text-decoration: none;
+    position: relative;
+    padding-left: 15px;
+    cursor: pointer;
+    height: 36px;
+    align-content: flex-start;
 }
 
 /* SUCCESS MODAL */
@@ -241,15 +234,8 @@ h1 {
     padding: 20px;
 }
 
-.success-icon {
-    font-size: 4rem;
-    color: #4CAF50;
-    margin-bottom: 20px;
-    animation: checkmark 0.8s ease;
-}
-
 .success-content h2 {
-    color: #4CAF50;
+    color: var(--accent);
     margin-bottom: 15px;
     font-size: 1.5rem;
 }
@@ -260,16 +246,15 @@ h1 {
 }
 
 .success-btn {
-    background: #4CAF50 !important;
-    color: white !important;
+    background: var(--accent) !important;
+    color: var(--bg-color) !important;
     border: none !important;
     padding: 12px 30px !important;
     font-size: 1rem !important;
 }
 
 .success-btn:hover {
-    background: #45a049 !important;
-    opacity: 1 !important;
+    opacity: 0.8 !important;
 }
 
 @keyframes checkmark {

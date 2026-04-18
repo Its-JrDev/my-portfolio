@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | JR</title>
-    <link rel="shortcut icon" href="cyber-icon.svg">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" href="assets/icons/cyber-icon.svg">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
@@ -32,7 +32,7 @@
                 
                 <h1 class="full-name"> Jose D. Romero</h1>
                 
-                <p class="subtitle">Riwi Coder</p>
+                <p class="subtitle">Coder in Riwi</p>
                 
                 <nav class="cyber-actions" aria-label="Main sections">
                     <a href="#about" class="btn">About me</a>
@@ -47,7 +47,7 @@
 
             <div class="cyber-illustration">
                 <img 
-                    src="cyber-paladin.svg" 
+                    src="assets/illustrations/cyber-paladin.svg" 
                     class="cyber-image" 
                     alt="Cybertron paladin illustration"
                 >
@@ -61,7 +61,7 @@
         <!-- ABOUT -->
         <section class="about" id="about">
     
-                <h2>About Me</h2>
+            <h2>About Me</h2>
 
             <p>
                 Hi! I'm Jose, a web developer who loves creating websites. 
@@ -75,32 +75,41 @@
 
         <!-- CONTACT -->
         <section class="contact">
-                <h2>Get in Touch</h2>
+            <h2>Get in Touch</h2>
+            <div class="contact-content">
+                <form class="contact-form">
+                    <fieldset>
+                        <input type="text" placeholder="Your name" required>
+                        <input type="email" placeholder="Your email" required>
+                        <textarea placeholder="Your message" required></textarea>
 
-            <form class="contact-form">
-                <fieldset>
-                    <legend>Contact form</legend>
+                        <button type="submit">Send</button>
+                    </fieldset>
+                </form>
 
-                    <input type="text" placeholder="Your name" required>
-                    <input type="email" placeholder="Your email" required>
-                    <textarea placeholder="Your message" required></textarea>
+                <nav class="social-icons" aria-label="Social media">
+                    <a href="#" target="_blank">
+                        <img src="assets/icons/discord-icon.svg" alt="Discord">
+                        <span>Discord</span>
+                    </a>
 
-                    <button type="submit">Send</button>
-                </fieldset>
-            </form>
-
-            <nav class="social-icons" aria-label="Social media">
-                <a href="#" target="_blank">Discord</a>
-                <a href="https://github.com/Its-JrDev" target="_blank">GitHub</a>
-                <a href="#" target="_blank">LinkedIn</a>
-            </nav>
+                    <a href="https://github.com/Its-JrDev" target="_blank">
+                        <img src="assets/icons/github-icon.svg" alt="GitHub">
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://linkedin.com/in/its-jrdev" target="_blank">
+                        <img src="assets/icons/linkedin-icon.svg" alt="LinkedIn">
+                        <span>LinkedIn</span>
+                    </a>
+                </nav>
+            </div>
         </section>
 
     </main>
 
     <!-- FOOTER -->
     <footer>
-        <p>© 2026 Jose David Romero Lara</p>
+        <p>&copy; 2026 — Jose David Romero Lara</p>
     </footer>
 
     <!-- SUCCESS MODAL -->

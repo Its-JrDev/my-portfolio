@@ -125,7 +125,6 @@ footer {
 }
 
 footer::before {
-    content: "//";
     color: var(--accent);
     position: absolute;
     left: 50%;
