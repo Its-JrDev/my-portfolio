@@ -1,13 +1,13 @@
-/* Index page specific styles */
+/* ===== Base layout ===== */
 
-/* Hero section - Main landing area */
+
+/* ===== Hero section ===== */
 .home {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
-    height: calc(100vh - 120px);
-    padding-left: clamp(50px, 10vw, 240px);
-    padding-right: clamp(50px, 10vw, 240px);
-    border-top: 1px solid var(--border);
+    min-height: calc(100vh - 120px);
+    padding-left: clamp(16px, 6vw, 120px);
+    padding-right: clamp(16px, 6vw, 120px);
 }
 
 .main-content {
@@ -17,34 +17,37 @@
     position: relative;
 }
 
+/* ===== Typography ===== */
+.presentation {
+    max-width: 32rem;
+}
+
 h1 {
-    font-family: var(--font-code);
     font-size: 2rem;
     letter-spacing: 2px;
-    font-weight: 400;
+    font-weight: lighter;
     margin-bottom: 15px;
-    white-space: nowrap;
+    white-space: normal;
 }
 
 .subtitle {
+    position: relative;
     font-size: 1.2rem;
     color: var(--accent);
     margin-bottom: 45px;
     font-weight: 300;
-    font-family: var(--font-code);
-    position: relative;
     padding-left: 20px;
 }
 
 .subtitle::before {
     content: ">";
-    color: var(--accent);
     position: absolute;
     left: 0;
+    color: var(--accent);
     font-weight: bold;
 }
 
-/* Action buttons */
+/* ===== Actions ===== */
 .cyber-actions {
     display: flex;
     gap: 15px;
@@ -70,7 +73,7 @@ h1 {
     background: transparent;
 }
 
-/* IMAGEN */
+/* ===== Image ===== */
 .cyber-illustration {
     display: flex;
     align-items: center;
@@ -78,14 +81,12 @@ h1 {
 }
 
 .cyber-image {
-    width: 100%;
-    max-width: 450px;
-    min-width: 200px;
+    width: 100%;          /* responsive */
+    max-width: 400px;     /* límite real */
     height: auto;
-    margin-left: 120px;
 }
 
-/* SCROLL INDICATOR */
+/* ===== Scroll indicator ===== */
 .scroll-indicator {
     position: absolute;
     bottom: 60px;
@@ -94,15 +95,17 @@ h1 {
     font-size: 1.5rem;
 }
 
-/* ABOUT SECTION */
-.about, .contact {
+/* ===== Sections ===== */
+.about,
+.contact {
     padding-top: 60px;
     padding-bottom: 60px;
-    padding-left: clamp(50px, 10vw, 240px);
-    padding-right: clamp(50px, 10vw, 240px);
+    padding-left: clamp(20px, 8vw, 240px);
+    padding-right: clamp(20px, 8vw, 240px);
 }
 
-.about h2, .contact h2 {
+.about h2,
+.contact h2 {
     margin-bottom: 30px;
     font-weight: 400;
     letter-spacing: 1px;
@@ -111,11 +114,12 @@ h1 {
     padding-left: 20px;
 }
 
-.about h2::before, .contact h2::before {
+.about h2::before,
+.contact h2::before {
     content: "#";
-    color: var(--accent);
     position: absolute;
     left: 0;
+    color: var(--accent);
     font-weight: bold;
 }
 
@@ -130,16 +134,15 @@ h1 {
 
 .about p::before {
     content: "//";
-    color: var(--accent);
     position: absolute;
     left: 0;
+    color: var(--accent);
     font-weight: bold;
 }
 
-/* CONTACT & SOCIAL */
+/* ===== Contact layout ===== */
 .contact-content {
     display: flex;
-    flex-direction: row;
     gap: 60px;
     flex-wrap: wrap;
     justify-content: center;
@@ -147,13 +150,22 @@ h1 {
     margin: 0 30px;
 }
 
-.contact-form { 
-    flex: 1; 
-    min-width: 280px; 
-    max-width: 450px; 
+/* ===== Form ===== */
+.contact-form {
+    flex: 1;
+    min-width: 260px;
+    max-width: 450px;
 }
-.contact-form fieldset { border: none; display: flex; flex-direction: column; gap: 12px; }
-.contact-form input, .contact-form textarea {
+
+.contact-form fieldset {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-form input,
+.contact-form textarea {
     padding: 12px;
     border: 1px solid var(--border);
     background: var(--surface);
@@ -177,27 +189,31 @@ h1 {
     cursor: pointer;
     transition: 0.3s;
 }
+.contact-form button:hover {
+    opacity: 0.8;
+}
 
-.social-icons{
+/* ===== Social ===== */
+.social-icons {
     display: flex;
     flex-direction: column;
     gap: 25px;
     font-family: var(--font-code);
 }
 
-
-
 .social-icons a {
     display: flex;
     align-items: center;
     gap: 10px;
-    
     color: var(--accent);
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s;
 }
 
+.social-icons a:hover {
+    color: var(--text-main);
+}
 
 .social-icons span::before {
     content: "[";
@@ -210,21 +226,37 @@ h1 {
     margin-left: 2px;
 }
 
-.social-icons a:hover {
-    color: var(--text-main);
-}
 
-.social-icons img {
-    color: var(--accent);
-    text-decoration: none;
-    position: relative;
-    padding-left: 15px;
-    cursor: pointer;
+.icon {
     height: 36px;
-    align-content: flex-start;
+    width: 46px;
+    background-color: currentColor;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
 }
 
-/* SUCCESS MODAL */
+/* Social icons */
+.discord {
+    mask-image: url("../assets/icons/discord-icon.svg");
+    -webkit-mask-image: url("../assets/icons/discord-icon.svg");
+}
+
+.github {
+    mask-image: url("../assets/icons/github-icon.svg");
+    -webkit-mask-image: url("../assets/icons/github-icon.svg");
+}
+
+.linkedin {
+    mask-image: url("../assets/icons/linkedin-icon.svg");
+    -webkit-mask-image: url("../assets/icons/linkedin-icon.svg");
+}
+
+/* ===== Modal ===== */
 .success-modal {
     text-align: center;
     max-width: 400px;
@@ -257,8 +289,114 @@ h1 {
     opacity: 0.8 !important;
 }
 
+/* ===== Animations ===== */
 @keyframes checkmark {
     0% { transform: scale(0); }
     50% { transform: scale(1.2); }
     100% { transform: scale(1); }
+}
+
+
+@media (max-width: 768px) {
+    .scroll-indicator {
+        display: none;
+    }
+
+    .contact-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .contact-form {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .social-icons {
+        flex-direction: row;
+        justify-content: center;
+        gap: 45px;
+    }
+
+    .social-icons span {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .home {
+        grid-template-columns: 1fr;
+        justify-content: center;
+        min-height: calc(100vh - 240px);
+        padding: 0 20px 0;
+    }
+
+    .presentation {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .subtitle {
+        text-align: center;
+        padding: 0;
+    }
+
+    .subtitle::before {
+        position: relative;
+        margin-right: 8px;
+    }
+
+
+    .cyber-actions {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .cyber-actions .btn {
+        text-align: center;
+    }
+
+    .cyber-illustration {
+        margin: 60px 0;
+        justify-content: center;
+        grid-row: 1 / 2;
+    }
+
+    .cyber-image {
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.7rem;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        margin-bottom: 32px;
+    }
+
+    .about,
+    .contact {
+        padding-top: 48px;
+        padding-bottom: 48px;
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .about p {
+        width: 100%;
+    }
+
+    .contact-form {
+        min-width: 0;
+    }
 }

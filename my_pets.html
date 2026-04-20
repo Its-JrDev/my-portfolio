@@ -19,9 +19,25 @@
             <a href="index.html" class="nav-link">Home</a>
             <a href="index.html#about" class="nav-link">About</a>
             <a href="projects.html" class="nav-link">Projects</a>
-            <a href="my_pets.html" class="nav-link">Pets</a>
+            <a href="my_pets.html" class="nav-link">My pets</a>
+            <a href="index.html#contact" class="nav-link nav-link-cta">Get in touch</a>
         </nav>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNav" type="button">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </header>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="index.html#about" class="mobile-nav-link">About</a>
+        <a href="projects.html" class="mobile-nav-link">Projects</a>
+        <a href="my_pets.html" class="mobile-nav-link">My pets</a>
+        <a href="index.html#contact" class="mobile-nav-link mobile-nav-link-cta">Get in touch</a>
+    </nav>
 
     <!-- MAIN -->
     <main>
@@ -40,7 +56,7 @@
 
                 <div class="pet-card">
                     <h2>Rover</h2>
-                    <p>A energetic dog who enjoys long walks and fetching balls. Always ready for adventure!</p>
+                    <p>An energetic dog who enjoys long walks and fetching balls. Always ready for adventure!</p>
                     <img src="placeholder-dog.jpg" alt="Rover the dog" class="pet-image">
                 </div>
 
@@ -62,7 +78,7 @@
                 <li>Ensure your pets have fresh water available at all times.</li>
                 <li>Provide a balanced diet suitable for their species and age.</li>
                 <li>Schedule regular veterinary check-ups.</li>
-                <li>Give plenty of love and attention. </li>
+                <li>Give plenty of love and attention.</li>
             </ul>
             <h3>Please take good care of them</h3>
         </section>
@@ -71,10 +87,12 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>© 2026 Jose David Romero Lara</p>
+        <p>&copy; 2026 Jose David Romero Lara</p>
     </footer>
 
+    <button class="scroll-top-btn" id="scrollTopButton" aria-label="Back to top" type="button">&uarr;</button>
 
+    <script src="js/script.js"></script>
 
 </body>
 </html>

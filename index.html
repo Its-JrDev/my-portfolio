@@ -18,41 +18,53 @@
         <nav class="main-nav">
             <a href="#about" class="nav-link">About</a>
             <a href="projects.html" class="nav-link">Projects</a>
-            <a href="my_pets.html" class="nav-link">Pets</a>
+            <a href="my_pets.html" class="nav-link">My pets</a>
+            <a href="#contact" class="nav-link nav-link-cta">Get in touch</a>
         </nav>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNav" type="button">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </header>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+        <a href="#about" class="mobile-nav-link">About</a>
+        <a href="projects.html" class="mobile-nav-link">Projects</a>
+        <a href="my_pets.html" class="mobile-nav-link">My pets</a>
+        <a href="#contact" class="mobile-nav-link mobile-nav-link-cta">Get in touch</a>
+    </nav>
 
     <!-- MAIN -->
     <main>
 
-        <!-- CYBER SECTION -->
+        <!-- HERO SECTION -->
         <section class="home">
-            
             <div class="main-content">
-                
-                <h1 class="full-name"> Jose D. Romero</h1>
-                
-                <p class="subtitle">Coder in Riwi</p>
-                
+                <div class="presentation">
+                    <h1 class="full-name">Jose D. Romero</h1>
+                    <p class="subtitle">Coder in Riwi</p>
+                </div>
+
                 <nav class="cyber-actions" aria-label="Main sections">
                     <a href="#about" class="btn">About me</a>
                     <a href="projects.html" class="btn">My projects</a>
                 </nav>
 
                 <div class="scroll-indicator" aria-hidden="true">
-                    <span class="arrow">↓</span>
+                    <span class="arrow">&darr;</span>
                 </div>
-
             </div>
 
             <div class="cyber-illustration">
-                <img 
-                    src="assets/illustrations/cyber-paladin.svg" 
-                    class="cyber-image" 
+                <img
+                    src="assets/illustrations/cyber-paladin.svg"
+                    class="cyber-image"
                     alt="Cybertron paladin illustration"
                 >
             </div>
-
         </section>
 
         <!-- DIVIDER -->
@@ -60,11 +72,10 @@
 
         <!-- ABOUT -->
         <section class="about" id="about">
-    
             <h2>About Me</h2>
 
             <p>
-                Hi! I'm Jose, a web developer who loves creating websites. 
+                Hi! I'm Jose, a web developer who loves creating websites.
                 I started learning HTML and CSS, and now I'm building cool projects.
                 When I'm not coding, I enjoy playing video games and spending time with my pets.
             </p>
@@ -74,8 +85,9 @@
         <hr class="divider">
 
         <!-- CONTACT -->
-        <section class="contact">
+        <section class="contact" id="contact">
             <h2>Get in Touch</h2>
+
             <div class="contact-content">
                 <form class="contact-form">
                     <fieldset>
@@ -88,29 +100,31 @@
                 </form>
 
                 <nav class="social-icons" aria-label="Social media">
-                    <a href="#" target="_blank">
-                        <img src="assets/icons/discord-icon.svg" alt="Discord">
+                    <a href="https://discordapp.com/users/1178506619345190996" target="_blank">
+                        <div class="icon discord"></div>
                         <span>Discord</span>
                     </a>
 
                     <a href="https://github.com/Its-JrDev" target="_blank">
-                        <img src="assets/icons/github-icon.svg" alt="GitHub">
+                        <div class="icon github"></div>
                         <span>GitHub</span>
                     </a>
-                    <a href="https://linkedin.com/in/its-jrdev" target="_blank">
-                        <img src="assets/icons/linkedin-icon.svg" alt="LinkedIn">
+
+                    <a href="https://www.linkedin.com/in/jose-romero-7b37353b6" target="_blank">
+                        <div class="icon linkedin"></div>
                         <span>LinkedIn</span>
                     </a>
                 </nav>
             </div>
         </section>
-
     </main>
 
     <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 — Jose David Romero Lara</p>
+        <p>&copy; 2026 Jose David Romero Lara</p>
     </footer>
+
+    <button class="scroll-top-btn" id="scrollTopButton" aria-label="Back to top" type="button">&uarr;</button>
 
     <!-- SUCCESS MODAL -->
     <div id="successModal" class="modal">
@@ -124,39 +138,7 @@
         </div>
     </div>
 
-    <script>
-        // Form submission handler
-        const contactForm = document.querySelector('.contact-form');
-        const successModal = document.getElementById('successModal');
-        const successClose = document.querySelector('.success-close');
-
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent actual form submission
-            
-            // Show success modal
-            successModal.style.display = 'block';
-            
-            // Reset form
-            this.reset();
-        });
-
-        // Close success modal when clicking X
-        successClose.onclick = function() {
-            successModal.style.display = 'none';
-        }
-
-        // Close success modal when clicking outside
-        window.onclick = function(event) {
-            if (event.target == successModal) {
-                successModal.style.display = 'none';
-            }
-        }
-
-        // Function to close success modal
-        function closeSuccessModal() {
-            successModal.style.display = 'none';
-        }
-    </script>
+    <script src="js/script.js"></script>
 
 </body>
 </html>

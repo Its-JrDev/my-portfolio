@@ -2,7 +2,7 @@
 
 /* Projects overview section */
 .projects-overview {
-    padding: 60px clamp(50px, 10vw, 240px);
+    padding: 60px clamp(20px, 8vw, 240px);
     text-align: left;
 }
 
@@ -41,7 +41,7 @@
 /* Projects grid layout */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 30px;
 }
 
@@ -97,4 +97,26 @@
     background: transparent;
     color: var(--accent);
     transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+    .projects-overview {
+        padding: 48px 20px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .project-card {
+        min-height: auto;
+        padding: 20px;
+    }
+
+    .project-card .btn {
+        width: 100%;
+        text-align: center;
+        align-self: stretch;
+    }
 }

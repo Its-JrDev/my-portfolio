@@ -2,7 +2,7 @@
 
 /* Pets overview section */
 .pets-overview {
-    padding: 60px clamp(50px, 10vw, 240px);
+    padding: 60px clamp(20px, 8vw, 240px);
     text-align: center;
 }
 
@@ -41,7 +41,7 @@
 /* Pets grid layout */
 .pets-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 30px;
     margin-bottom: 60px;
 }
@@ -80,7 +80,7 @@
 
 /* PET CARE */
 .pet-care {
-    padding: 0 clamp(50px, 10vw, 240px) 60px;
+    padding: 0 clamp(20px, 8vw, 240px) 60px;
     text-align: center;
 }
 
@@ -120,4 +120,31 @@
     color: var(--accent);
     position: absolute;
     left: 0;
+}
+
+@media (max-width: 640px) {
+    .pets-overview,
+    .pet-care {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .pets-overview {
+        padding-top: 48px;
+        padding-bottom: 48px;
+    }
+
+    .pets-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 48px;
+    }
+
+    .pet-care {
+        padding-bottom: 48px;
+    }
+
+    .pets-overview p::before {
+        left: 0;
+    }
 }
