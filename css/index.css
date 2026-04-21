@@ -47,32 +47,65 @@ h1 {
     font-weight: bold;
 }
 
-/* ===== Actions ===== */
-.cyber-actions {
+/* ===== Primary Actions ===== */
+.primary-actions {
     display: flex;
     gap: 15px;
     margin-top: 30px;
     white-space: nowrap;
 }
 
+/* Base del componente botón */
 .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
-    color: var(--text-main);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    background: var(--surface);
     padding: 14px 20px;
+    border-radius: var(--button-radius);
     font-size: 0.8rem;
     letter-spacing: 2px;
     transition: all 0.4s ease;
 }
 
-.btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: transparent;
+/* Variante de acción principal */
+.btn-primary {
+    background: var(--accent);
+    color: var(--bg-color);
+    border: 1px solid var(--accent);
 }
 
+/* Variante de acción secundaria */
+.btn-secondary {
+    background: var(--surface);
+    color: var(--text-main);
+    border: 1px solid var(--border);
+}
+
+/* Acción Principal (El que destaca) */
+.btn-primary:hover {
+    background: transparent;
+    color: var(--accent);
+    /* Elevación sutil */
+    transform: translateY(-2px);
+    /* Sombra coherente con tu paleta naranja */
+    box-shadow: 0 5px 15px rgba(255, 159, 49, 0.2);
+}
+
+/* Acción Secundaria (El que tiene borde) */
+.btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(255, 159, 49, 0.05); /* Un tinte casi imperceptible */
+    transform: translateY(-2px);
+}
+
+/* Efecto de presión (Para cuando haces clic/touch) */
+.btn-primary:active, 
+.btn-secondary:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
 /* ===== Image ===== */
 .cyber-illustration {
     display: flex;
@@ -169,8 +202,19 @@ h1 {
     padding: 12px;
     border: 1px solid var(--border);
     background: var(--surface);
-    border-radius: 2px;
+    border-radius: var(--button-radius);
     color: var(--text-main);
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; /* Añadimos transición */
+}
+
+
+/* Efecto de elevación al escribir (Focus) */
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 159, 49, 0.15);
 }
 
 .contact-form textarea {
@@ -187,10 +231,21 @@ h1 {
     font-weight: bold;
     border: none;
     cursor: pointer;
+    border-radius: var(--button-radius);
     transition: 0.3s;
 }
+
+/* Elevación consistente con la navegación */
 .contact-form button:hover {
-    opacity: 0.8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 159, 49, 0.3);
+    /* Quitamos opacity para que el texto f2ede4 se vea nítido */
+}
+
+
+/* Efecto de "pulsado" para el celular */
+.contact-form button:active {
+    transform: translateY(0);
 }
 
 /* ===== Social ===== */
@@ -339,11 +394,7 @@ h1 {
         flex-direction: column;
         justify-content: center;
         padding: 0;
-    }
-
-    .subtitle {
         text-align: center;
-        padding: 0;
     }
 
     .subtitle::before {
@@ -354,7 +405,7 @@ h1 {
 
     .cyber-actions {
         flex-direction: column;
-        margin: 0;
+        margin: 0 20px;
     }
 
     .cyber-actions .btn {
@@ -376,7 +427,7 @@ h1 {
     h1 {
         font-size: 1.7rem;
         letter-spacing: 1px;
-        text-align: center;
+
     }
 
     .subtitle {

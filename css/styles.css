@@ -2,8 +2,8 @@
 :root {
     --bg-color: #1a1918;
     --text-main: #f2ede4;
-    --accent: #a69076;
-    --accent-soft: #c2ad90;
+    --accent: #ff9f31;
+    --accent-soft: #fda01d;
     --surface: #262422;
     --border: #3d3a36;
 
@@ -109,8 +109,11 @@ header {
 
 .nav-link-cta:hover,
 .mobile-nav-link-cta:hover {
-    opacity: 0.8;
+
+    transform: translateY(-2px); /* El botón sube un poquito */
+    box-shadow: 0 4px 15px rgba(255, 159, 49, 0.3); /* Sombra naranja suave */
     color: var(--bg-color);
+
 }
 
 .modal {
@@ -330,7 +333,7 @@ footer::before {
         display: block;
         padding: 14px 16px;
         color: var(--bg-color);
-        background: var(--accent);
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-soft) 100%);
         border: 1px solid var(--accent);
         border-bottom: none;
         border-radius: var(--button-radius);
@@ -356,7 +359,7 @@ footer::before {
 
 @media (max-width: 480px) {
     :root {
-        --header-offset: 88px;
+        --header-offset: 85px;
         --mobile-header-padding: 20px 16px;
     }
 
