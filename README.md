@@ -12,6 +12,7 @@ The site currently includes:
 - a projects page with a card-based layout
 - a personal pets page
 - responsive navigation for desktop and mobile
+- shared page-intro styling and responsive spacing across views
 - lightweight JavaScript interactions for menu behavior, modal feedback, and scroll-to-top navigation
 
 ## Tech Stack
@@ -64,6 +65,8 @@ Personal page with pet cards and a short pet-care section.
 - sticky header navigation
 - responsive hamburger menu
 - shared design tokens through global CSS variables
+- consistent multi-page layout and responsive behavior
+- animated page entry transitions
 - scroll-to-top button
 - contact success modal
 - separated page-specific stylesheets
@@ -90,7 +93,7 @@ For a smoother development workflow, you can also serve the project with any sim
 - This is a static frontend project.
 - Some project links and content are still placeholder examples.
 - The contact form currently provides UI feedback only and is not connected to a backend service.
-- The pets page references placeholder images that should be replaced with real assets if needed.
+- The pets page uses CSS-based visual panels instead of image assets.
 
 ## Author
 

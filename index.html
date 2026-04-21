@@ -13,16 +13,16 @@
 
     <!-- HEADER -->
     <header>
-        <div class="logo">Its-JrDev</div>
+        <div class="header__logo">Its-JrDev</div>
 
-        <nav class="main-nav">
-            <a href="#about" class="nav-link">About</a>
-            <a href="projects.html" class="nav-link">Projects</a>
-            <a href="my_pets.html" class="nav-link">My pets</a>
-            <a href="#contact" class="nav-link nav-link-cta">Get in Touch</a>
+        <nav class="header__nav" aria-label="Desktop navigation">
+            <a href="#about" class="header__link">About</a>
+            <a href="projects.html" class="header__link">Projects</a>
+            <a href="my_pets.html" class="header__link">My pets</a>
+            <a href="#contact" class="header__link header__link--primary">Get in Touch</a>
         </nav>
 
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNav" type="button">
+        <button class="header__burger-menu" id="burgerMenu" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNav" type="button">
             <span></span>
             <span></span>
             <span></span>
@@ -31,38 +31,38 @@
 
     <!-- Mobile Menu -->
     <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
-        <a href="#about" class="mobile-nav-link">About</a>
-        <a href="projects.html" class="mobile-nav-link">Projects</a>
-        <a href="my_pets.html" class="mobile-nav-link">My pets</a>
-        <a href="#contact" class="mobile-nav-link mobile-nav-link-cta">Get in touch</a>
+        <a href="#about" class="mobile-nav__link">About</a>
+        <a href="projects.html" class="mobile-nav__link">Projects</a>
+        <a href="my_pets.html" class="mobile-nav__link">My pets</a>
+        <a href="#contact" class="mobile-nav__link mobile-nav__link--primary">Get in touch</a>
     </nav>
 
     <!-- MAIN -->
     <main>
 
         <!-- HERO SECTION -->
-        <section class="home">
-            <div class="main-content">
-                <div class="presentation">
-                    <h1 class="full-name">Jose D. Romero</h1>
-                    <p class="subtitle">Riwi's Coder</p>
+        <section class="hero">
+            <div class="hero__content">
+                <div class="hero__text">
+                    <h1 class="hero__title">Jose D. Romero</h1>
+                    <p class="hero__subtitle">Riwi's Coder</p>
                 </div>
 
-                <nav class="primary-actions" aria-label="Main sections">
-                    <a href="#about" class="btn btn-secondary">About me</a>
-                    <a href="projects.html" class="btn btn-primary">My projects</a>
+                <nav class="hero__actions" aria-label="Hero actions">
+                    <a href="#about" class="btn btn--secondary">About me</a>
+                    <a href="projects.html" class="btn btn--primary">My projects</a>
                 </nav>
 
-                <div class="scroll-indicator" aria-hidden="true">
-                    <span class="arrow">&darr;</span>
+                <div class="hero__scroll-indicator" aria-hidden="true">
+                    <span class="hero__arrow">&darr;</span>
                 </div>
             </div>
 
-            <div class="cyber-illustration">
+            <div class="hero__illustration">
                 <img
                     src="assets/illustrations/cyber-paladin.svg"
-                    class="cyber-image"
-                    alt="Cybertron paladin illustration"
+                    class="hero__image"
+                    alt="Cyber paladin illustration"
                 >
             </div>
         </section>
@@ -88,8 +88,8 @@
         <section class="contact" id="contact">
             <h2>Get in Touch</h2>
 
-            <div class="contact-content">
-                <form class="contact-form">
+            <div class="contact__content">
+                <form class="contact__form">
                     <fieldset>
                         <input type="text" placeholder="Your name" required>
                         <input type="email" placeholder="Your email" required>
@@ -99,19 +99,19 @@
                     </fieldset>
                 </form>
 
-                <nav class="social-icons" aria-label="Social media">
+                <nav class="contact__social" aria-label="Social media">
                     <a href="https://discordapp.com/users/1178506619345190996" target="_blank">
-                        <div class="icon discord"></div>
+                        <div class="contact__icon contact__icon--discord"></div>
                         <span>Discord</span>
                     </a>
 
                     <a href="https://github.com/Its-JrDev" target="_blank">
-                        <div class="icon github"></div>
+                        <div class="contact__icon contact__icon--github"></div>
                         <span>GitHub</span>
                     </a>
 
                     <a href="https://www.linkedin.com/in/jose-romero-7b37353b6" target="_blank">
-                        <div class="icon linkedin"></div>
+                        <div class="contact__icon contact__icon--linkedin"></div>
                         <span>LinkedIn</span>
                     </a>
                 </nav>
@@ -124,18 +124,18 @@
         <p>&copy; 2026 Jose David Romero Lara</p>
     </footer>
 
-    <button class="scroll-top-btn" id="scrollTopButton" aria-label="Back to top" type="button">&uarr;</button>
+    <button class="scroll-top" id="scrollTopButton" aria-label="Back to top" type="button">&uarr;</button>
 
     <!-- SUCCESS MODAL -->
     <div id="successModal" class="modal">
-        <div class="modal-content success-modal">
-            <span class="close success-close">&times;</span>
-            <div class="success-content">
-                <h2>Message Sent!</h2>
-                <p>Thank you for your message. I'll get back to you soon!</p>
-                <button class="btn success-btn" onclick="closeSuccessModal()">OK</button>
-            </div>
-        </div>
+    <div class="modal__content">
+        <button class="modal__close" type="button" aria-label="Close modal">&times;</button>
+
+        <h2>Message Sent!</h2>
+        <p>Thank you for your message. I'll get back to you soon!</p>
+
+        <button class="modal__button" type="button">OK</button>
+    </div>
     </div>
 
     <script src="js/script.js"></script>

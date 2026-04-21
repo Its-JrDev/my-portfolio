@@ -11,47 +11,46 @@
 
 <body>
 
-    <!-- HEADER -->
     <header>
-        <div class="logo">Its-JrDev</div>
+        <div class="header__logo">Its-JrDev</div>
 
-        <nav class="main-nav">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="index.html#about" class="nav-link">About</a>
-            <a href="projects.html" class="nav-link">Projects</a>
-            <a href="my_pets.html" class="nav-link">My pets</a>
-            <a href="index.html#contact" class="nav-link nav-link-cta">Get in touch</a>
+        <nav class="header__nav" aria-label="Desktop navigation">
+            <a href="index.html" class="header__link">Home</a>
+            <a href="index.html#about" class="header__link">About</a>
+            <a href="projects.html" class="header__link">Projects</a>
+            <a href="my_pets.html" class="header__link">My pets</a>
+            <a href="index.html#contact" class="header__link header__link--primary">Get in touch</a>
         </nav>
 
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNav" type="button">
+        <button class="header__burger-menu" id="burgerMenu" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNav" type="button">
             <span></span>
             <span></span>
             <span></span>
         </button>
     </header>
 
-    <!-- Mobile Menu -->
     <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
-        <a href="index.html" class="mobile-nav-link">Home</a>
-        <a href="index.html#about" class="mobile-nav-link">About</a>
-        <a href="projects.html" class="mobile-nav-link">Projects</a>
-        <a href="my_pets.html" class="mobile-nav-link">My pets</a>
-        <a href="index.html#contact" class="mobile-nav-link mobile-nav-link-cta">Get in touch</a>
+        <a href="index.html" class="mobile-nav__link">Home</a>
+        <a href="index.html#about" class="mobile-nav__link">About</a>
+        <a href="projects.html" class="mobile-nav__link">Projects</a>
+        <a href="my_pets.html" class="mobile-nav__link">My pets</a>
+        <a href="index.html#contact" class="mobile-nav__link mobile-nav__link--primary">Get in touch</a>
     </nav>
 
-    <!-- MAIN -->
     <main>
-
-        <!-- PROJECTS OVERVIEW SECTION -->
         <section class="projects-overview">
-            <h1>Projects</h1>
-            <p>Here are some of the projects I've worked on. Each one represents a step in my journey as a developer.</p>
+            <div class="page-intro page-intro--solo">
+                <div class="page-intro__content">
+                    <h1 class="page-intro__title">Projects</h1>
+                    <p class="page-intro__subtitle">Here are some of the projects I've worked on. Each one represents a step in my journey as a developer.</p>
+                </div>
+            </div>
 
             <div class="projects-grid">
                 <div class="project-card">
                     <h2>Portfolio Website</h2>
                     <p>A responsive portfolio website built with HTML, CSS, and JavaScript. Showcases my skills and projects in a clean, cyber-themed design.</p>
-                    <a href="https://github.com/Its-JrDev/portfolio" target="_blank" class="btn">Repository</a>
+                    <a href="https://github.com/Its-JrDev/my-portfolio" target="_blank" class="btn">Repository</a>
                 </div>
 
                 <div class="project-card">
@@ -85,15 +84,13 @@
                 </div>
             </div>
         </section>
-
     </main>
 
-    <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 Jose David Romero Lara</p>
     </footer>
 
-    <button class="scroll-top-btn" id="scrollTopButton" aria-label="Back to top" type="button">&uarr;</button>
+    <button class="scroll-top" id="scrollTopButton" aria-label="Back to top" type="button">&uarr;</button>
 
     <script src="js/script.js"></script>
 

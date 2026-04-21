@@ -1,19 +1,23 @@
-const hamburger = document.getElementById("hamburger");
+const burgerMenu = document.getElementById("burgerMenu");
 const mobileNav = document.getElementById("mobileNav");
 const mobileNavLinks = document.querySelectorAll(".mobile-nav a");
+const contactForm = document.querySelector(".contact__form");
+const successModal = document.getElementById("successModal");
+const scrollTopButton = document.getElementById("scrollTopButton");
 
+// Keep the mobile menu state in one place so the button, aria state, and overlay match.
 const setMobileNavState = (isOpen) => {
-    if (!hamburger || !mobileNav) {
+    if (!burgerMenu || !mobileNav) {
         return;
     }
 
-    hamburger.classList.toggle("active", isOpen);
-    hamburger.setAttribute("aria-expanded", String(isOpen));
+    burgerMenu.classList.toggle("active", isOpen);
+    burgerMenu.setAttribute("aria-expanded", String(isOpen));
     mobileNav.classList.toggle("open", isOpen);
 };
 
-if (hamburger && mobileNav) {
-    hamburger.addEventListener("click", () => {
+if (burgerMenu && mobileNav) {
+    burgerMenu.addEventListener("click", () => {
         const isOpen = !mobileNav.classList.contains("open");
         setMobileNavState(isOpen);
     });
@@ -30,7 +34,7 @@ if (hamburger && mobileNav) {
         if (
             mobileNav.classList.contains("open") &&
             !clickedElement.closest(".mobile-nav") &&
-            !clickedElement.closest(".hamburger")
+            !clickedElement.closest(".header__burger-menu")
         ) {
             setMobileNavState(false);
         }
@@ -43,30 +47,50 @@ if (hamburger && mobileNav) {
     });
 }
 
-const contactForm = document.querySelector(".contact-form");
-const successModal = document.getElementById("successModal");
-const successClose = document.querySelector(".success-close");
-const scrollTopButton = document.getElementById("scrollTopButton");
+if (successModal) {
+    const modalCloseButton = successModal.querySelector(".modal__close");
+    const modalConfirmButton = successModal.querySelector(".modal__button");
 
-const closeSuccessModal = () => {
-    if (successModal) {
-        successModal.style.display = "none";
+    // Small helpers keep the modal actions easy to read and reuse.
+    const closeSuccessModal = () => {
+        successModal.classList.remove("modal--open");
+    };
+
+    const openSuccessModal = () => {
+        successModal.classList.add("modal--open");
+    };
+
+    if (contactForm) {
+        contactForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            openSuccessModal();
+            contactForm.reset();
+        });
     }
-};
 
-if (contactForm && successModal) {
-    contactForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        successModal.style.display = "block";
-        this.reset();
+    if (modalCloseButton) {
+        modalCloseButton.addEventListener("click", closeSuccessModal);
+    }
+
+    if (modalConfirmButton) {
+        modalConfirmButton.addEventListener("click", closeSuccessModal);
+    }
+
+    successModal.addEventListener("click", (event) => {
+        if (event.target === successModal) {
+            closeSuccessModal();
+        }
+    });
+
+    window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeSuccessModal();
+        }
     });
 }
 
-if (successClose && successModal) {
-    successClose.addEventListener("click", closeSuccessModal);
-}
-
 if (scrollTopButton) {
+    // Show the button only after the page has been scrolled enough to make it useful.
     const updateScrollTopButton = () => {
         const shouldShow = window.scrollY > 260;
         scrollTopButton.classList.toggle("show", shouldShow);
@@ -76,12 +100,6 @@ if (scrollTopButton) {
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    window.addEventListener("scroll", updateScrollTopButton);
+    window.addEventListener("scroll", updateScrollTopButton, { passive: true });
     updateScrollTopButton();
 }
-
-window.addEventListener("click", (event) => {
-    if (event.target === successModal) {
-        closeSuccessModal();
-    }
-});

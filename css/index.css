@@ -1,8 +1,7 @@
-/* ===== Base layout ===== */
+/* ===== Base Layout ===== */
 
-
-/* ===== Hero section ===== */
-.home {
+/* ===== Hero Section ===== */
+.hero {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
     min-height: calc(100vh - 120px);
@@ -10,27 +9,28 @@
     padding-right: clamp(16px, 6vw, 120px);
 }
 
-.main-content {
+.hero__content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
+    animation: pageFadeUp 0.8s ease both;
 }
 
 /* ===== Typography ===== */
-.presentation {
+.hero__text {
     max-width: 32rem;
 }
 
-h1 {
+.hero__title {
     font-size: 2rem;
     letter-spacing: 2px;
-    font-weight: lighter;
+    font-weight: 200;
     margin-bottom: 15px;
     white-space: normal;
 }
 
-.subtitle {
+.hero__subtitle {
     position: relative;
     font-size: 1.2rem;
     color: var(--accent);
@@ -39,7 +39,7 @@ h1 {
     padding-left: 20px;
 }
 
-.subtitle::before {
+.hero__subtitle::before {
     content: ">";
     position: absolute;
     left: 0;
@@ -48,79 +48,30 @@ h1 {
 }
 
 /* ===== Primary Actions ===== */
-.primary-actions {
+.hero__actions {
     display: flex;
     gap: 15px;
     margin-top: 30px;
     white-space: nowrap;
 }
-
-/* Base del componente botón */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    padding: 14px 20px;
-    border-radius: var(--button-radius);
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    transition: all 0.4s ease;
-}
-
-/* Variante de acción principal */
-.btn-primary {
-    background: var(--accent);
-    color: var(--bg-color);
-    border: 1px solid var(--accent);
-}
-
-/* Variante de acción secundaria */
-.btn-secondary {
-    background: var(--surface);
-    color: var(--text-main);
-    border: 1px solid var(--border);
-}
-
-/* Acción Principal (El que destaca) */
-.btn-primary:hover {
-    background: transparent;
-    color: var(--accent);
-    /* Elevación sutil */
-    transform: translateY(-2px);
-    /* Sombra coherente con tu paleta naranja */
-    box-shadow: 0 5px 15px rgba(255, 159, 49, 0.2);
-}
-
-/* Acción Secundaria (El que tiene borde) */
-.btn-secondary:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: rgba(255, 159, 49, 0.05); /* Un tinte casi imperceptible */
-    transform: translateY(-2px);
-}
-
-/* Efecto de presión (Para cuando haces clic/touch) */
-.btn-primary:active, 
-.btn-secondary:active {
-    transform: translateY(0);
-    box-shadow: none;
-}
 /* ===== Image ===== */
-.cyber-illustration {
+.hero__illustration {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    animation: pageFadeUp 0.9s ease both;
+    animation-delay: 0.08s;
 }
 
-.cyber-image {
-    width: 100%;          /* responsive */
-    max-width: 400px;     /* límite real */
+.hero__image {
+    min-width: 280px;
+    width: 100%;
+    max-width: 400px;
     height: auto;
 }
 
-/* ===== Scroll indicator ===== */
-.scroll-indicator {
+/* ===== Scroll Indicator ===== */
+.hero__scroll-indicator {
     position: absolute;
     bottom: 60px;
     left: 0;
@@ -173,8 +124,8 @@ h1 {
     font-weight: bold;
 }
 
-/* ===== Contact layout ===== */
-.contact-content {
+/* ===== Contact Layout ===== */
+.contact__content {
     display: flex;
     gap: 60px;
     flex-wrap: wrap;
@@ -184,47 +135,46 @@ h1 {
 }
 
 /* ===== Form ===== */
-.contact-form {
+.contact__form {
     flex: 1;
-    min-width: 260px;
-    max-width: 450px;
+    min-width: 250px;
+    max-width: 500px;
 }
 
-.contact-form fieldset {
+.contact__form fieldset {
     border: none;
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-.contact-form input,
-.contact-form textarea {
+.contact__form input,
+.contact__form textarea {
     padding: 12px;
     border: 1px solid var(--border);
     background: var(--surface);
     border-radius: var(--button-radius);
     color: var(--text-main);
-    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; /* Añadimos transición */
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 
-
-/* Efecto de elevación al escribir (Focus) */
-.contact-form input:focus,
-.contact-form textarea:focus {
+/* Focus state gives the fields a small lift and a clearer outline. */
+.contact__form input:focus,
+.contact__form textarea:focus {
     outline: none;
     border-color: var(--accent);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(255, 159, 49, 0.15);
 }
 
-.contact-form textarea {
+.contact__form textarea {
     resize: none;
     field-sizing: content;
     min-height: 120px;
     max-height: 240px;
 }
 
-.contact-form button {
+.contact__form button {
     padding: 12px;
     background: var(--accent);
     color: var(--bg-color);
@@ -235,28 +185,26 @@ h1 {
     transition: 0.3s;
 }
 
-/* Elevación consistente con la navegación */
-.contact-form button:hover {
+/* Match the button motion used in the navigation CTAs. */
+.contact__form button:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(255, 159, 49, 0.3);
-    /* Quitamos opacity para que el texto f2ede4 se vea nítido */
 }
 
-
-/* Efecto de "pulsado" para el celular */
-.contact-form button:active {
+/* Active state keeps the button grounded on touch devices. */
+.contact__form button:active {
     transform: translateY(0);
 }
 
 /* ===== Social ===== */
-.social-icons {
+.contact__social {
     display: flex;
     flex-direction: column;
     gap: 25px;
     font-family: var(--font-code);
 }
 
-.social-icons a {
+.contact__social a {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -266,23 +214,23 @@ h1 {
     transition: color 0.3s;
 }
 
-.social-icons a:hover {
+.contact__social a:hover {
     color: var(--text-main);
 }
 
-.social-icons span::before {
+.contact__social span::before {
     content: "[";
     color: var(--accent);
 }
 
-.social-icons span::after {
+.contact__social span::after {
     content: "]";
     color: var(--accent);
     margin-left: 2px;
 }
 
 
-.icon {
+.contact__icon {
     height: 36px;
     width: 46px;
     background-color: currentColor;
@@ -296,55 +244,113 @@ h1 {
 }
 
 /* Social icons */
-.discord {
+.contact__icon--discord {
     mask-image: url("../assets/icons/discord-icon.svg");
     -webkit-mask-image: url("../assets/icons/discord-icon.svg");
 }
 
-.github {
+.contact__icon--github {
     mask-image: url("../assets/icons/github-icon.svg");
     -webkit-mask-image: url("../assets/icons/github-icon.svg");
 }
 
-.linkedin {
+.contact__icon--linkedin {
     mask-image: url("../assets/icons/linkedin-icon.svg");
     -webkit-mask-image: url("../assets/icons/linkedin-icon.svg");
 }
 
 /* ===== Modal ===== */
-.success-modal {
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1300;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    animation: fadeIn var(--transition-fast) ease;
+}
+
+.modal.modal--open {
+    display: flex;
+}
+
+.modal__content {
+    position: relative;
+    width: 90%;
     text-align: center;
     max-width: 400px;
-}
-
-.success-content {
     padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--surface);
+    animation: slideIn var(--transition-fast) ease;
 }
 
-.success-content h2 {
+.modal__close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.modal__close:hover {
+    color: var(--accent);
+}
+
+.modal__content h2 {
     color: var(--accent);
     margin-bottom: 15px;
     font-size: 1.5rem;
 }
 
-.success-content p {
+.modal__content p {
     margin-bottom: 25px;
     line-height: 1.6;
 }
 
-.success-btn {
-    background: var(--accent) !important;
-    color: var(--bg-color) !important;
-    border: none !important;
-    padding: 12px 30px !important;
-    font-size: 1rem !important;
+.modal__button {
+    background: var(--accent);
+    color: var(--bg-color);
+    border: none;
+    border-radius: var(--button-radius);
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
 }
 
-.success-btn:hover {
-    opacity: 0.8 !important;
+.modal__button:hover {
+    opacity: 0.85;
 }
 
 /* ===== Animations ===== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @keyframes checkmark {
     0% { transform: scale(0); }
     50% { transform: scale(1.2); }
@@ -352,12 +358,12 @@ h1 {
 }
 
 
-@media (max-width: 768px) {
-    .scroll-indicator {
+@media (max-width: 868px) {
+    .hero__scroll-indicator {
         display: none;
     }
 
-    .contact-content {
+    .contact__content {
         flex-direction: column;
         align-items: center;
         gap: 40px;
@@ -365,82 +371,78 @@ h1 {
         margin-right: 0;
     }
 
-    .contact-form {
+    .contact__form {
         width: 100%;
         min-width: auto;
     }
 
-    .social-icons {
+    .contact__social {
         flex-direction: row;
         justify-content: center;
         gap: 45px;
     }
 
-    .social-icons span {
+    .contact__social span {
         display: none;
     }
 }
 
-@media (max-width: 640px) {
-    .home {
+@media (max-width: 768px) {
+    .hero {
         grid-template-columns: 1fr;
         justify-content: center;
         min-height: calc(100vh - 240px);
         padding: 0 20px 0;
     }
 
-    .presentation {
+    .hero__text {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        padding: 0;
+        align-self: center;
         text-align: center;
+
     }
 
-    .subtitle::before {
+    .hero__subtitle {
+        padding: 0;
+    }
+
+    .hero__subtitle::before {
         position: relative;
         margin-right: 8px;
     }
 
 
-    .cyber-actions {
+    .hero__actions {
         flex-direction: column;
-        margin: 0 20px;
+        padding-inline: clamp(0px, (100vw - 320px) / 5, 100px);
     }
 
-    .cyber-actions .btn {
+    .hero__actions .btn {
         text-align: center;
     }
 
-    .cyber-illustration {
+    .hero__illustration {
         margin: 60px 0;
         justify-content: center;
         grid-row: 1 / 2;
     }
 
-    .cyber-image {
+    .hero__image {
         max-width: 280px;
     }
 }
 
 @media (max-width: 480px) {
-    h1 {
+    .hero__title {
         font-size: 1.7rem;
         letter-spacing: 1px;
 
     }
 
-    .subtitle {
+    .hero__subtitle {
         font-size: 1rem;
         margin-bottom: 32px;
-    }
-
-    .about,
-    .contact {
-        padding-top: 48px;
-        padding-bottom: 48px;
-        padding-left: 18px;
-        padding-right: 18px;
     }
 
     .about p {
