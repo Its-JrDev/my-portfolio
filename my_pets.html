@@ -8,17 +8,15 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/my_pets.css">
 </head>
-
 <body>
-
     <header>
-        <div class="header__logo">Its-JrDev</div>
+        <a href="index.html" class="header__logo" aria-label="Go to homepage">Its-JrDev</a>
 
         <nav class="header__nav" aria-label="Desktop navigation">
             <a href="index.html" class="header__link">Home</a>
             <a href="index.html#about" class="header__link">About</a>
             <a href="projects.html" class="header__link">Projects</a>
-            <a href="my_pets.html" class="header__link">My pets</a>
+            <a href="my_pets.html" class="header__link" aria-current="page">My pets</a>
             <a href="index.html#contact" class="header__link header__link--primary">Get in touch</a>
         </nav>
 
@@ -29,11 +27,11 @@
         </button>
     </header>
 
-    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" aria-hidden="true">
         <a href="index.html" class="mobile-nav__link">Home</a>
         <a href="index.html#about" class="mobile-nav__link">About</a>
         <a href="projects.html" class="mobile-nav__link">Projects</a>
-        <a href="my_pets.html" class="mobile-nav__link">My pets</a>
+        <a href="my_pets.html" class="mobile-nav__link" aria-current="page">My pets</a>
         <a href="index.html#contact" class="mobile-nav__link mobile-nav__link--primary">Get in touch</a>
     </nav>
 
@@ -42,42 +40,80 @@
             <div class="page-intro page-intro--solo">
                 <div class="page-intro__content">
                     <h1 class="page-intro__title">My Pets Overview</h1>
-                    <p class="page-intro__subtitle">Welcome to my pets page. Here you can learn a little more about the companions that make my days louder, funnier, and better.</p>
+                    <p class="page-intro__subtitle">
+                        Welcome to my pets page. Here you can learn a little more about the companions that make my days louder, funnier, and better.
+                    </p>
                 </div>
             </div>
 
-            <div class="pets-grid">
-                <div class="pet-card">
-                    <div class="pet-card__visual pet-card__visual--cat" data-label="Cat" aria-hidden="true"></div>
-                    <h2>Whiskers</h2>
-                    <p>My loyal cat companion. Loves chasing laser pointers and napping in sunbeams.</p>
-                </div>
+            <div class="pets-grid cards-grid stagger-grid">
+                <!-- Max - real -->
+                <article class="pet-card surface-card">
+                    <figure class="pet-card__visual pet-card__visual--max" aria-label="Max, a playful dog">
+                        <img src="assets/illustrations/max.jpeg" alt="Max, energetic and playful dog, 2 years old">
+                    </figure>
+                    <h2>Max</h2>
+                    <p>My baby! I've raised him since he was just 15 days old. He's 2 years now — super energetic, playful, and a little bit crazy (in the best way).</p>
+                </article>
 
-                <div class="pet-card">
-                    <div class="pet-card__visual pet-card__visual--dog" data-label="Dog" aria-hidden="true"></div>
-                    <h2>Rover</h2>
-                    <p>An energetic dog who enjoys long walks and fetching balls. Always ready for adventure!</p>
-                </div>
+                <!-- Papi - real -->
+                <article class="pet-card surface-card">
+                    <figure class="pet-card__visual pet-card__visual--papi" aria-label="Papi, a calm guardian dog">
+                        <img src="assets/illustrations/papi.jpeg" alt="Papi, calm and protective dog adopted from the streets">
+                    </figure>
+                    <h2>Papi</h2>
+                    <p>A natural guardian — calm, watchful, and so loyal. I adopted him from the streets, and he's been my trustworthy companion ever since.</p>
+                </article>
 
-                <div class="pet-card">
-                    <div class="pet-card__visual pet-card__visual--fish" data-label="Fish" aria-hidden="true"></div>
-                    <h2>Goldie</h2>
-                    <p>My beautiful goldfish. A calm presence in the aquarium, watching the world go by.</p>
-                </div>
+                <!-- Scooby-Doo - fictional -->
+                <article class="pet-card surface-card">
+                    <div class="pet-card__visual pet-card__visual--scooby" aria-hidden="true">
+                        <img src="assets/illustrations/scooby-doo.jpg" alt="Scooby-Doo, the friendly detective dog">
+                    </div>
+                    <h2>Scooby</h2>
+                    <p>Scooby-Doo! The friendly, cowardly but brave when it counts dog who loves snacks and solving mysteries with the gang.</p>
+                </article>
+
+                <!-- Courage - fictional -->
+                <article class="pet-card surface-card">
+                    <div class="pet-card__visual pet-card__visual--courage" aria-hidden="true">
+                        <img src="assets/illustrations/courage-dog.jpg" alt="Courage, the timid but brave farm dog">
+                    </div>
+                    <h2>Courage</h2>
+                    <p>A timid farm dog who keeps his owners Muriel and Eustace safe from supernatural threats. Not the brightest, but his heart is in the right place.</p>
+                </article>
+
+                <!-- Perry the Platypus - fictional -->
+                <article class="pet-card surface-card">
+                    <div class="pet-card__visual pet-card__visual--perry" aria-hidden="true">
+                        <img src="assets/illustrations/perry-platipus.webp" alt="Perry the Platypus, secret agent">
+                    </div>
+                    <h2>Perry</h2>
+                    <p>Agent P, the silent platypus secret agent who foils Dr. Doofenshmirtz's evil plans daily. He doesn't say much, but his actions speak louder than words.</p>
+                </article>
+
+                <!-- Charmander - fictional -->
+                <article class="pet-card surface-card">
+                    <div class="pet-card__visual pet-card__visual--charmander" aria-hidden="true">
+                        <img src="assets/illustrations/charmander.jpg" alt="Charmander, the fire Pokémon">
+                    </div>
+                    <h2>Charmander</h2>
+                    <p>A fiery lizard Pokémon with a flame burning at the tip of its tail. Loyal to its trainer, but that flame determines its life — keep it safe!</p>
+                </article>
             </div>
         </section>
 
         <hr class="divider">
 
         <section class="pet-care">
-            <h2>Pet Care Tips</h2>
-            <ul>
+            <h2 class="section-heading">Pet Care Tips</h2>
+            <ul class="pet-care__list">
                 <li>Ensure your pets have fresh water available at all times.</li>
                 <li>Provide a balanced diet suitable for their species and age.</li>
                 <li>Schedule regular veterinary check-ups.</li>
                 <li>Give plenty of love and attention.</li>
             </ul>
-            <h3>Please take good care of them</h3>
+            <h3 class="section-note">Please take good care of them</h3>
         </section>
     </main>
 
@@ -88,6 +124,5 @@
     <button class="scroll-top" id="scrollTopButton" aria-label="Back to top" type="button">&uarr;</button>
 
     <script src="js/script.js"></script>
-
 </body>
 </html>

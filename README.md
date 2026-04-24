@@ -1,100 +1,113 @@
 # My Portfolio
 
-Personal portfolio website built with HTML, CSS, and JavaScript.
+A portfolio website built with HTML, CSS, and JavaScript — perfect for learning how the three core web technologies work together.
 
-## Overview
+## What is this project?
 
-This repository contains a small multi-page portfolio focused on practicing core frontend skills with a clean structure and reusable styles.
+This is a **starter portfolio** that showcases what I've built while learning web development. It's a multi-page website with a unified design that runs entirely in the browser — no backend or database required.
 
-The site currently includes:
+The goal was to practice:
+- Structuring content with HTML
+- Styling pages with modern CSS
+- Adding interactivity with vanilla JavaScript
 
-- a landing page with hero, about, and contact sections
-- a projects page with a card-based layout
-- a personal pets page
-- responsive navigation for desktop and mobile
-- shared page-intro styling and responsive spacing across views
-- lightweight JavaScript interactions for menu behavior, modal feedback, and scroll-to-top navigation
+## What's inside?
 
-## Tech Stack
+This portfolio includes **3 pages** that share the same header, footer, and design system:
 
-- HTML5
-- CSS3
-- JavaScript
+1. **Home** (`index.html`) — Hero section, short bio, and contact form
+2. **Projects** (`projects.html`) — Cards showing my web development projects
+3. **My Pets** (`my_pets.html`) — Showcases my two real dogs (Max and Papi) alongside four fictional cartoon pets (Scooby-Doo, Courage, Perry the Platypus, and Charmander). Each pet has its own card with a photo/illustration and a short description.
 
-## Project Structure
+## Quick start (for beginners)
 
-```text
+**Option 1 — Just open it:**
+1. Download or clone this repository
+2. Double-click `index.html` — it will open in your browser
+3. That's it! No installation needed
+
+**Option 2 — Use a local server (recommended):**
+```bash
+# If you have Python installed:
+python -m http.server 8000
+```
+Then open `http://localhost:8000` in your browser.
+
+## File structure
+
+```
 my-portfolio/
-|-- assets/
-|   |-- icons/
-|   `-- illustrations/
-|-- css/
-|   |-- styles.css
-|   |-- index.css
-|   |-- projects.css
-|   `-- my_pets.css
-|-- js/
-|   `-- script.js
-|-- index.html
-|-- projects.html
-`-- my_pets.html
+├── index.html          ← Home page
+├── projects.html       ← Projects page
+├── my_pets.html        ← Pets page
+├── css/
+│   ├── styles.css      ← Shared styles (colors, fonts, layout)
+│   ├── index.css       ← Home page styles
+│   ├── projects.css    ← Projects page styles
+│   └── my_pets.css     ← Pets page styles
+├── js/
+│   └── script.js       ← All interactive behavior
+└── assets/
+    ├── icons/          ← Social media icons
+    └── illustrations/  ← Hero illustration
 ```
 
-## Pages
+**Tip:** Each page loads `styles.css` first (the foundation), then its own page-specific stylesheet. This keeps shared code in one place.
 
-### `index.html`
+## How the code is organized
 
-Main entry point of the portfolio. It includes:
+This project uses **BEM naming** — a simple system that keeps CSS class names predictable:
 
-- hero section
-- about section
-- contact form
-- social links
-- success modal after form submission
+- `.header` → a standalone component (Block)
+- `.header__logo` → a piece inside the header (Element)
+- `.btn--primary` → a variation of the button (Modifier)
 
-### `projects.html`
+**Real examples from the code:**
+```html
+<header class="header">
+  <div class="header__logo">Its-JrDev</div>
+  <a class="btn btn--primary header__link">Contact</a>
+</header>
+```
 
-Project showcase page with multiple cards and repository links.
+Why BEM helps:
+- Easy to find related styles
+- No guessing what a class does
+- Safe to reuse components without conflicts
 
-### `my_pets.html`
+## Features (what you'll see)
 
-Personal page with pet cards and a short pet-care section.
+- **Responsive design** — looks good on mobile, tablet, and desktop
+- **Mobile menu** — hamburger button that opens on small screens
+- **Sticky header** — navigation stays at the top when scrolling
+- **Card components** — reusable design for projects and pets
+- **Hover effects** — subtle animations when you hover over buttons and cards
+- **Contact form** — validates input and shows a success message
+- **Scroll to top** — appears after scrolling down
+- **Page animations** — content fades in smoothly when a page loads
 
-## Main Features
+## Known limitations (what could be improved)
 
-- sticky header navigation
-- responsive hamburger menu
-- shared design tokens through global CSS variables
-- consistent multi-page layout and responsive behavior
-- animated page entry transitions
-- scroll-to-top button
-- contact success modal
-- separated page-specific stylesheets
+- Contact form doesn't send emails (no backend)
+- Some project links are placeholders
+- Images for Scooby, Courage, Perry, and Charmander are external illustrations (not my own photos)
+- Animations could be optimized for performance
 
-## Recent Structural Changes
+## Next steps I'm considering
 
-Compared with the previous commit, the latest refactor introduced these documented changes:
+- Connect the contact form to a service like Formspree or EmailJS
+- Replace placeholder project links with actual live demos
+- Add project filtering by technology (HTML, CSS, JavaScript)
+- Implement a dark/light theme switcher
 
-- stylesheets were moved into the `css/` directory
-- JavaScript was centralized in `js/script.js`
-- icons and illustrations were organized under `assets/`
-- social media icons and contact UI were refined
-- the page structure was aligned across all views
+## Browser support
 
-## Run Locally
-
-1. Clone or download the repository.
-2. Open `index.html` in your browser.
-
-For a smoother development workflow, you can also serve the project with any simple local server.
-
-## Notes
-
-- This is a static frontend project.
-- Some project links and content are still placeholder examples.
-- The contact form currently provides UI feedback only and is not connected to a backend service.
-- The pets page uses CSS-based visual panels instead of image assets.
+Works in all modern browsers (Chrome, Firefox, Safari, Edge). No polyfills or build step required.
 
 ## Author
 
 Jose David Romero Lara
+
+---
+
+**Note:** This is a learning project. The code is intentionally kept simple and well-commented to make it easy to understand and modify.

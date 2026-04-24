@@ -1,25 +1,48 @@
+const MOBILE_BREAKPOINT = 768;
+
 const burgerMenu = document.getElementById("burgerMenu");
 const mobileNav = document.getElementById("mobileNav");
-const mobileNavLinks = document.querySelectorAll(".mobile-nav a");
+const mobileNavLinks = mobileNav ? Array.from(mobileNav.querySelectorAll(".mobile-nav__link")) : [];
 const contactForm = document.querySelector(".contact__form");
 const successModal = document.getElementById("successModal");
 const scrollTopButton = document.getElementById("scrollTopButton");
 
-// Keep the mobile menu state in one place so the button, aria state, and overlay match.
+const setAriaState = (element, attribute, value) => {
+    if (element) {
+        element.setAttribute(attribute, String(value));
+    }
+};
+
+const isMenuOpen = () => mobileNav?.classList.contains("open") ?? false;
+const isModalOpen = () => successModal?.classList.contains("modal--open") ?? false;
+
+const syncBodyLock = () => {
+    document.body.classList.toggle("body--locked", isMenuOpen() || isModalOpen());
+};
+
 const setMobileNavState = (isOpen) => {
     if (!burgerMenu || !mobileNav) {
         return;
     }
 
     burgerMenu.classList.toggle("active", isOpen);
-    burgerMenu.setAttribute("aria-expanded", String(isOpen));
+    setAriaState(burgerMenu, "aria-expanded", isOpen);
     mobileNav.classList.toggle("open", isOpen);
+    setAriaState(mobileNav, "aria-hidden", !isOpen);
+    syncBodyLock();
 };
 
-if (burgerMenu && mobileNav) {
+let closeSuccessModal = () => {};
+
+const initMobileNav = () => {
+    if (!burgerMenu || !mobileNav) {
+        return;
+    }
+
+    setMobileNavState(false);
+
     burgerMenu.addEventListener("click", () => {
-        const isOpen = !mobileNav.classList.contains("open");
-        setMobileNavState(isOpen);
+        setMobileNavState(!isMenuOpen());
     });
 
     mobileNavLinks.forEach((link) => {
@@ -32,7 +55,8 @@ if (burgerMenu && mobileNav) {
         const clickedElement = event.target;
 
         if (
-            mobileNav.classList.contains("open") &&
+            isMenuOpen() &&
+            clickedElement instanceof Element &&
             !clickedElement.closest(".mobile-nav") &&
             !clickedElement.closest(".header__burger-menu")
         ) {
@@ -41,59 +65,64 @@ if (burgerMenu && mobileNav) {
     });
 
     window.addEventListener("resize", () => {
-        if (window.innerWidth > 768) {
+        if (window.innerWidth > MOBILE_BREAKPOINT && isMenuOpen()) {
             setMobileNavState(false);
         }
     });
-}
+};
 
-if (successModal) {
+const initSuccessModal = () => {
+    if (!successModal) {
+        return;
+    }
+
     const modalCloseButton = successModal.querySelector(".modal__close");
     const modalConfirmButton = successModal.querySelector(".modal__button");
+    let lastFocusedElement = null;
 
-    // Small helpers keep the modal actions easy to read and reuse.
-    const closeSuccessModal = () => {
+    closeSuccessModal = () => {
         successModal.classList.remove("modal--open");
+        setAriaState(successModal, "aria-hidden", true);
+        syncBodyLock();
+
+        if (lastFocusedElement instanceof HTMLElement) {
+            lastFocusedElement.focus();
+        }
     };
 
     const openSuccessModal = () => {
+        lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
         successModal.classList.add("modal--open");
+        setAriaState(successModal, "aria-hidden", false);
+        syncBodyLock();
+        modalConfirmButton?.focus();
     };
 
     if (contactForm) {
         contactForm.addEventListener("submit", (event) => {
             event.preventDefault();
-            openSuccessModal();
             contactForm.reset();
+            openSuccessModal();
         });
     }
 
-    if (modalCloseButton) {
-        modalCloseButton.addEventListener("click", closeSuccessModal);
-    }
-
-    if (modalConfirmButton) {
-        modalConfirmButton.addEventListener("click", closeSuccessModal);
-    }
+    modalCloseButton?.addEventListener("click", closeSuccessModal);
+    modalConfirmButton?.addEventListener("click", closeSuccessModal);
 
     successModal.addEventListener("click", (event) => {
         if (event.target === successModal) {
             closeSuccessModal();
         }
     });
+};
 
-    window.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-            closeSuccessModal();
-        }
-    });
-}
+const initScrollTopButton = () => {
+    if (!scrollTopButton) {
+        return;
+    }
 
-if (scrollTopButton) {
-    // Show the button only after the page has been scrolled enough to make it useful.
     const updateScrollTopButton = () => {
-        const shouldShow = window.scrollY > 260;
-        scrollTopButton.classList.toggle("show", shouldShow);
+        scrollTopButton.classList.toggle("show", window.scrollY > 260);
     };
 
     scrollTopButton.addEventListener("click", () => {
@@ -102,4 +131,22 @@ if (scrollTopButton) {
 
     window.addEventListener("scroll", updateScrollTopButton, { passive: true });
     updateScrollTopButton();
-}
+};
+
+document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") {
+        return;
+    }
+
+    if (isModalOpen()) {
+        closeSuccessModal();
+    }
+
+    if (isMenuOpen()) {
+        setMobileNavState(false);
+    }
+});
+
+initMobileNav();
+initSuccessModal();
+initScrollTopButton();

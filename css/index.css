@@ -1,42 +1,37 @@
-/* ===== Base Layout ===== */
-
-/* ===== Hero Section ===== */
+/* Home Page */
 .hero {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
     min-height: calc(100vh - 120px);
-    padding-left: clamp(16px, 6vw, 120px);
-    padding-right: clamp(16px, 6vw, 120px);
+    padding-inline: var(--hero-inline);
 }
 
 .hero__content {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: relative;
     animation: pageFadeUp 0.8s ease both;
 }
 
-/* ===== Typography ===== */
 .hero__text {
     max-width: 32rem;
 }
 
 .hero__title {
-    font-size: 2rem;
-    letter-spacing: 2px;
-    font-weight: 200;
     margin-bottom: 15px;
-    white-space: normal;
+    font-size: 2rem;
+    font-weight: 200;
+    letter-spacing: 2px;
 }
 
 .hero__subtitle {
     position: relative;
-    font-size: 1.2rem;
-    color: var(--accent);
     margin-bottom: 45px;
-    font-weight: 300;
     padding-left: 20px;
+    color: var(--accent);
+    font-size: 1.2rem;
+    font-weight: 300;
 }
 
 .hero__subtitle::before {
@@ -47,14 +42,13 @@
     font-weight: bold;
 }
 
-/* ===== Primary Actions ===== */
 .hero__actions {
     display: flex;
     gap: 15px;
     margin-top: 30px;
     white-space: nowrap;
 }
-/* ===== Image ===== */
+
 .hero__illustration {
     display: flex;
     align-items: center;
@@ -64,13 +58,12 @@
 }
 
 .hero__image {
-    min-width: 280px;
     width: 100%;
+    min-width: 280px;
     max-width: 400px;
     height: auto;
 }
 
-/* ===== Scroll Indicator ===== */
 .hero__scroll-indicator {
     position: absolute;
     bottom: 60px;
@@ -79,86 +72,44 @@
     font-size: 1.5rem;
 }
 
-/* ===== Sections ===== */
 .about,
 .contact {
-    padding-top: 60px;
-    padding-bottom: 60px;
-    padding-left: clamp(20px, 8vw, 240px);
-    padding-right: clamp(20px, 8vw, 240px);
+    padding-block: 60px;
+    padding-inline: var(--section-inline);
 }
 
-.about h2,
-.contact h2 {
-    margin-bottom: 30px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    font-family: var(--font-code);
-    position: relative;
-    padding-left: 20px;
-}
-
-.about h2::before,
-.contact h2::before {
-    content: "#";
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-    font-weight: bold;
-}
-
-.about p {
-    margin: 0 auto;
-    line-height: 1.6;
-    width: fit-content;
-    position: relative;
-    padding-left: 20px;
-    font-family: var(--font-code);
-}
-
-.about p::before {
-    content: "//";
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-    font-weight: bold;
-}
-
-/* ===== Contact Layout ===== */
 .contact__content {
     display: flex;
+    align-items: flex-start;
+    justify-content: center;
     gap: 60px;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    margin: 0 30px;
 }
 
-/* ===== Form ===== */
 .contact__form {
     flex: 1;
-    min-width: 250px;
+    min-width: 260px;
     max-width: 500px;
 }
 
 .contact__form fieldset {
-    border: none;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    border: none;
 }
 
 .contact__form input,
 .contact__form textarea {
+    width: 100%;
     padding: 12px;
     border: 1px solid var(--border);
-    background: var(--surface);
     border-radius: var(--button-radius);
+    background: var(--surface);
     color: var(--text-main);
     transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 
-/* Focus state gives the fields a small lift and a clearer outline. */
 .contact__form input:focus,
 .contact__form textarea:focus {
     outline: none;
@@ -168,40 +119,19 @@
 }
 
 .contact__form textarea {
-    resize: none;
-    field-sizing: content;
+    resize: vertical;
     min-height: 120px;
     max-height: 240px;
 }
 
-.contact__form button {
-    padding: 12px;
-    background: var(--accent);
-    color: var(--bg-color);
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    border-radius: var(--button-radius);
-    transition: 0.3s;
+.contact__submit {
+    width: 100%;
 }
 
-/* Match the button motion used in the navigation CTAs. */
-.contact__form button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(255, 159, 49, 0.3);
-}
-
-/* Active state keeps the button grounded on touch devices. */
-.contact__form button:active {
-    transform: translateY(0);
-}
-
-/* ===== Social ===== */
 .contact__social {
     display: flex;
     flex-direction: column;
     gap: 25px;
-    font-family: var(--font-code);
 }
 
 .contact__social a {
@@ -225,25 +155,23 @@
 
 .contact__social span::after {
     content: "]";
-    color: var(--accent);
     margin-left: 2px;
+    color: var(--accent);
 }
-
 
 .contact__icon {
-    height: 36px;
     width: 46px;
+    height: 36px;
     background-color: currentColor;
-    mask-size: contain;
-    mask-repeat: no-repeat;
     mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
 
-    -webkit-mask-size: contain;
-    -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
 }
 
-/* Social icons */
 .contact__icon--discord {
     mask-image: url("../assets/icons/discord-icon.svg");
     -webkit-mask-image: url("../assets/icons/discord-icon.svg");
@@ -259,43 +187,49 @@
     -webkit-mask-image: url("../assets/icons/linkedin-icon.svg");
 }
 
-/* ===== Modal ===== */
 .modal {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     z-index: 1300;
-    display: none;
-    justify-content: center;
+    display: flex;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    justify-content: center;
+    padding: 20px;
     background-color: rgba(0, 0, 0, 0.8);
-    animation: fadeIn var(--transition-fast) ease;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--transition-fast) ease, visibility var(--transition-fast) ease;
 }
 
 .modal.modal--open {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .modal__content {
     position: relative;
-    width: 90%;
-    text-align: center;
-    max-width: 400px;
-    padding: 20px;
+    width: min(100%, 400px);
+    padding: 24px;
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--card-radius);
     background-color: var(--surface);
-    animation: slideIn var(--transition-fast) ease;
+    text-align: center;
+    transform: translateY(18px);
+    transition: transform var(--transition-fast) ease;
+}
+
+.modal.modal--open .modal__content {
+    transform: translateY(0);
 }
 
 .modal__close {
     position: absolute;
     top: 15px;
     right: 15px;
-    background: none;
     border: none;
+    background: none;
     color: var(--text-main);
     font-size: 28px;
     font-weight: bold;
@@ -308,55 +242,19 @@
 }
 
 .modal__content h2 {
-    color: var(--accent);
     margin-bottom: 15px;
+    color: var(--accent);
     font-size: 1.5rem;
 }
 
 .modal__content p {
-    margin-bottom: 25px;
+    margin-bottom: 24px;
     line-height: 1.6;
 }
 
 .modal__button {
-    background: var(--accent);
-    color: var(--bg-color);
-    border: none;
-    border-radius: var(--button-radius);
-    padding: 12px 30px;
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
+    min-width: 120px;
 }
-
-.modal__button:hover {
-    opacity: 0.85;
-}
-
-/* ===== Animations ===== */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes checkmark {
-    0% { transform: scale(0); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-}
-
 
 @media (max-width: 868px) {
     .hero__scroll-indicator {
@@ -367,8 +265,6 @@
         flex-direction: column;
         align-items: center;
         gap: 40px;
-        margin-left: 0;
-        margin-right: 0;
     }
 
     .contact__form {
@@ -392,7 +288,7 @@
         grid-template-columns: 1fr;
         justify-content: center;
         min-height: calc(100vh - 240px);
-        padding: 0 20px 0;
+        padding-inline: 20px;
     }
 
     .hero__text {
@@ -400,11 +296,10 @@
         flex-direction: column;
         align-self: center;
         text-align: center;
-
     }
 
     .hero__subtitle {
-        padding: 0;
+        padding-left: 0;
     }
 
     .hero__subtitle::before {
@@ -412,20 +307,20 @@
         margin-right: 8px;
     }
 
-
     .hero__actions {
         flex-direction: column;
         padding-inline: clamp(0px, (100vw - 320px) / 5, 100px);
     }
 
-    .hero__actions .btn {
-        text-align: center;
+    .hero__actions .btn,
+    .contact__submit {
+        width: 100%;
     }
 
     .hero__illustration {
-        margin: 60px 0;
-        justify-content: center;
         grid-row: 1 / 2;
+        justify-content: center;
+        margin: 60px 0;
     }
 
     .hero__image {
@@ -437,19 +332,14 @@
     .hero__title {
         font-size: 1.7rem;
         letter-spacing: 1px;
-
     }
 
     .hero__subtitle {
-        font-size: 1rem;
         margin-bottom: 32px;
+        font-size: 1rem;
     }
 
-    .about p {
-        width: 100%;
-    }
-
-    .contact-form {
-        min-width: 0;
+    .modal__content {
+        padding: 20px;
     }
 }
