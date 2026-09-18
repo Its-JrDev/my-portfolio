@@ -1,113 +1,77 @@
 # My Portfolio
 
-A portfolio website built with HTML, CSS, and JavaScript — perfect for learning how the three core web technologies work together.
+Portfolio personal de **Jose D. Romero** (Its-JrDev), construido con **Vite + React + TypeScript + shadcn/ui** y blocks de los registries oficial y **Magic UI**. Desplegado en **GitHub Pages** con GitHub Actions.
 
-## What is this project?
+## Stack
 
-This is a **starter portfolio** that showcases what I've built while learning web development. It's a multi-page website with a unified design that runs entirely in the browser — no backend or database required.
+- [Vite](https://vite.dev/) + React 19 + TypeScript
+- [shadcn/ui](https://ui.shadcn.com/) (base `base-nova`, iconos Tabler)
+- [Tailwind CSS v4](https://tailwindcss.com/)
+- [react-router-dom](https://reactrouter.com/) (`HashRouter` — el router más compatible con GitHub Pages, sin fallback de servidor)
+- Blocks de [Magic UI](https://www.magicui.design/) (marquee, blur-fade, text-animate, grid-pattern, sparkles-text, number-ticker, shimmer-button, shine-border, bento-grid, animated-theme-toggler)
 
-The goal was to practice:
-- Structuring content with HTML
-- Styling pages with modern CSS
-- Adding interactivity with vanilla JavaScript
+## Empezar
 
-## What's inside?
-
-This portfolio includes **3 pages** that share the same header, footer, and design system:
-
-1. **Home** (`index.html`) — Hero section, short bio, and contact form
-2. **Projects** (`projects.html`) — Cards showing my web development projects
-3. **My Pets** (`my_pets.html`) — Showcases my two real dogs (Max and Papi) alongside four fictional cartoon pets (Scooby-Doo, Courage, Perry the Platypus, and Charmander). Each pet has its own card with a photo/illustration and a short description.
-
-## Quick start (for beginners)
-
-**Option 1 — Just open it:**
-1. Download or clone this repository
-2. Double-click `index.html` — it will open in your browser
-3. That's it! No installation needed
-
-**Option 2 — Use a local server (recommended):**
 ```bash
-# If you have Python installed:
-python -m http.server 8000
-```
-Then open `http://localhost:8000` in your browser.
-
-## File structure
-
-```
-my-portfolio/
-├── index.html          ← Home page
-├── projects.html       ← Projects page
-├── my_pets.html        ← Pets page
-├── css/
-│   ├── styles.css      ← Shared styles (colors, fonts, layout)
-│   ├── index.css       ← Home page styles
-│   ├── projects.css    ← Projects page styles
-│   └── my_pets.css     ← Pets page styles
-├── js/
-│   └── script.js       ← All interactive behavior
-└── assets/
-    ├── icons/          ← Social media icons
-    └── illustrations/  ← Hero illustration
+npm install        # instalar dependencias
+npm run dev        # dev server en http://localhost:5173
+npm run build      # typecheck (tsc) + build a dist/
+npm run preview    # previsualizar el build
 ```
 
-**Tip:** Each page loads `styles.css` first (the foundation), then its own page-specific stylesheet. This keeps shared code in one place.
+## Estructura
 
-## How the code is organized
-
-This project uses **BEM naming** — a simple system that keeps CSS class names predictable:
-
-- `.header` → a standalone component (Block)
-- `.header__logo` → a piece inside the header (Element)
-- `.btn--primary` → a variation of the button (Modifier)
-
-**Real examples from the code:**
-```html
-<header class="header">
-  <div class="header__logo">Its-JrDev</div>
-  <a class="btn btn--primary header__link">Contact</a>
-</header>
+```
+src/
+├── App.tsx                      # Router (HashRouter) + layout base
+├── components/
+│   ├── ui/                      # Componentes shadcn + Magic UI
+│   ├── seo.tsx                  # <title>/<meta>/OG por ruta (React 19)
+│   ├── site-header.tsx          # Nav + tema + menú móvil (Sheet)
+│   ├── site-footer.tsx
+│   ├── hero.tsx / about.tsx / contact.tsx
+│   └── project-card.tsx         # Card con imagen, tags y links condicionales
+├── data/
+│   └── projects.ts              # <-- EDITA AQUÍ tus proyectos
+├── lib/
+│   └── site.ts                  # Datos del sitio (nombre, socials, SITE_URL)
+└── pages/
+    ├── home.tsx / projects.tsx / not-found.tsx
 ```
 
-Why BEM helps:
-- Easy to find related styles
-- No guessing what a class does
-- Safe to reuse components without conflicts
+## Añadir / editar proyectos
 
-## Features (what you'll see)
+Edita `src/data/projects.ts`. Cada proyecto acepta:
 
-- **Responsive design** — looks good on mobile, tablet, and desktop
-- **Mobile menu** — hamburger button that opens on small screens
-- **Sticky header** — navigation stays at the top when scrolling
-- **Card components** — reusable design for projects and pets
-- **Hover effects** — subtle animations when you hover over buttons and cards
-- **Contact form** — validates input and shows a success message
-- **Scroll to top** — appears after scrolling down
-- **Page animations** — content fades in smoothly when a page loads
+```ts
+{
+  title: string
+  description: string
+  tags: string[]           // tecnologías (se muestran como Badges)
+  image?: string           // ruta en public/, p.ej. "projects/ecommerce.png"
+  deployUrl?: string       // opcional → muestra botón "Live demo"
+  githubUrl?: string       // opcional → muestra botón "Code"
+}
+```
 
-## Known limitations (what could be improved)
+- Si no hay `image`, la card muestra un placeholder.
+- Si no hay `deployUrl` ni `githubUrl`, la card no muestra botones.
+- Las imágenes van en `public/projects/` (créalas tú).
 
-- Contact form doesn't send emails (no backend)
-- Some project links are placeholders
-- Images for Scooby, Courage, Perry, and Charmander are external illustrations (not my own photos)
-- Animations could be optimized for performance
+## Deploy a GitHub Pages
 
-## Next steps I'm considering
+1. En el repo, **Settings → Pages → Source: "GitHub Actions"** (habilita el workflow).
+2. Sube los cambios a `dev` o `main`: el workflow `.github/workflows/deploy.yml` construye y publica `dist/`.
+3. El sitio queda en `https://its-jrdev.github.io/my-portfolio/`.
 
-- Connect the contact form to a service like Formspree or EmailJS
-- Replace placeholder project links with actual live demos
-- Add project filtering by technology (HTML, CSS, JavaScript)
-- Implement a dark/light theme switcher
+El `base` de Vite está fijado a `/my-portfolio/` en `vite.config.ts`. Si algún día publicas desde un dominio raíz, cámbialo a `/`.
 
-## Browser support
+## Notas
 
-Works in all modern browsers (Chrome, Firefox, Safari, Edge). No polyfills or build step required.
+- **Routing**: se usa `HashRouter` porque GitHub Pages no reescribe rutas de SPA: cualquier fallo de ruta lo cubre la página `NotFound` interna y `public/404.html` para archivos inexistentes.
+- **SEO mínimo**: title/description por ruta + Open Graph (requiere `public/og-image.png`, generado desde `og-image.svg`).
+- **Tema**: oscuro por defecto, toggle animado (componente `animated-theme-toggler` de Magic UI). Persistencia en `localStorage` (`theme`).
 
-## Author
+## Autor
 
-Jose David Romero Lara
-
----
-
-**Note:** This is a learning project. The code is intentionally kept simple and well-commented to make it easy to understand and modify.
+Jose David Romero Lara — [GitHub](https://github.com/Its-JrDev) · [LinkedIn](https://www.linkedin.com/in/jose-romero-7b37353b6) · [Discord](https://discordapp.com/users/1178506619345190996)

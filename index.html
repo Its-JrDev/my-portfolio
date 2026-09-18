@@ -1,131 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | JR</title>
-    <link rel="shortcut icon" href="assets/icons/cyber-icon.svg">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/index.css">
-</head>
-<body>
-    <header>
-        <a href="index.html" class="header__logo" aria-label="Go to homepage">Its-JrDev</a>
-
-        <nav class="header__nav" aria-label="Desktop navigation">
-            <a href="#about" class="header__link">About</a>
-            <a href="projects.html" class="header__link">Projects</a>
-            <a href="my_pets.html" class="header__link">My pets</a>
-            <a href="#contact" class="header__link header__link--primary">Get in Touch</a>
-        </nav>
-
-        <button class="header__burger-menu" id="burgerMenu" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNav" type="button">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </header>
-
-    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" aria-hidden="true">
-        <a href="#about" class="mobile-nav__link">About</a>
-        <a href="projects.html" class="mobile-nav__link">Projects</a>
-        <a href="my_pets.html" class="mobile-nav__link">My pets</a>
-        <a href="#contact" class="mobile-nav__link mobile-nav__link--primary">Get in touch</a>
-    </nav>
-
-    <main>
-        <section class="hero">
-            <div class="hero__content">
-                <div class="hero__text">
-                    <h1 class="hero__title">Jose D. Romero</h1>
-                    <p class="hero__subtitle">Riwi's Coder</p>
-                </div>
-
-                <nav class="hero__actions" aria-label="Hero actions">
-                    <a href="#about" class="btn btn--secondary">About me</a>
-                    <a href="projects.html" class="btn btn--primary">My projects</a>
-                </nav>
-
-                <div class="hero__scroll-indicator" aria-hidden="true">
-                    <span class="hero__arrow">&darr;</span>
-                </div>
-            </div>
-
-            <figure class="hero__illustration">
-                <img src="assets/illustrations/cyber-paladin.svg" class="hero__image" alt="Cyber paladin illustration">
-            </figure>
-        </section>
-
-        <hr class="divider">
-
-        <section class="about" id="about">
-            <h2 class="section-heading">About Me</h2>
-            <p class="section-copy">
-                Hi! I'm Jose, a web developer who loves creating websites. I started learning HTML and CSS,
-                and now I'm building cool projects. When I'm not coding, I enjoy playing video games and
-                spending time with my pets.
-            </p>
-        </section>
-
-        <hr class="divider">
-
-        <section class="contact" id="contact">
-            <h2 class="section-heading">Get in Touch</h2>
-
-            <div class="contact__content">
-                <form class="contact__form">
-                    <fieldset>
-                        <input id="contactName" name="name" type="text" placeholder="Your name" autocomplete="name" aria-label="Your name" required>
-                        <input id="contactEmail" name="email" type="email" placeholder="Your email" autocomplete="email" aria-label="Your email" required>
-                        <textarea id="contactMessage" name="message" placeholder="Your message" aria-label="Your message" required></textarea>
-
-                        <button class="btn btn--primary contact__submit" type="submit">Send message</button>
-                    </fieldset>
-                </form>
-
-                <nav class="contact__social" aria-label="Social media">
-                    <a href="https://discordapp.com/users/1178506619345190996" target="_blank" rel="noopener noreferrer">
-                        <div class="contact__icon contact__icon--discord" aria-hidden="true"></div>
-                        <span>Discord</span>
-                    </a>
-
-                    <a href="https://github.com/Its-JrDev" target="_blank" rel="noopener noreferrer">
-                        <div class="contact__icon contact__icon--github" aria-hidden="true"></div>
-                        <span>GitHub</span>
-                    </a>
-
-                    <a href="https://www.linkedin.com/in/jose-romero-7b37353b6" target="_blank" rel="noopener noreferrer">
-                        <div class="contact__icon contact__icon--linkedin" aria-hidden="true"></div>
-                        <span>LinkedIn</span>
-                    </a>
-                </nav>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Jose David Romero Lara</p>
-    </footer>
-
-    <button class="scroll-top" id="scrollTopButton" aria-label="Back to top" type="button">&uarr;</button>
-
-    <div
-        id="successModal"
-        class="modal"
-        role="dialog"
-        aria-modal="true"
-        aria-hidden="true"
-        aria-labelledby="successModalTitle"
-        aria-describedby="successModalText"
-    >
-        <div class="modal__content">
-            <button class="modal__close" type="button" aria-label="Close modal">&times;</button>
-            <h2 id="successModalTitle">Message sent!</h2>
-            <p id="successModalText">Thank you for your message. I'll get back to you soon!</p>
-            <button class="btn btn--primary modal__button" type="button">OK</button>
-        </div>
-    </div>
-
-    <script src="js/script.js"></script>
-</body>
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%cyber-icon.svg" />
+    <link rel="apple-touch-icon" href="%BASE_URL%cyber-icon.svg" />
+    <meta name="theme-color" content="#09090b" />
+    <meta
+      name="description"
+      content="Portfolio de Jose D. Romero — desarrollador web. Proyectos, skills y contacto."
+    />
+    <link rel="preconnect" href="https://github.com" crossorigin />
+    <link rel="preconnect" href="https://www.linkedin.com" crossorigin />
+    <title>Portfolio | Jose D. Romero</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

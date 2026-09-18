@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "active_work_id": "skill-graph-drag-animation-9bae7d5a",
+  "works": {
+    "skill-graph-drag-animation-9bae7d5a": {
+      "work_id": "skill-graph-drag-animation-9bae7d5a",
+      "active_plan": "/home/jr/orca/my-portfolio/.omo/plans/skill-graph-drag-animation.md",
+      "plan_name": "skill-graph-drag-animation",
+      "status": "active",
+      "started_at": "2026-09-18T02:26:06.837Z",
+      "updated_at": "2026-09-18T02:34:01.364Z",
+      "session_ids": [
+        "opencode:ses_f64604e8effeHQRguMPzEfHME2",
+        "opencode:ses_f4da37af5ffeNwUz06CCHwc0YO",
+        "opencode:ses_f4da34ee8ffeSnFMpQEOIGko7k",
+        "opencode:ses_f4da3159affeW9shr33vk54jig",
+        "opencode:ses_f4da2f185ffek4nEANxHU61zqs"
+      ],
+      "session_origins": {
+        "opencode:ses_f64604e8effeHQRguMPzEfHME2": "direct",
+        "opencode:ses_f4da37af5ffeNwUz06CCHwc0YO": "appended",
+        "opencode:ses_f4da34ee8ffeSnFMpQEOIGko7k": "appended",
+        "opencode:ses_f4da3159affeW9shr33vk54jig": "appended",
+        "opencode:ses_f4da2f185ffek4nEANxHU61zqs": "appended"
+      },
+      "agent": "atlas",
+      "task_sessions": {
+        "todo:1": {
+          "task_key": "todo:1",
+          "task_label": "1",
+          "task_title": "**Ring div** (~line 300, the `absolute -inset-2 rounded-full border border-primary/40 bg-primary/10` div): add `transition-all duration-300 ease-out` to its `className`",
+          "session_id": "opencode:ses_f4da57c3bffeGEZ7fphcP4V3yR",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "started_at": "2026-09-18T02:28:28.423Z",
+          "ended_at": "2026-09-18T02:32:20.422Z",
+          "elapsed_ms": 231999,
+          "status": "completed",
+          "updated_at": "2026-09-18T02:32:20.422Z"
+        },
+        "final-wave:f1": {
+          "task_key": "final-wave:f1",
+          "task_label": "F1",
+          "task_title": "Plan compliance audit",
+          "session_id": "opencode:ses_f4da2f185ffek4nEANxHU61zqs",
+          "agent": "oracle",
+          "updated_at": "2026-09-18T02:34:01.364Z"
+        }
+      }
+    }
+  },
+  "active_plan": "/home/jr/orca/my-portfolio/.omo/plans/skill-graph-drag-animation.md",
+  "started_at": "2026-09-18T02:26:06.837Z",
+  "status": "active",
+  "updated_at": "2026-09-18T02:34:01.364Z",
+  "session_ids": [
+    "opencode:ses_f64604e8effeHQRguMPzEfHME2",
+    "opencode:ses_f4da37af5ffeNwUz06CCHwc0YO",
+    "opencode:ses_f4da34ee8ffeSnFMpQEOIGko7k",
+    "opencode:ses_f4da3159affeW9shr33vk54jig",
+    "opencode:ses_f4da2f185ffek4nEANxHU61zqs"
+  ],
+  "session_origins": {
+    "opencode:ses_f64604e8effeHQRguMPzEfHME2": "direct",
+    "opencode:ses_f4da37af5ffeNwUz06CCHwc0YO": "appended",
+    "opencode:ses_f4da34ee8ffeSnFMpQEOIGko7k": "appended",
+    "opencode:ses_f4da3159affeW9shr33vk54jig": "appended",
+    "opencode:ses_f4da2f185ffek4nEANxHU61zqs": "appended"
+  },
+  "plan_name": "skill-graph-drag-animation",
+  "task_sessions": {
+    "todo:1": {
+      "task_key": "todo:1",
+      "task_label": "1",
+      "task_title": "**Ring div** (~line 300, the `absolute -inset-2 rounded-full border border-primary/40 bg-primary/10` div): add `transition-all duration-300 ease-out` to its `className`",
+      "session_id": "opencode:ses_f4da57c3bffeGEZ7fphcP4V3yR",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "started_at": "2026-09-18T02:28:28.423Z",
+      "ended_at": "2026-09-18T02:32:20.422Z",
+      "elapsed_ms": 231999,
+      "status": "completed",
+      "updated_at": "2026-09-18T02:32:20.422Z"
+    },
+    "final-wave:f1": {
+      "task_key": "final-wave:f1",
+      "task_label": "F1",
+      "task_title": "Plan compliance audit",
+      "session_id": "opencode:ses_f4da2f185ffek4nEANxHU61zqs",
+      "agent": "oracle",
+      "updated_at": "2026-09-18T02:34:01.364Z"
+    }
+  },
+  "agent": "atlas"
+}
