@@ -5,10 +5,10 @@ import { useTranslation } from "@/lib/i18n"
 export function Skills() {
   const { t } = useTranslation()
   return (
-    <BlurFade delay={0.15} className="lg:col-span-3">
+    <BlurFade delay={0.15} className="lg:col-span-7">
       <div>
         <p className="text-sm font-medium text-muted-foreground">{t("skills_subtitle")}</p>
-        <h3 className="mt-1 font-heading text-xl font-semibold tracking-tight">
+        <h3 className="mt-1 font-heading text-xl font-semibold tracking-tight sm:text-2xl">
           {t("skills_title")}
         </h3>
         <p className="mt-2 text-sm text-muted-foreground">

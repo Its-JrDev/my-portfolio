@@ -18,20 +18,31 @@ const translations = {
     // Skills
     skills_title: "My stack, mapped",
     skills_subtitle: "Skills",
-    skills_desc: "Hover a node to see what I use it for.",
+    skills_desc: "Hover a node to explore connections and stack utility.",
     // Featured
     featured_title: "Featured projects",
-    featured_desc: "A few things I have built.",
+    featured_desc: "Selected works engineered with performance, high visual fidelity, and clean code.",
     all_projects: "All projects",
     // Projects Page
-    projects_title: "Projects",
-    projects_page_desc: "Here are some of the projects I have worked on. Each one represents a step in my journey as a developer.",
+    projects_title: "Cinematic Project Showcase",
+    projects_page_desc: "Explore end-to-end architectures, interactive applications, and modern frontend engines. Media-driven, high fidelity, and zero container clutter.",
     live_demo: "Live demo",
-    code: "Code",
+    code: "Source Code",
+    // Filters & Badges
+    filter_all: "All Works",
+    filter_frontend: "Frontend",
+    filter_fullstack: "Full-Stack",
+    filter_realtime: "Real-Time",
+    spotlight_badge: "FLAGSHIP SPOTLIGHT",
+    inspect_project: "Inspect Architecture",
     // Contact
     contact_title: "Get in touch",
     contact_desc: "Have a project in mind or just want to say hi? Reach out through any of these, or email me directly at",
     connect_on: "Let's connect on",
+    open_to_work: "Available for new opportunities",
+    copy_email: "Copy email",
+    email_copied: "Email copied to clipboard!",
+    quick_chat: "Let's build something exceptional together.",
     // Footer
     built_with: "Built with React + shadcn/ui",
     // Not found
@@ -56,31 +67,42 @@ const translations = {
     // Skills
     skills_title: "Mi stack tecnológico",
     skills_subtitle: "Habilidades",
-    skills_desc: "Pasa el cursor sobre un nodo para ver para qué lo uso.",
+    skills_desc: "Pasa el cursor sobre un nodo para explorar conexiones y utilidad.",
     // Featured
     featured_title: "Proyectos destacados",
-    featured_desc: "Algunas cosas que he construido.",
+    featured_desc: "Obras seleccionadas con alto rendimiento, máxima fidelidad visual y código limpio.",
     all_projects: "Todos los proyectos",
     // Projects Page
-    projects_title: "Proyectos",
-    projects_page_desc: "Aquí hay algunos de los proyectos en los que he trabajado. Cada uno representa un paso en mi viaje como desarrollador.",
+    projects_title: "Showcase Cinematográfico",
+    projects_page_desc: "Explora arquitecturas completas, aplicaciones interactivas y motores frontend modernos. Centrado en medios, alta fidelidad y sin sobre-contenerizar.",
     live_demo: "Demo en vivo",
-    code: "Código",
+    code: "Código Fuente",
+    // Filters & Badges
+    filter_all: "Todos",
+    filter_frontend: "Frontend",
+    filter_fullstack: "Full-Stack",
+    filter_realtime: "Tiempo Real",
+    spotlight_badge: "PROYECTO INSIGNIA",
+    inspect_project: "Inspeccionar Arquitectura",
     // Contact
     contact_title: "Ponte en contacto",
     contact_desc: "¿Tienes un proyecto en mente o solo quieres saludar? Contáctame por cualquiera de estos medios, o escríbeme directamente a",
     connect_on: "Conectemos en",
+    open_to_work: "Disponible para nuevas oportunidades",
+    copy_email: "Copiar correo",
+    email_copied: "¡Correo copiado al portapapeles!",
+    quick_chat: "Construyamos algo excepcional juntos.",
     // Footer
     built_with: "Desarrollado con React + shadcn/ui",
     // Not found
     not_found: "Página no encontrada",
     not_found_desc: "La página que buscas no existe o fue movida.",
     back_home: "Volver al inicio",
-  }
+  },
 }
 
 type Language = "en" | "es"
-type Translations = typeof translations.en
+export type Translations = typeof translations.en
 
 interface I18nContextType {
   lang: Language
@@ -101,9 +123,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     }
   }, [])
 
-  const t = (key: keyof Translations) => {
-    return translations[lang][key] || translations.en[key] || key
-  }
+  const t = (key: keyof Translations) => translations[lang][key] || translations.en[key] || key
 
   return (
     <I18nContext.Provider value={{ lang, t, setLang }}>

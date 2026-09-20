@@ -10,20 +10,24 @@ export function About() {
     { label: t("stats_projects"), value: 6 },
     { label: t("stats_skills"), value: SKILLS.length },
   ]
+
   return (
-    <section id="about" className="border-t">
-      <div className="mx-auto w-full max-w-5xl px-4 py-16 md:px-6 md:py-24">
-        <div className="grid gap-12 md:gap-16 lg:grid-cols-5">
-          <div className="lg:col-span-2">
+    <section id="about" className="border-t border-border/40">
+      <div className="mx-auto w-full max-w-7xl px-4 py-16 md:px-6 md:py-24">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-20 xl:gap-24 items-start">
+          {/* Bio and Stats (5 cols) */}
+          <div className="lg:col-span-5 flex flex-col justify-between">
             <BlurFade>
               <h2 className="font-heading text-2xl font-semibold tracking-tight sm:text-3xl">
                 {t("about_me")}
               </h2>
-              <p className="mt-4 text-muted-foreground">{t("about_text")}</p>
+              <p className="mt-4 text-muted-foreground leading-relaxed">
+                {t("about_text")}
+              </p>
             </BlurFade>
 
             <BlurFade delay={0.1}>
-              <div className="mt-8 grid grid-cols-2 gap-4 rounded-xl border bg-muted/40 p-6 text-center">
+              <div className="mt-8 grid grid-cols-2 gap-4 rounded-xl border border-border/70 bg-muted/40 p-6 text-center">
                 {STATS.map((stat) => (
                   <div key={stat.label}>
                     <NumberTicker
@@ -38,6 +42,8 @@ export function About() {
               </div>
             </BlurFade>
           </div>
+
+          {/* Interactive Skills Canvas (7 cols) - Widescreen x2 */}
           <Skills />
         </div>
       </div>

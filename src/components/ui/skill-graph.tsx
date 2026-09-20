@@ -14,8 +14,8 @@ import {
 import { SKILL_EDGES, SKILLS } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
-const WIDTH_RATIO = 460
-const HEIGHT_RATIO = 340
+const WIDTH_RATIO = 640
+const HEIGHT_RATIO = 400
 const REST_ALPHA_TARGET = 0.0001
 const DRAG_ALPHA_TARGET = 0.3
 
@@ -60,8 +60,47 @@ const NEIGHBORS = (() => {
   return map
 })()
 
+/** Degree (number of edges) per node id */
+const DEGREE = new Map<string, number>(
+  NODES.map((n) => [n.id, NEIGHBORS.get(n.id)?.size ?? 0])
+)
+
+/** Map degree → node visual size in px (size-7=28, size-8=32, size-9=36) */
+function nodeSize(id: string): number {
+  const deg = DEGREE.get(id) ?? 1
+  if (deg >= 5) return 36  // size-9
+  if (deg >= 3) return 32  // size-8
+  return 28                // size-7
+}
+
+/** Inner dot inset relative to container */
+function dotInset(id: string): string {
+  const deg = DEGREE.get(id) ?? 1
+  if (deg >= 5) return "6px"
+  if (deg >= 3) return "6px"
+  return "5px"
+}
+
+/** Halo outset — proportional to node size */
+function haloInset(id: string): string {
+  const deg = DEGREE.get(id) ?? 1
+  if (deg >= 5) return "-10px"
+  if (deg >= 3) return "-8px"
+  return "-6px"
+}
+
 const clamp = (v: number, min: number, max: number) =>
   Math.min(max, Math.max(min, v))
+
+/** Container-side clamp margin — scales down on small screens */
+function edgeMargin(width: number): number {
+  return clamp(width * 0.1, 24, 60)
+}
+
+/** Scale factor for node sizes on small containers */
+function nodeScale(width: number): number {
+  return width < 480 ? 0.85 : 1
+}
 
 export function SkillGraph() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -97,7 +136,8 @@ export function SkillGraph() {
     const { width, height } = size
     const cx = width / 2
     const cy = height / 2
-    const linkDistance = clamp(Math.min(width, height) * 0.26, 70, 120)
+    const linkDistance = clamp(Math.min(width, height) * 0.32, width < 480 ? 70 : 90, 160)
+    const scale = nodeScale(width)
 
     const applySize = (sim: Simulation<GraphNode, undefined>) => {
       sim
@@ -148,23 +188,22 @@ export function SkillGraph() {
       )
       .force("charge", forceManyBody<GraphNode>().strength(-260))
       .force("center", forceCenter(cx, cy))
-      .force("collide", forceCollide<GraphNode>().radius(32).strength(0.9))
+      .force("collide", forceCollide<GraphNode>().radius((d) => (nodeSize(d.id) * scale) / 2 + 18).strength(0.9))
       .force("x", forceX<GraphNode>(cx).strength(0.07))
       .force("y", forceY<GraphNode>(cy).strength(0.07))
       .alpha(1)
-       .alphaMin(0.01)
-       .alphaTarget(0)
-       .velocityDecay(0.9)
+      .alphaMin(0.01)
+      .alphaTarget(0)
+      .velocityDecay(0.9)
       .on("tick", () => {
         if (!startedOnce.current) {
           startedOnce.current = true
           setStarted(true)
         }
         const w = sizeRef.current?.width ?? WIDTH_RATIO
-         const h = sizeRef.current?.height ?? HEIGHT_RATIO
-        
+        const h = sizeRef.current?.height ?? HEIGHT_RATIO
+        const margin = edgeMargin(w)
         for (const node of NODES) {
-          const margin = 60
           if (typeof node.x === "number") {
             node.x = clamp(node.x, margin, w - margin)
           }
@@ -217,7 +256,7 @@ export function SkillGraph() {
     const rect = container.getBoundingClientRect()
     const w = sizeRef.current?.width ?? WIDTH_RATIO
     const h = sizeRef.current?.height ?? HEIGHT_RATIO
-    const margin = 60
+    const margin = edgeMargin(w)
     drag.node.fx = clamp(event.clientX - rect.left, margin, w - margin)
     drag.node.fy = clamp(event.clientY - rect.top, margin, h - margin)
   }
@@ -236,8 +275,9 @@ export function SkillGraph() {
   return (
     <div
       ref={containerRef}
-      className="relative aspect-[460/340] w-full select-none"
+      className="relative aspect-square w-full min-h-[340px] select-none sm:aspect-[16/10]"
     >
+      {/* Lines under nodes */}
       <svg className="absolute inset-0 h-full w-full" aria-hidden="true">
         {EDGES.map((edge) => {
           const connected =
@@ -269,13 +309,17 @@ export function SkillGraph() {
         })}
       </svg>
 
+      {/* Nodes above lines */}
       {NODES.map((node) => {
         const isDim =
           hovered !== null &&
           hovered !== node.id &&
           !hoveredNeighbors?.has(node.id)
+        const vis = nodeSize(node.id) * nodeScale(size?.width ?? 0)
+        const hit = Math.max(44, vis)
+        const tipBelow = (node.y ?? 0) >= (size?.height ?? HEIGHT_RATIO) / 2
         return (
-            <div
+          <div
             key={node.id}
             ref={(el) => {
               node.ref = el
@@ -290,18 +334,28 @@ export function SkillGraph() {
             onPointerEnter={() => setHovered(node.id)}
             style={{ left: 0, top: 0, opacity: started ? 1 : 0 }}
             className={cn(
-              "absolute cursor-grab transition-opacity duration-300 active:cursor-grabbing z-10",
+              "absolute touch-none cursor-grab transition-opacity duration-300 active:cursor-grabbing z-10",
               hovered === node.id && "z-50"
             )}
           >
-            <div className="relative size-7 -translate-x-1/2 -translate-y-1/2">
+            <div
+              className="relative grid -translate-x-1/2 -translate-y-1/2 place-items-center"
+              style={{ width: hit, height: hit }}
+            >
               <div
-                className="absolute -inset-2 rounded-full border border-primary/40 bg-primary/10 transition-all duration-300 ease-out"
+                className="relative"
+                style={{ width: vis, height: vis }}
+              >
+              {/* Hover halo */}
+              <div
+                className="absolute rounded-full border border-primary/40 bg-primary/10 transition-all duration-300 ease-out"
                 style={{
+                  inset: haloInset(node.id),
                   opacity: hovered === node.id ? 1 : 0,
                   scale: hovered === node.id ? "100%" : "75%",
                 }}
               />
+              {/* Hover bg tint */}
               <div
                 className="absolute inset-0 rounded-full transition-colors duration-300"
                 style={{
@@ -310,19 +364,22 @@ export function SkillGraph() {
                     : "transparent",
                 }}
               />
+              {/* Dot — solid, no transparency */}
               <div
-                className="absolute inset-[5px] rounded-full transition-all duration-300"
+                className="absolute rounded-full transition-all duration-300"
                 style={{
+                  inset: dotInset(node.id),
                   backgroundColor: isDim
                     ? "var(--muted)"
                     : hovered === node.id
                       ? "var(--primary)"
-                      : "color-mix(in oklab, var(--muted-foreground) 80%, transparent)",
+                      : "var(--muted-foreground)",
                   boxShadow: hovered === node.id
                     ? "0 0 18px color-mix(in oklab, var(--primary) 60%, transparent)"
                     : "none",
                 }}
               />
+              {/* Label */}
               <div
                 className="absolute top-full left-1/2 mt-1.5 -translate-x-1/2 uppercase whitespace-nowrap transition-all duration-300"
                 style={{
@@ -335,8 +392,12 @@ export function SkillGraph() {
               >
                 {node.label}
               </div>
+              {/* Tooltip */}
               <div
-                className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 -translate-x-1/2 transition-all duration-200 ease-out"
+                className={cn(
+                  "pointer-events-none absolute left-1/2 z-50 -translate-x-1/2 transition-all duration-200 ease-out",
+                  tipBelow ? "top-full mt-6" : "bottom-full mb-2"
+                )}
                 style={{
                   opacity: hovered === node.id ? 1 : 0,
                   scale: hovered === node.id ? "100%" : "90%",
@@ -345,7 +406,15 @@ export function SkillGraph() {
                 <span className="block rounded-md border border-border bg-popover px-3 py-1.5 text-xs font-medium text-popover-foreground shadow-md whitespace-nowrap">
                   {node.description}
                 </span>
-                <span className="absolute top-full left-1/2 -mt-1 size-2 -translate-x-1/2 rotate-45 border-r border-b border-border bg-popover" />
+                <span
+                  className={cn(
+                    "absolute left-1/2 size-2 -translate-x-1/2 rotate-45 border-border bg-popover",
+                    tipBelow
+                      ? "-top-1 border-l border-t"
+                      : "top-full -mt-1 border-r border-b"
+                  )}
+                />
+              </div>
               </div>
             </div>
           </div>

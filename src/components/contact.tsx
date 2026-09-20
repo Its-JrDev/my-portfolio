@@ -25,8 +25,8 @@ export function Contact() {
   const { t } = useTranslation()
 
   return (
-    <section id="contact" className="border-t">
-      <div className="mx-auto w-full max-w-5xl px-4 py-16 md:px-6 md:py-24">
+    <section id="contact" className="border-t border-border/40">
+      <div className="mx-auto w-full max-w-7xl px-4 py-16 md:px-6 md:py-24">
         <BlurFade>
           <h2 className="font-heading text-2xl font-semibold tracking-tight sm:text-3xl">
             {t("contact_title")}
@@ -55,7 +55,7 @@ export function Contact() {
                   rel="noopener noreferrer"
                   className="group"
                 >
-                  <Card className="h-full transition-colors group-hover:border-foreground/25">
+                  <Card className="h-full border border-border/80 ring-0 hover:ring-0 group-hover:ring-0 transition-colors duration-200 group-hover:border-[#ff6a00]">
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
                         <Icon className="size-4 text-primary" />

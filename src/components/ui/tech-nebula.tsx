@@ -2,6 +2,8 @@ import { useEffect, useRef } from "react"
 
 import { cn } from "@/lib/utils"
 
+const MAX_DPR = 2
+
 function hexToRgb(hex: string): [number, number, number] {
   const h = hex.replace("#", "")
   const expanded =
@@ -46,6 +48,12 @@ export function TechNebulaCanvas({
     let width = 0
     let height = 0
     let raf = 0
+    let paused = false
+    let running = false
+
+    const reducedMotion =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
     type Node = {
       x: number
@@ -60,9 +68,11 @@ export function TechNebulaCanvas({
     let nodes: Node[] = []
 
     const spawn = () => {
+      const viewportScale =
+        typeof window !== "undefined" && window.innerWidth < 640 ? 0.5 : 1
       const count = Math.max(
-        70,
-        Math.floor(((width * height) / 7000) * density)
+        40,
+        Math.floor(((width * height) / 7000) * density * viewportScale)
       )
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * width,
@@ -77,16 +87,25 @@ export function TechNebulaCanvas({
     }
 
     const resize = () => {
-      const dpr = window.devicePixelRatio || 1
+      const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, MAX_DPR))
       width = canvas.clientWidth
       height = canvas.clientHeight
       canvas.width = width * dpr
       canvas.height = height * dpr
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       spawn()
+      if (reducedMotion && !running) {
+        running = true
+        draw(0)
+        running = false
+      }
     }
 
     const draw = (t: number) => {
+      if (paused || document.hidden) {
+        raf = requestAnimationFrame(draw)
+        return
+      }
       ctx.clearRect(0, 0, width, height)
       const time = t / 1000
 
@@ -149,16 +168,27 @@ export function TechNebulaCanvas({
     }
 
     resize()
-    raf = requestAnimationFrame(draw)
+    if (!reducedMotion) {
+      raf = requestAnimationFrame(draw)
+    }
 
     const ro = new ResizeObserver(() => {
       resize()
     })
     ro.observe(canvas)
 
+    const io =
+      typeof IntersectionObserver !== "undefined"
+        ? new IntersectionObserver(([entry]) => {
+            paused = !entry.isIntersecting
+          })
+        : null
+    if (io) io.observe(canvas)
+
     return () => {
       cancelAnimationFrame(raf)
       ro.disconnect()
+      io?.disconnect()
     }
   }, [color, accent, density, linkDistance, opacity])
 

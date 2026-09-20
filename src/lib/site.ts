@@ -65,20 +65,54 @@ export const SKILLS = [
     label: "Git",
     description: "Version control & collaboration",
   },
+  {
+    id: "python",
+    label: "Python",
+    description: "Backend scripting & automation",
+  },
+  {
+    id: "fastapi",
+    label: "FastAPI",
+    description: "High-performance Python APIs",
+  },
+  {
+    id: "nextjs",
+    label: "Next.js",
+    description: "Full-stack React framework",
+  },
+  {
+    id: "shadcn",
+    label: "shadcn/ui",
+    description: "Accessible component primitives for React",
+  },
+  {
+    id: "shopify",
+    label: "Shopify",
+    description: "Liquid themes & Storefront API",
+  },
 ] as const
 
 export const SKILL_EDGES = [
   ["html", "css"],
   ["html", "javascript"],
+  ["html", "shopify"],
   ["css", "javascript"],
   ["css", "tailwind"],
+  ["css", "shopify"],
   ["javascript", "react"],
   ["javascript", "typescript"],
+  ["javascript", "shopify"],
   ["typescript", "react"],
+  ["typescript", "nextjs"],
   ["react", "vite"],
   ["react", "tailwind"],
   ["react", "git"],
+  ["react", "nextjs"],
+  ["react", "shadcn"],
+  ["tailwind", "shadcn"],
   ["vite", "git"],
+  ["python", "fastapi"],
+  ["python", "git"],
 ] as const
 
 export const ABOUT_TEXT =

@@ -28,7 +28,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between gap-4 px-4 md:px-6">
+      <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 px-4 md:px-6">
         <Link
           to="/"
           className="flex items-center gap-2 font-heading text-lg font-semibold"
@@ -43,7 +43,7 @@ export function SiteHeader() {
               key={item.to}
               to={item.to}
               className={cn(
-                buttonVariants({ variant: "ghost", size: "sm" }),
+                buttonVariants({ variant: "ghost" }),
                 isActive(item.to) && "bg-muted"
               )}
             >
@@ -59,7 +59,7 @@ export function SiteHeader() {
                 <button
                   type="button"
                   aria-label="Open menu"
-                  className="inline-flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground md:hidden"
+                  className="inline-flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground md:hidden"
                 />
               }
             >

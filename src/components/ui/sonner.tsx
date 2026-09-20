@@ -1,11 +1,11 @@
 "use client"
 
-import { useTheme } from "next-themes"
 import { Toaster as Sonner, type ToasterProps } from "sonner"
 import { IconCircleCheck, IconInfoCircle, IconAlertTriangle, IconAlertOctagon, IconLoader } from "@tabler/icons-react"
 
 const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = "system" } = useTheme()
+  const isDark = typeof document !== "undefined" ? document.documentElement.classList.contains("dark") : true
+  const theme = isDark ? "dark" : "light"
 
   return (
     <Sonner

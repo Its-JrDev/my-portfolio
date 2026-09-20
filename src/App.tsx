@@ -8,6 +8,7 @@ import {
 
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { Toaster } from "@/components/ui/sonner"
 import { HomePage } from "@/pages/home"
 import { ProjectsPage } from "@/pages/projects"
 import { NotFoundPage } from "@/pages/not-found"
@@ -36,6 +37,7 @@ function App() {
           </Routes>
         </main>
         <SiteFooter />
+        <Toaster />
       </div>
     </HashRouter>
   )
