@@ -5,8 +5,11 @@ export const AUTHOR_ALIAS = "Its-JrDev"
 export const AUTHOR_ROLE = "Riwi's Coder"
 
 export const NAV_ITEMS = [
-  { label: "Home", to: "/" },
-  { label: "Projects", to: "/projects" },
+  { label: "Home", href: "#hero" },
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Featured Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
 ] as const
 
 export const SOCIALS = [

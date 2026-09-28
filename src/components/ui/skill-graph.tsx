@@ -275,7 +275,7 @@ export function SkillGraph() {
   return (
     <div
       ref={containerRef}
-      className="relative aspect-square w-full min-h-[340px] select-none sm:aspect-[16/10]"
+      className="relative w-full h-full min-h-[480px] lg:min-h-[560px] select-none"
     >
       {/* Lines under nodes */}
       <svg className="absolute inset-0 h-full w-full" aria-hidden="true">

@@ -62,17 +62,6 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/Its-JrDev",
   },
   {
-    title: "Task Manager",
-    headline: "Productivity Command Center",
-    description:
-      "A Kanban workflow system designed for velocity. Features task state transitions, priority tracking, persistent storage, and agile sprint metrics.",
-    tags: ["JavaScript", "LocalStorage", "UI Architecture"],
-    image: "projects/taskmanager-cinematic.svg",
-    metrics: "Persistent State • Instant Filter",
-    category: "frontend",
-    githubUrl: "https://github.com/Its-JrDev",
-  },
-  {
     title: "Blog Platform",
     headline: "Modern Architecture Publication Engine",
     description:
