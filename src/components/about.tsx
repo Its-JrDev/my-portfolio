@@ -1,3 +1,18 @@
+/**
+ * Bio section: intro paragraph, three live counters and three discipline
+ * pillars.
+ *
+ * The counters are derived rather than hardcoded — `PROJECTS.length` and
+ * `SKILLS.length` come from the data modules, so they cannot drift out of
+ * sync with the content. The third counter is a literal `100` with a `%`
+ * suffix.
+ *
+ * Layout is a `lg:grid-cols-12` split: bio at `col-span-7`, stats at
+ * `col-span-5`. Pillars sit in a separate `md:grid-cols-3` row below.
+ *
+ * `ABOUT_TEXT` from `lib/site.ts` is not imported here; the paragraph comes
+ * from `t("about_text")` instead, and the two strings differ.
+ */
 import { IconCode, IconLayersLinked, IconRocket } from "@tabler/icons-react"
 
 import { BlurFade } from "@/components/ui/blur-fade"
@@ -5,6 +20,7 @@ import { NumberTicker } from "@/components/ui/number-ticker"
 import { SKILLS } from "@/lib/site"
 import { PROJECTS } from "@/data/projects"
 import { useTranslation } from "@/lib/i18n"
+import { cn } from "@/lib/utils"
 
 export function About() {
   const { t } = useTranslation()
@@ -34,7 +50,7 @@ export function About() {
   ]
 
   return (
-    <section id="about" className="border-t border-border/40 py-20 md:py-28">
+    <section id="about" className="scroll-mt-16 border-t border-border/40 py-20 md:py-28">
       <div className="mx-auto w-full max-w-7xl px-4 md:px-6">
         {/* Top Header & Bio Story */}
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-16 items-start">
@@ -50,17 +66,23 @@ export function About() {
             </BlurFade>
           </div>
 
-          {/* Right Stats Strip */}
-          <div className="lg:col-span-5">
+          {/* Right Stats Strip — uncontainerized, open layout */}
+          <div className="lg:col-span-5 lg:pt-3">
             <BlurFade delay={0.1}>
-              <div className="grid grid-cols-3 gap-3 rounded-2xl border border-border/70 bg-card/40 backdrop-blur-md p-6 text-center shadow-lg shadow-black/5">
-                {STATS.map((stat) => (
-                  <div key={stat.label} className="flex flex-col items-center justify-center">
-                    <div className="flex items-baseline font-heading text-3xl font-bold text-foreground sm:text-4xl">
+              <div className="grid grid-cols-3 gap-4 sm:gap-6 divide-x divide-border/30 text-center sm:text-left">
+                {STATS.map((stat, idx) => (
+                  <div
+                    key={stat.label}
+                    className={cn(
+                      "flex flex-col justify-center",
+                      idx > 0 && "pl-4 sm:pl-6"
+                    )}
+                  >
+                    <div className="flex items-baseline font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground">
                       <NumberTicker value={stat.value} />
                       {stat.suffix && <span className="text-primary ml-0.5">{stat.suffix}</span>}
                     </div>
-                    <p className="mt-1 text-xs text-muted-foreground font-medium">
+                    <p className="mt-1.5 text-xs text-muted-foreground font-medium uppercase tracking-wider">
                       {stat.label}
                     </p>
                   </div>
@@ -76,9 +98,9 @@ export function About() {
             const Icon = pillar.icon
             return (
               <BlurFade key={pillar.title} delay={0.15 + i * 0.08}>
-                <div className="h-full rounded-2xl border border-border/60 bg-card/30 backdrop-blur-sm p-6 hover:border-primary/40 transition-colors">
-                  <Icon className="size-6 text-primary mb-3 stroke-[1.75]" />
-                  <h3 className="font-heading text-lg font-semibold text-foreground">
+                <div className="h-full rounded-2xl border border-border/60 bg-card/30 backdrop-blur-sm p-6 transition-all duration-300 hover:border-primary hover:shadow-md hover:shadow-primary/10 hover:-translate-y-0.5 group">
+                  <Icon className="size-6 text-primary mb-3 stroke-[1.75] transition-transform duration-300 group-hover:scale-110" />
+                  <h3 className="font-heading text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                     {pillar.title}
                   </h3>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">

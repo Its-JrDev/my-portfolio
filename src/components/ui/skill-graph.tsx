@@ -1,3 +1,33 @@
+/**
+ * Interactive force-physics graph of the skill set, used by the Skills
+ * section. Hand-written rather than registry-generated.
+ *
+ * Renders to DOM and SVG, not canvas: nodes are absolutely positioned `div`
+ * elements and edges are `<line>` elements in a full-bleed SVG beneath them.
+ *
+ * d3-force without d3-selection. The simulation is created once and held in a
+ * ref; its `tick` handler mutates `node.ref.style.transform` and
+ * `edge.ref.setAttribute(...)` directly, so the layout runs with zero React
+ * re-renders per frame.
+ *
+ * Forces: `forceLink` (distance 160, strength 0.6), `forceManyBody`
+ * (strength -260), `forceCenter`, `forceCollide` (radius scaled by graph
+ * degree, strength 0.9) and weak `forceX` / `forceY` pull at 0.07. Simulation
+ * starts at `alpha` 1, decays with `alphaMin` 0.01 and `velocityDecay` 0.9.
+ *
+ * Drag uses Pointer Events with `setPointerCapture`, writing `node.fx` /
+ * `node.fy`. Dragging raises `alphaTarget` to 0.3 so the field stays live
+ * under the pointer, and drops it to `REST_ALPHA_TARGET` (0.0001 — not 0, so
+ * the layout micro-settles) on release. Positions are clamped to
+ * `clamp(width * 0.1, 24, 60)` every tick.
+ *
+ * Node diameter comes from graph degree (28 / 32 / 36 px). `ResizeObserver`
+ * rescales, guarded by `appliedSizeRef` so sub-pixel changes do not reheat
+ * the simulation. Hover dims non-adjacent nodes and shows a tooltip that
+ * flips placement past the vertical midpoint.
+ *
+ * Not implemented: zoom, pan, and `prefers-reduced-motion` handling.
+ */
 import { useEffect, useRef, useState } from "react"
 import {
   forceCenter,
@@ -12,6 +42,7 @@ import {
 } from "d3-force"
 
 import { SKILL_EDGES, SKILLS } from "@/lib/site"
+import { useTranslation, type Translations } from "@/lib/i18n"
 import { cn } from "@/lib/utils"
 
 const WIDTH_RATIO = 640
@@ -76,7 +107,6 @@ function nodeSize(id: string): number {
 /** Inner dot inset relative to container */
 function dotInset(id: string): string {
   const deg = DEGREE.get(id) ?? 1
-  if (deg >= 5) return "6px"
   if (deg >= 3) return "6px"
   return "5px"
 }
@@ -92,9 +122,14 @@ function haloInset(id: string): string {
 const clamp = (v: number, min: number, max: number) =>
   Math.min(max, Math.max(min, v))
 
-/** Container-side clamp margin — scales down on small screens */
-function edgeMargin(width: number): number {
-  return clamp(width * 0.1, 24, 60)
+/** Container-side horizontal clamp margin — aligns nodes cleanly within page grid */
+function xMargin(width: number): number {
+  return clamp(width * 0.035, 24, 44)
+}
+
+/** Container-side vertical clamp margin — snug fit */
+function yMargin(height: number): number {
+  return clamp(height * 0.045, 14, 26)
 }
 
 /** Scale factor for node sizes on small containers */
@@ -103,6 +138,7 @@ function nodeScale(width: number): number {
 }
 
 export function SkillGraph() {
+  const { t } = useTranslation()
   const containerRef = useRef<HTMLDivElement>(null)
   const [size, setSize] = useState<{ width: number; height: number } | null>(null)
   const [hovered, setHovered] = useState<string | null>(null)
@@ -202,13 +238,14 @@ export function SkillGraph() {
         }
         const w = sizeRef.current?.width ?? WIDTH_RATIO
         const h = sizeRef.current?.height ?? HEIGHT_RATIO
-        const margin = edgeMargin(w)
+        const xMarg = xMargin(w)
+        const yMarg = yMargin(h)
         for (const node of NODES) {
           if (typeof node.x === "number") {
-            node.x = clamp(node.x, margin, w - margin)
+            node.x = clamp(node.x, xMarg, w - xMarg)
           }
           if (typeof node.y === "number") {
-            node.y = clamp(node.y, margin, h - margin)
+            node.y = clamp(node.y, yMarg, h - yMarg)
           }
 
           if (
@@ -256,9 +293,10 @@ export function SkillGraph() {
     const rect = container.getBoundingClientRect()
     const w = sizeRef.current?.width ?? WIDTH_RATIO
     const h = sizeRef.current?.height ?? HEIGHT_RATIO
-    const margin = edgeMargin(w)
-    drag.node.fx = clamp(event.clientX - rect.left, margin, w - margin)
-    drag.node.fy = clamp(event.clientY - rect.top, margin, h - margin)
+    const xMarg = xMargin(w)
+    const yMarg = yMargin(h)
+    drag.node.fx = clamp(event.clientX - rect.left, xMarg, w - xMarg)
+    drag.node.fy = clamp(event.clientY - rect.top, yMarg, h - yMarg)
   }
 
   const endDrag = (event: React.PointerEvent) => {
@@ -275,7 +313,7 @@ export function SkillGraph() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-full min-h-[480px] lg:min-h-[560px] select-none"
+      className="relative w-full h-full min-h-0 select-none"
     >
       {/* Lines under nodes */}
       <svg className="absolute inset-0 h-full w-full" aria-hidden="true">
@@ -318,6 +356,7 @@ export function SkillGraph() {
         const vis = nodeSize(node.id) * nodeScale(size?.width ?? 0)
         const hit = Math.max(44, vis)
         const tipBelow = (node.y ?? 0) >= (size?.height ?? HEIGHT_RATIO) / 2
+        const localizedDesc = t(`skill_${node.id}` as keyof Translations) || node.description
         return (
           <div
             key={node.id}
@@ -335,7 +374,7 @@ export function SkillGraph() {
             style={{ left: 0, top: 0, opacity: started ? 1 : 0 }}
             className={cn(
               "absolute touch-none cursor-grab transition-opacity duration-300 active:cursor-grabbing z-10",
-              hovered === node.id && "z-50"
+              hovered === node.id && "z-30"
             )}
           >
             <div
@@ -395,7 +434,7 @@ export function SkillGraph() {
               {/* Tooltip */}
               <div
                 className={cn(
-                  "pointer-events-none absolute left-1/2 z-50 -translate-x-1/2 transition-all duration-200 ease-out",
+                  "pointer-events-none absolute left-1/2 z-30 -translate-x-1/2 transition-all duration-200 ease-out",
                   tipBelow ? "top-full mt-6" : "bottom-full mb-2"
                 )}
                 style={{
@@ -404,7 +443,7 @@ export function SkillGraph() {
                 }}
               >
                 <span className="block rounded-md border border-border bg-popover px-3 py-1.5 text-xs font-medium text-popover-foreground shadow-md whitespace-nowrap">
-                  {node.description}
+                  {localizedDesc}
                 </span>
                 <span
                   className={cn(

@@ -1,3 +1,27 @@
+/**
+ * All project styling. Tailwind v4 is CSS-first: there is no
+ * `tailwind.config.js` and no PostCSS config, so every token, keyframe and
+ * utility override below is the full configuration.
+ *
+ * Contents:
+ *
+ *   1. Imports — Tailwind, tw-animate-css, shadcn preset, Geist variable font
+ *   2. `@custom-variant dark` — `:is(.dark *)`, so the variant matches
+ *      descendants of `.dark`, not only `.dark` itself
+ *   3. `@theme inline` — exposes `:root` / `.dark` tokens as utilities
+ *      (`bg-background`, `text-foreground`, …) and defines the radius scale
+ *      and animation tokens
+ *   4. `:root` / `.dark` — OKLCH token blocks, light and dark
+ *   5. `@layer base` — border colour, outline ring, body and html defaults
+ *   6. View-transition opt-out — disables the browser's default root
+ *      cross-fade so a themed component can own its own animation
+ *   7. `@layer components` — hero atmosphere classes (`hero-vignette`,
+ *      `hero-fade`, `tech-cloud-a/b/c`, `tech-sheen`, `tech-halo`)
+ *   8. `@keyframes` — the hero atmosphere animations
+ *
+ * Dark is the only active theme: `index.html` sets `class="dark"` and no
+ * toggle is mounted.
+ */
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -46,57 +70,6 @@
     --radius-2xl: calc(var(--radius) * 1.8);
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
-    --animate-marquee: marquee var(--duration) infinite linear;
-    --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
-    --animate-shine: shine var(--duration) infinite linear;
-    --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite alternate;
-    --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear;
-  @keyframes marquee {
-  from {
-    transform: translateX(0);
-        }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
-        }
-    }
-  @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
-        }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
-        }
-    }
-  @keyframes shine {
-  0% {
-    background-position: 0% 0%;
-        }
-  50% {
-    background-position: 100% 100%;
-        }
-  to {
-    background-position: 0% 0%;
-        }
-    }
-  @keyframes shimmer-slide {
-  to {
-    transform: translate(calc(100cqw - 100%), 0);
-        }
-    }
-  @keyframes spin-around {
-  0% {
-    transform: translateZ(0) rotate(0);
-        }
-  15%, 35% {
-    transform: translateZ(0) rotate(90deg);
-        }
-  65%, 85% {
-    transform: translateZ(0) rotate(270deg);
-        }
-  100% {
-    transform: translateZ(0) rotate(360deg);
-        }
-    }
 }
 
 :root {

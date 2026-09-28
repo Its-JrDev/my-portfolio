@@ -1,17 +1,11 @@
-import {
-  IconBrandDiscord,
-  IconBrandGithub,
-  IconBrandLinkedin,
-} from "@tabler/icons-react"
-
-import { SOCIALS, AUTHOR_NAME } from "@/lib/site"
+/**
+ * Footer: copyright, social icons, tech line.
+ *
+ * Icons come from the shared `SOCIAL_ICONS` map in `lib/site.ts`, keyed by
+ * `SOCIALS[].label`.
+ */
+import { SOCIALS, SOCIAL_ICONS, AUTHOR_NAME } from "@/lib/site"
 import { useTranslation } from "@/lib/i18n"
-
-const SOCIAL_ICONS = {
-  GitHub: IconBrandGithub,
-  LinkedIn: IconBrandLinkedin,
-  Discord: IconBrandDiscord,
-} as const
 
 export function SiteFooter() {
   const { t } = useTranslation()
@@ -24,8 +18,7 @@ export function SiteFooter() {
         </p>
         <div className="flex items-center gap-3">
           {SOCIALS.map((social) => {
-            const Icon =
-              SOCIAL_ICONS[social.label as keyof typeof SOCIAL_ICONS]
+            const Icon = SOCIAL_ICONS[social.label]
             return (
               <a
                 key={social.label}

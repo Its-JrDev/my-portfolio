@@ -1,6 +1,15 @@
+/**
+ * Root layout.
+ *
+ * No router: this is a single-page landing composed of anchor sections. `main`
+ * is `flex-1` so the footer sits at the bottom of a short viewport, and carries
+ * `id="main"` as a focus target.
+ *
+ * `SiteHeader` is fixed, which is why every section that the nav links to needs
+ * `scroll-mt-16` to clear its 4rem height. Only `#projects` has it.
+ */
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { Toaster } from "@/components/ui/sonner"
 import { HomePage } from "@/pages/home"
 
 function App() {
@@ -11,7 +20,6 @@ function App() {
         <HomePage />
       </main>
       <SiteFooter />
-      <Toaster />
     </div>
   )
 }

@@ -1,3 +1,13 @@
+/**
+ * The single page. Composition order is fixed and drives both the visual flow
+ * and the nav sequence in `NAV_ITEMS`.
+ *
+ * Only the hero lacks a section `id`, so the header special-cases `#hero` by
+ * scrolling to `top: 0`.
+ *
+ * `Seo` receives a Spanish-only title and description that do not change with
+ * the active language.
+ */
 import { Seo } from "@/components/seo"
 import { Hero } from "@/components/hero"
 import { About } from "@/components/about"

@@ -1,3 +1,34 @@
+/**
+ * Drifting particle-and-link field drawn behind the hero. Hand-written rather
+ * than registry-generated. Canvas 2D, not WebGL and not d3-force — the
+ * proximity links are an O(n²) pass over the particle array each frame.
+ *
+ * Particle count is `max(40, floor((w * h) / 7000 * density * viewportScale))`,
+ * halved under a 640px viewport. About 35% are "core" nodes drawn as a
+ * two-tone concentric star; the rest are accent dots with a sinusoidal
+ * twinkle.
+ *
+ * Lifecycle: a single `useEffect` keyed on the visual props owns everything.
+ * A `requestAnimationFrame` loop redraws each frame, re-registering itself.
+ * `IntersectionObserver` sets a `paused` flag when the hero leaves the
+ * viewport, and `document.hidden` short-circuits as well — though both still
+ * call `requestAnimationFrame`, so it is a cheap busy loop rather than a full
+ * cancel.
+ *
+ * `prefers-reduced-motion` is honoured: the match is read once at setup, and
+ * when reduced the rAF loop is never started and a single static frame is
+ * painted instead.
+ *
+ * `ResizeObserver` re-measures and calls `spawn()`, which re-randomises every
+ * particle position — any resize tick fully re-randomises the field rather
+ * than preserving it.
+ *
+ * Device pixel ratio is clamped to `MAX_DPR` (2) and applied through
+ * `ctx.setTransform`. Rendered `aria-hidden` and `pointer-events-none`.
+ *
+ * Used by `hero.tsx` with `color="#ff6a00"`, `accent="#ffd9a8"`,
+ * `density={1.6}`, `linkDistance={160}`, `opacity={0.6}`.
+ */
 import { useEffect, useRef } from "react"
 
 import { cn } from "@/lib/utils"

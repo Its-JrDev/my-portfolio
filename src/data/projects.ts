@@ -1,17 +1,36 @@
+/**
+ * Shape of a project card entry.
+ *
+ * Rendered by the inner `ProjectCard` in `featured-projects.tsx`. Layout is
+ * positional rather than filtered: index 0 renders as the spotlight card, index
+ * 1 as the secondary card, and indices 2-4 as the third row.
+ */
 export interface Project {
   title: string
   headline?: string
   description: string
   tags: string[]
   image?: string
-  video?: string
   metrics?: string
   category?: "frontend" | "fullstack" | "realtime"
   deployUrl?: string
   githubUrl?: string
-  featured?: boolean
 }
 
+/**
+ * The five showcase projects.
+ *
+ * Consumed in two places with different constraints:
+ *
+ * - `featured-projects.tsx` slices `PROJECTS[0]`, `PROJECTS.slice(1, 2)` and
+ *   `PROJECTS.slice(2, 5)`. Index 5 and beyond never render. Adding a sixth
+ *   project requires changing that slice.
+ * - `about.tsx` reads `PROJECTS.length` for the "Projects Built" counter, so
+ *   the count stays derived rather than hardcoded.
+ *
+ * `image` paths resolve through `import.meta.env.BASE_URL`, so they must stay
+ * relative to `public/`.
+ */
 export const PROJECTS: Project[] = [
   {
     title: "Portfolio Website",
@@ -24,7 +43,6 @@ export const PROJECTS: Project[] = [
     category: "frontend",
     githubUrl: "https://github.com/Its-JrDev/my-portfolio",
     deployUrl: "https://its-jrdev.github.io/my-portfolio/",
-    featured: true,
   },
   {
     title: "E-commerce Platform",
@@ -36,7 +54,6 @@ export const PROJECTS: Project[] = [
     metrics: "<120ms API Latency • Full Auth Pipeline",
     category: "fullstack",
     githubUrl: "https://github.com/Its-JrDev",
-    featured: true,
   },
   {
     title: "Chat Application",
@@ -48,7 +65,6 @@ export const PROJECTS: Project[] = [
     metrics: "Sub-10ms Ping • Instant Multi-room",
     category: "realtime",
     githubUrl: "https://github.com/Its-JrDev",
-    featured: true,
   },
   {
     title: "Weather App",

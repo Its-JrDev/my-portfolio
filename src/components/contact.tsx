@@ -1,9 +1,13 @@
-import {
-  IconBrandDiscord,
-  IconBrandGithub,
-  IconBrandLinkedin,
-} from "@tabler/icons-react"
-
+/**
+ * Closing section: heading with a `mailto:` link, then a three-column grid of
+ * social cards.
+ *
+ * Each card is an `<a>` wrapping a `Card`, highlighted on hover via
+ * `group-hover:border-[#ff6a00]`. The accent is a literal, not the `--primary`
+ * token.
+ *
+ * The email address is hardcoded in both the `href` and the link text.
+ */
 import { BlurFade } from "@/components/ui/blur-fade"
 import {
   Card,
@@ -12,20 +16,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { SOCIALS } from "@/lib/site"
+import { SOCIALS, SOCIAL_ICONS } from "@/lib/site"
 import { useTranslation } from "@/lib/i18n"
-
-const SOCIAL_ICONS = {
-  GitHub: IconBrandGithub,
-  LinkedIn: IconBrandLinkedin,
-  Discord: IconBrandDiscord,
-} as const
 
 export function Contact() {
   const { t } = useTranslation()
 
   return (
-    <section id="contact" className="border-t border-border/40">
+    <section id="contact" className="scroll-mt-16 border-t border-border/40">
       <div className="mx-auto w-full max-w-7xl px-4 py-16 md:px-6 md:py-24">
         <BlurFade>
           <h2 className="font-heading text-2xl font-semibold tracking-tight sm:text-3xl">
@@ -45,8 +43,7 @@ export function Contact() {
         <BlurFade delay={0.1}>
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
             {SOCIALS.map((social) => {
-              const Icon =
-                SOCIAL_ICONS[social.label as keyof typeof SOCIAL_ICONS]
+              const Icon = SOCIAL_ICONS[social.label]
               return (
                 <a
                   key={social.label}
@@ -55,10 +52,10 @@ export function Contact() {
                   rel="noopener noreferrer"
                   className="group"
                 >
-                  <Card className="h-full border border-border/80 ring-0 hover:ring-0 group-hover:ring-0 transition-colors duration-200 group-hover:border-[#ff6a00]">
+                  <Card className="h-full border border-border/80 bg-card/40 backdrop-blur-sm transition-all duration-300 hover:border-primary hover:shadow-md hover:shadow-primary/10 group-hover:border-primary group-hover:shadow-md group-hover:shadow-primary/10 group-hover:-translate-y-0.5">
                     <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
-                        <Icon className="size-4 text-primary" />
+                      <CardTitle className="flex items-center gap-2 group-hover:text-primary transition-colors">
+                        <Icon className="size-4 text-primary transition-transform duration-300 group-hover:scale-110" />
                         {social.label}
                       </CardTitle>
                     </CardHeader>

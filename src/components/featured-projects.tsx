@@ -1,3 +1,24 @@
+/**
+ * Showcase section: a positional bento grid of up to five project cards.
+ *
+ * Layout is driven by array index, not by the `featured` or `category` fields:
+ *
+ * - `PROJECTS[0]` → spotlight card, `lg:col-span-8`, 21/9 media, badge
+ * - `PROJECTS.slice(1, 2)` → secondary card, `lg:col-span-4`
+ * - `PROJECTS.slice(2, 5)` → three equal cards, `lg:col-span-4` each
+ *
+ * Index 5 and beyond never render. Adding a sixth project requires changing
+ * that slice.
+ *
+ * The only section carrying `scroll-mt-16`, which offsets the fixed `h-16`
+ * header when navigating to `#projects`. `#about`, `#skills` and `#contact`
+ * are missing it, so their headings sit behind the header.
+ *
+ * Images resolve through `import.meta.env.BASE_URL` to survive the GitHub
+ * Pages subpath. Without `image`, a hardcoded `Preview unavailable` renders.
+ *
+ * `ProjectCard` is file-local and not exported.
+ */
 import { IconBrandGithub, IconExternalLink } from "@tabler/icons-react"
 
 import { BlurFade } from "@/components/ui/blur-fade"
@@ -34,22 +55,22 @@ export function FeaturedProjects() {
 
         {/* Adaptive Bento Grid */}
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-stretch">
-          {/* Row 1: Flagship (8 cols) + Secondary (4 cols) */}
+          {/* Row 1: Flagship (Full 2 cols on md, 8 cols on lg) */}
           {flagship && (
-            <BlurFade delay={0.05} className="lg:col-span-8 flex">
+            <BlurFade delay={0.05} className="md:col-span-2 lg:col-span-8 flex">
               <ProjectCard project={flagship} isSpotlight />
             </BlurFade>
           )}
 
           {secondary && (
-            <BlurFade delay={0.1} className="lg:col-span-4 flex">
+            <BlurFade delay={0.1} className="md:col-span-1 lg:col-span-4 flex">
               <ProjectCard project={secondary} />
             </BlurFade>
           )}
 
-          {/* Row 2: 3 balanced cards (4 cols each) */}
+          {/* Row 2 & 3: 3 balanced cards (1 col each on md, 4 cols on lg) */}
           {tertiary.map((project, i) => (
-            <BlurFade key={project.title} delay={0.15 + i * 0.05} className="lg:col-span-4 flex">
+            <BlurFade key={project.title} delay={0.15 + i * 0.05} className="md:col-span-1 lg:col-span-4 flex">
               <ProjectCard project={project} />
             </BlurFade>
           ))}
@@ -74,7 +95,7 @@ function ProjectCard({
       className={cn(
         "group relative flex flex-col w-full h-full overflow-hidden rounded-2xl border border-border/70",
         "bg-card/40 backdrop-blur-md transition-all duration-300",
-        "hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
+        "hover:border-primary hover:shadow-md hover:shadow-primary/10 hover:-translate-y-0.5"
       )}
     >
       {/* Media container */}
