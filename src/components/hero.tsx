@@ -77,25 +77,25 @@ export function Hero() {
   }
 
   return (
-    <section className="relative h-svh min-h-svh max-h-svh flex flex-col justify-between pt-16 pb-12 sm:pb-14 overflow-hidden">
+    <section className="relative min-h-svh flex flex-col justify-between pt-18 sm:pt-24 md:pt-24 lg:pt-16 pb-12 sm:pb-14 md:pb-14 overflow-hidden">
       <HeroBackground />
 
-      {/* Main content — vertically centered and balanced, using full tablet Y expanse */}
-      <div className="relative flex flex-1 min-h-0 items-center justify-center w-full">
-        <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-6 px-6 md:flex-row md:items-center md:gap-10 lg:gap-16">
+      {/* Main content */}
+      <div className="relative flex flex-1 min-h-0 items-center w-full">
+        <div className="mx-auto flex w-full max-w-7xl flex-col px-4 sm:px-6 md:px-6 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
 
-          {/* Text block — prominent, balanced, and responsive */}
-          <div className="max-w-xl lg:max-w-2xl text-center md:text-left flex-1 min-w-0">
+          {/* Text block */}
+          <div className="flex flex-col justify-center gap-[clamp(0.85rem,2.8svh,2.25rem)] items-center text-center lg:items-start lg:text-left md:flex-1 min-w-0">
             <Badge variant="outline" className="text-xs tracking-widest uppercase">
               {AUTHOR_ROLE}
             </Badge>
 
-            {/* Cyber Paladin — on mobile, positioned directly below the badge tag and above H1 */}
-            <div className="my-2.5 sm:my-3.5 flex justify-center md:hidden">
+            {/* Cyber Paladin — under Badge and above Jose D. Romero */}
+            <div className="relative w-full max-w-64 sm:max-w-80 md:max-w-96 h-[28svh] min-h-[140px] max-h-[240px] sm:h-[34svh] sm:max-h-[280px] md:h-[38svh] md:max-h-[340px] flex items-center justify-center shrink-0 lg:hidden">
               <img
                 src={`${base}cyber-paladin.svg`}
                 alt="Cyber paladin illustration"
-                className="w-44 sm:w-56 max-h-[22vh] sm:max-h-[26vh] object-contain drop-shadow-2xl select-none"
+                className="size-full object-contain drop-shadow-2xl select-none"
               />
             </div>
 
@@ -103,29 +103,30 @@ export function Hero() {
               as="h1"
               by="word"
               animation="blurInUp"
-              className="mt-2.5 sm:mt-3 md:mt-5 lg:mt-6 font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight"
+              className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight"
             >
               {AUTHOR_NAME}
             </TextAnimate>
-            <p className="mt-3 sm:mt-4 md:mt-5 lg:mt-6 max-w-lg md:max-w-xl text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed line-clamp-3 md:line-clamp-none">
-              {t("hero_desc")}
+            <p className="md:max-w-xl text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed">
+              <span className="sm:hidden">{t("hero_desc_short")}</span>
+              <span className="hidden sm:inline">{t("hero_desc")}</span>
             </p>
-            <div className="mt-5 sm:mt-6 md:mt-8 lg:mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:justify-start">
-              <Button size="lg" className="h-10 sm:h-11 md:h-12 lg:h-13 px-5 sm:px-7 md:px-8 text-xs sm:text-sm md:text-base font-medium" onClick={scrollToProjects}>
+            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-center md:justify-start">
+              <Button size="lg" className="w-full sm:w-auto h-10 px-6 text-sm [@media(min-height:700px)]:h-11 sm:h-11 md:h-12 md:px-8 md:text-base font-medium" onClick={scrollToProjects}>
                 {t("view_projects")}
               </Button>
-              <Button variant="outline" size="lg" className="h-10 sm:h-11 md:h-12 lg:h-13 px-5 sm:px-7 md:px-8 text-xs sm:text-sm md:text-base font-medium" onClick={scrollToContact}>
+              <Button variant="outline" size="lg" className="w-full sm:w-auto h-10 px-6 text-sm [@media(min-height:700px)]:h-11 sm:h-11 md:h-12 md:px-8 md:text-base font-medium" onClick={scrollToContact}>
                 {t("get_in_touch")}
               </Button>
             </div>
           </div>
 
-          {/* Cyber Paladin — tablet and desktop side column taking full advantage of Y viewport */}
-          <div className="shrink-0 hidden md:flex items-center justify-center">
+          {/* Desktop Art Box (>= lg) */}
+          <div className="hidden lg:flex relative lg:flex-none lg:w-[26rem] xl:w-[28rem] lg:h-auto lg:shrink-0 items-center justify-center">
             <img
               src={`${base}cyber-paladin.svg`}
               alt="Cyber paladin illustration"
-              className="w-72 md:w-80 lg:w-[26rem] xl:w-[28rem] md:max-h-[50vh] lg:max-h-[58vh] xl:max-h-[62vh] object-contain drop-shadow-2xl select-none"
+              className="w-full max-h-[58vh] xl:max-h-[62vh] object-contain drop-shadow-2xl select-none"
             />
           </div>
         </div>

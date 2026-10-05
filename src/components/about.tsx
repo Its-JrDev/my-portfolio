@@ -65,7 +65,7 @@ export function About() {
             <div className="grid grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               {STATS.map((stat, i) => (
                 <BlurFade key={stat.label} delay={0.1 + i * 0.08}>
-                  <div className="group flex flex-col border-l border-border/40 pl-4 sm:pl-6 py-2 transition-colors hover:border-primary/60">
+                  <div className="group flex flex-col border-l border-border/40 pl-4 sm:pl-6 py-2 transition-colors hover:border-primary/60 active:border-primary/60">
                     <div className="flex items-baseline font-heading">
                       <NumberTicker
                         value={stat.value}
@@ -77,8 +77,8 @@ export function About() {
                         </span>
                       )}
                     </div>
-                    <div className="mt-2.5 h-px w-6 bg-primary/40 transition-all duration-300 group-hover:w-10 group-hover:bg-primary/80" />
-                    <p className="mt-2.5 text-xs font-semibold uppercase tracking-widest text-muted-foreground leading-snug">
+                    <div className="mt-2.5 h-px w-6 bg-primary/40 transition-all duration-300 group-hover:w-10 group-hover:bg-primary/80 group-active:w-10 group-active:bg-primary/80" />
+                    <p className="mt-2.5 text-xs font-semibold uppercase tracking-widest text-muted-foreground leading-snug break-all">
                       {stat.label}
                     </p>
                   </div>
@@ -94,9 +94,9 @@ export function About() {
             const Icon = pillar.icon
             return (
               <BlurFade key={pillar.title} delay={0.15 + i * 0.08}>
-                <div className="h-full rounded-2xl border border-border/60 bg-card/30 backdrop-blur-sm p-6 transition-all duration-300 hover:border-primary hover:shadow-md hover:shadow-primary/10 hover:-translate-y-0.5 group">
-                  <Icon className="size-6 text-primary mb-3 stroke-[1.75] transition-transform duration-300 group-hover:scale-110" />
-                  <h3 className="font-heading text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                <div className="h-full rounded-2xl border border-border/60 bg-card/30 backdrop-blur-sm p-6 transition-all duration-300 hover:border-primary hover:shadow-md hover:shadow-primary/10 hover:-translate-y-0.5 active:border-primary active:shadow-md active:shadow-primary/10 active:-translate-y-0.5 group">
+                  <Icon className="size-6 text-primary mb-3 stroke-[1.75] transition-transform duration-300 group-hover:scale-110 group-active:scale-110" />
+                  <h3 className="font-heading text-lg font-semibold text-foreground group-hover:text-primary group-active:text-primary transition-colors">
                     {pillar.title}
                   </h3>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">

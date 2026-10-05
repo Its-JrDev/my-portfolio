@@ -12,6 +12,7 @@ const translations = {
     connect: "Connect",
     // Hero
     hero_desc: "Specialized in responsive interfaces, high-throughput APIs, and interactive visual architectures built with React, TypeScript, and modern engineering standards.",
+    hero_desc_short: "Responsive UIs, fast APIs and interactive visuals with React + TypeScript.",
     view_projects: "Featured Projects",
     get_in_touch: "Get in touch",
     // About
@@ -71,6 +72,7 @@ const translations = {
     connect: "Conectar",
     // Hero
     hero_desc: "Especializado en interfaces responsivas, APIs de alto rendimiento y arquitecturas visuales interactivas construidas con React, TypeScript y estándares modernos.",
+    hero_desc_short: "Interfaces responsivas, APIs rápidas y visuales interactivos con React + TypeScript.",
     view_projects: "Proyectos Destacados",
     get_in_touch: "Ponte en contacto",
     // About

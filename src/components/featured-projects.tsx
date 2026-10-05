@@ -95,7 +95,7 @@ function ProjectCard({
       className={cn(
         "group relative flex flex-col w-full h-full overflow-hidden rounded-2xl border border-border/70",
         "bg-card/40 backdrop-blur-md transition-all duration-300",
-        "hover:border-primary hover:shadow-md hover:shadow-primary/10 hover:-translate-y-0.5"
+        "hover:border-primary hover:shadow-md hover:shadow-primary/10 hover:-translate-y-0.5 active:border-primary active:shadow-md active:shadow-primary/10 active:-translate-y-0.5"
       )}
     >
       {/* Media container */}
@@ -110,7 +110,7 @@ function ProjectCard({
             src={imageSrc}
             alt={`${project.title} preview`}
             loading="lazy"
-            className="size-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+            className="size-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105 group-active:scale-105"
           />
         ) : (
           <div className="flex size-full items-center justify-center text-xs text-muted-foreground">
@@ -158,7 +158,7 @@ function ProjectCard({
           )}
 
           {/* Project Title */}
-          <h3 className="font-heading text-xl sm:text-2xl font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors">
+          <h3 className="font-heading text-xl sm:text-2xl font-semibold tracking-tight text-foreground group-hover:text-primary group-active:text-primary transition-colors">
             {project.title}
           </h3>
 
@@ -193,7 +193,7 @@ function ProjectCard({
               href={project.deployUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={cn(buttonVariants({ size: "sm" }), "gap-1.5 text-xs font-medium")}
+              className={cn(buttonVariants({ size: "sm" }), "gap-1.5 text-xs font-medium active:scale-[0.98]")}
             >
               <span>{t("show_project")}</span>
               <IconExternalLink className="size-3.5" />
@@ -210,7 +210,7 @@ function ProjectCard({
                   size: "sm",
                   variant: project.deployUrl ? "outline" : "default",
                 }),
-                "gap-1.5 text-xs font-medium"
+                "gap-1.5 text-xs font-medium active:scale-[0.98]"
               )}
             >
               <IconBrandGithub className="size-3.5" />
