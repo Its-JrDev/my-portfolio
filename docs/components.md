@@ -26,7 +26,7 @@ flowchart TD
     SKILLS --> SG["SkillGraph"]
     HERO --> TA["TextAnimate — h1, by word"]
     HERO --> TN["TechNebulaCanvas"]
-    HERO --> CP["cyber-paladin.svg"]
+    HERO --> CP["my-portrait.png"]
     PROJ --> CARD["ProjectCard — inner component"]
 ```
 
@@ -74,7 +74,7 @@ Layout responsivo:
 | Headline | `TextAnimate` as `h1`, `by="word"`, `animation="blurInUp"` |
 | Description | `t("hero_desc")` |
 | CTAs | `scrollToProjects` / `scrollToContact` → `scrollIntoView({ behavior: "smooth" })` |
-| Illustration | `cyber-paladin.svg`, `max-h-[50vh]` desktop / `max-h-[22vh]` mobile, `object-contain` |
+| Illustration | `my-portrait.png`, `max-h-[50vh]` desktop / `max-h-[22vh]` mobile, `object-contain` |
 | Scroll cue | `animate-bounce` con texto `scroll` y flecha animada en `bottom-3 sm:bottom-4` |
 
 `HeroBackground` is a local component in the same file. It stacks five CSS atmosphere layers plus the canvas, the vignette and two gradient overlays. Full layer order is in [Styling](styling.md#layer-order-in-the-hero).

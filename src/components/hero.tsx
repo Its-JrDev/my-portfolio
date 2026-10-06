@@ -2,8 +2,8 @@
  * Opening section. `min-h-[calc(100svh-4rem)]` subtracts the fixed header so
  * the hero fills exactly the remaining viewport.
  *
- * Two columns on `md` and above, stacked below. The right column holds the
- * Cyber Paladin SVG; the left holds the badge, animated headline, description
+ * Two columns on `lg` and above, stacked below. The right column holds the
+ * portrait PNG; the left holds the badge, animated headline, description
  * and two CTA buttons that scroll to `#projects` and `#contact`.
  *
  * `HeroBackground` stacks seven layers inside an `absolute -inset-y-16`
@@ -40,11 +40,11 @@ function HeroBackground() {
       <div className="absolute inset-0 tech-sheen" />
       <div className="absolute inset-0 tech-halo" />
       <TechNebulaCanvas
-        color="#ff6a00"
-        accent="#ffd9a8"
-        density={1.6}
-        linkDistance={160}
-        opacity={0.6}
+        color="#b45309"
+        accent="#e7c9a5"
+        density={0.8}
+        linkDistance={130}
+        opacity={0.3}
         className="absolute inset-0 h-full w-full"
       />
       <div className="absolute inset-0 hero-vignette" />
@@ -90,11 +90,11 @@ export function Hero() {
               {AUTHOR_ROLE}
             </Badge>
 
-            {/* Cyber Paladin — under Badge and above Jose D. Romero */}
-            <div className="relative w-full max-w-64 sm:max-w-80 md:max-w-96 h-[28svh] min-h-[140px] max-h-[240px] sm:h-[34svh] sm:max-h-[280px] md:h-[38svh] md:max-h-[340px] flex items-center justify-center shrink-0 lg:hidden">
+            {/* Portrait — under Badge and above Jose D. Romero */}
+            <div className="relative w-full max-w-72 sm:max-w-md md:max-w-[28rem] h-[34svh] min-h-[180px] max-h-[320px] sm:h-[40svh] sm:max-h-[380px] md:h-[44svh] md:max-h-[440px] flex items-center justify-center shrink-0 lg:hidden">
               <img
-                src={`${base}cyber-paladin.svg`}
-                alt="Cyber paladin illustration"
+                src={`${base}my-portrait.png`}
+                alt="Retrato ilustrado de Jose D. Romero"
                 className="size-full object-contain drop-shadow-2xl select-none"
               />
             </div>
@@ -122,11 +122,11 @@ export function Hero() {
           </div>
 
           {/* Desktop Art Box (>= lg) */}
-          <div className="hidden lg:flex relative lg:flex-none lg:w-[26rem] xl:w-[28rem] lg:h-auto lg:shrink-0 items-center justify-center">
+          <div className="hidden lg:flex relative lg:flex-none lg:w-[30rem] xl:w-[32rem] lg:h-auto lg:shrink-0 items-center justify-center">
             <img
-              src={`${base}cyber-paladin.svg`}
-              alt="Cyber paladin illustration"
-              className="w-full max-h-[58vh] xl:max-h-[62vh] object-contain drop-shadow-2xl select-none"
+              src={`${base}my-portrait.png`}
+              alt="Retrato ilustrado de Jose D. Romero"
+              className="w-full max-h-[68vh] xl:max-h-[72vh] object-contain drop-shadow-2xl select-none"
             />
           </div>
         </div>

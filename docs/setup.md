@@ -45,7 +45,7 @@ my-portfolio/
 │   ├── 404.html                # 404 estático para arrivals directos de GitHub Pages
 │   ├── og-image.png / .svg     # Open Graph (se sirve el .png)
 │   ├── cyber-icon.svg          # favicon
-│   ├── cyber-paladin.svg       # Ilustración del hero
+│   ├── my-portrait.png       # Ilustración del hero
 │   └── projects/*.svg          # 5 portadas de proyecto
 ├── src/
 │   ├── main.tsx                # createRoot + StrictMode + I18nProvider

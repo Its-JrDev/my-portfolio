@@ -26,8 +26,8 @@
  * Device pixel ratio is clamped to `MAX_DPR` (2) and applied through
  * `ctx.setTransform`. Rendered `aria-hidden` and `pointer-events-none`.
  *
- * Used by `hero.tsx` with `color="#ff6a00"`, `accent="#ffd9a8"`,
- * `density={1.6}`, `linkDistance={160}`, `opacity={0.6}`.
+ * Used by `hero.tsx` with `color="#b45309"`, `accent="#e7c9a5"`,
+ * `density={0.8}`, `linkDistance={130}`, `opacity={0.3}`.
  */
 import { useEffect, useRef } from "react"
 
@@ -227,7 +227,7 @@ export function TechNebulaCanvas({
     <canvas
       ref={ref}
       className={cn(
-        "pointer-events-none absolute inset-0 size-full opacity-70",
+        "pointer-events-none absolute inset-0 size-full opacity-40",
         className
       )}
       aria-hidden="true"
