@@ -8,7 +8,7 @@ import {
  * Deployed origin. Must stay in sync with `base` in `vite.config.ts`, which is
  * also `/my-portfolio/`. Used by `seo.tsx` for canonical and Open Graph URLs.
  */
-export const SITE_URL = "https://its-jrdev.github.io/my-portfolio/"
+export const SITE_URL = "https://its-jr.dev/"
 
 /** Display name, used in the hero headline and the footer copyright. */
 export const AUTHOR_NAME = "Jose D. Romero"

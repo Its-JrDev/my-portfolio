@@ -21,7 +21,7 @@ import { defineConfig } from "vite"
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
-  base: "/my-portfolio/",
+  base: "/",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
