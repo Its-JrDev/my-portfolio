@@ -145,6 +145,16 @@
   * {
     @apply border-border outline-ring/50;
     }
+  html,
+  body {
+    /* Kills page-level horizontal scroll: absolute decorations and
+       `whitespace-nowrap` graph tooltips (wider in Spanish) otherwise
+       stretch `document.scrollWidth` past 425px and the fixed header
+       looks broken. `clip` (not `hidden`) creates no scroll container,
+       so `position: fixed` / `sticky` descendants keep working. */
+    overflow-x: hidden;
+    overflow-x: clip;
+    }
   body {
     @apply bg-background text-foreground;
     }
