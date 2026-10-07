@@ -123,6 +123,11 @@ export const SKILLS = [
     description: "Version control & collaboration",
   },
   {
+    id: "github",
+    label: "GitHub Actions",
+    description: "CI/CD Workflows, Actions & PRs",
+  },
+  {
     id: "python",
     label: "Python",
     description: "Backend scripting & automation",
@@ -147,33 +152,106 @@ export const SKILLS = [
     label: "Shopify",
     description: "Liquid themes & Storefront API",
   },
+  {
+    id: "prisma",
+    label: "Prisma",
+    description: "Type-safe database ORM",
+  },
+  {
+    id: "supabase",
+    label: "Supabase",
+    description: "Open source Firebase alternative",
+  },
+  {
+    id: "postgresql",
+    label: "PostgreSQL",
+    description: "Relational database & advanced queries",
+  },
+  {
+    id: "zod",
+    label: "Zod",
+    description: "TypeScript-first schema validation",
+  },
+  {
+    id: "docker",
+    label: "Docker",
+    description: "Containerized deployments",
+  },
+  {
+    id: "zustand",
+    label: "Zustand",
+    description: "Bear necessities for state management",
+  },
+  {
+    id: "turborepo",
+    label: "Turborepo",
+    description: "High-performance build system",
+  },
+  {
+    id: "r3f",
+    label: "Three.js",
+    description: "3D rendering with React Three Fiber",
+  },
 ] as const
 
 /**
- * Force-simulation edges, as `[fromId, toId]` pairs. 20 edges over 13 nodes.
+ * Force-simulation edges, as `[fromId, toId]` pairs.
  *
  * An edge naming an `id` absent from `SKILLS` does not throw: `forceLink`
  * resolves it to `undefined` and the edge simply does not render.
  */
 export const SKILL_EDGES = [
+  // Core Web
   ["html", "css"],
   ["html", "javascript"],
-  ["html", "shopify"],
-  ["css", "javascript"],
   ["css", "tailwind"],
   ["css", "shopify"],
-  ["javascript", "react"],
   ["javascript", "typescript"],
-  ["javascript", "shopify"],
+  ["javascript", "react"],
+
+  // TypeScript Ecosystem
   ["typescript", "react"],
   ["typescript", "nextjs"],
+  ["typescript", "zod"],
+  ["typescript", "prisma"],
+  ["typescript", "turborepo"],
+  ["typescript", "zustand"],
+
+  // React & UI Ecosystem
   ["react", "vite"],
-  ["react", "tailwind"],
-  ["react", "git"],
   ["react", "nextjs"],
+  ["react", "tailwind"],
   ["react", "shadcn"],
+  ["react", "zustand"],
+  ["react", "r3f"],
   ["tailwind", "shadcn"],
-  ["vite", "git"],
+  ["tailwind", "nextjs"],
+  ["shadcn", "zod"], // Shadcn forms use Zod
+
+  // Next.js & Fullstack Architecture
+  ["nextjs", "turborepo"],
+  ["nextjs", "prisma"],
+  ["nextjs", "supabase"],
+  ["nextjs", "docker"],
+  
+  // Backend & Data
+  ["prisma", "supabase"],
+  ["prisma", "docker"],
+  ["supabase", "docker"],
   ["python", "fastapi"],
-  ["python", "git"],
+  ["fastapi", "docker"],
+  ["postgresql", "prisma"],
+  ["postgresql", "supabase"],
+  ["postgresql", "python"],
+  ["postgresql", "docker"],
+
+  // DevOps & Tooling
+  ["git", "vite"],
+  ["git", "turborepo"],
+  ["git", "docker"],
+  ["git", "python"],
+  ["git", "github"],
+  ["github", "docker"],
+  ["github", "turborepo"],
+  ["turborepo", "docker"],
 ] as const
