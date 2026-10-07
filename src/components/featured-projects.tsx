@@ -22,7 +22,6 @@
 import { IconBrandGithub, IconExternalLink } from "@tabler/icons-react"
 
 import { BlurFade } from "@/components/ui/blur-fade"
-import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { PROJECTS, type Project } from "@/data/projects"
@@ -54,26 +53,42 @@ export function FeaturedProjects() {
         </BlurFade>
 
         {/* Adaptive Bento Grid */}
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-stretch">
-          {/* Row 1: Flagship (Full 2 cols on md, 8 cols on lg) */}
-          {flagship && (
-            <BlurFade delay={0.05} className="md:col-span-2 lg:col-span-8 flex">
-              <ProjectCard project={flagship} isSpotlight />
-            </BlurFade>
-          )}
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-start">
+          {/* Left Column (Main Card + Bottom Cards) */}
+          <div className="md:col-span-2 lg:col-span-8 flex flex-col gap-6">
+            {flagship && (
+              <BlurFade delay={0.05} className="flex">
+                <ProjectCard project={flagship} isSpotlight />
+              </BlurFade>
+            )}
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {tertiary[1] && (
+                <BlurFade delay={0.05} className="flex h-full">
+                  <ProjectCard project={tertiary[1]} />
+                </BlurFade>
+              )}
+              {tertiary[2] && (
+                <BlurFade delay={0.05} className="flex h-full">
+                  <ProjectCard project={tertiary[2]} />
+                </BlurFade>
+              )}
+            </div>
+          </div>
 
-          {secondary && (
-            <BlurFade delay={0.1} className="md:col-span-1 lg:col-span-4 flex">
-              <ProjectCard project={secondary} />
-            </BlurFade>
-          )}
-
-          {/* Row 2 & 3: 3 balanced cards (1 col each on md, 4 cols on lg) */}
-          {tertiary.map((project, i) => (
-            <BlurFade key={project.title} delay={0.15 + i * 0.05} className="md:col-span-1 lg:col-span-4 flex">
-              <ProjectCard project={project} />
-            </BlurFade>
-          ))}
+          {/* Right Column (Side Cards) */}
+          <div className="md:col-span-2 lg:col-span-4 flex flex-col md:grid md:grid-cols-2 lg:flex gap-6">
+            {secondary && (
+              <BlurFade delay={0.05} className="flex">
+                <ProjectCard project={secondary} />
+              </BlurFade>
+            )}
+            {tertiary[0] && (
+              <BlurFade delay={0.05} className="flex">
+                <ProjectCard project={tertiary[0]} />
+              </BlurFade>
+            )}
+          </div>
         </div>
       </div>
     </section>
@@ -99,7 +114,7 @@ function ProjectCard({
       <div
         className={cn(
           "relative w-full overflow-hidden bg-muted/40",
-          isSpotlight ? "aspect-[16/9] sm:aspect-[21/9] lg:aspect-[16/8]" : "aspect-[16/10]"
+          isSpotlight ? "aspect-auto" : "aspect-[16/10]"
         )}
       >
         {imageSrc ? (
@@ -107,81 +122,27 @@ function ProjectCard({
             src={imageSrc}
             alt={`${project.title} preview`}
             loading="lazy"
-            className="size-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105 group-active:scale-105"
+            className={cn(
+              "transition-transform duration-700 ease-out scale-110 group-hover:scale-[1.15] group-active:scale-[1.15]",
+              isSpotlight ? "w-full h-auto object-center" : "size-full object-cover object-top"
+            )}
           />
         ) : (
           <div className="flex size-full items-center justify-center text-xs text-muted-foreground">
             Preview unavailable
           </div>
         )}
-
-        {/* Ambient media gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent opacity-80" />
-
-        {/* Top badges */}
-        <div className="absolute top-3 inset-x-3 flex items-center justify-between gap-2 z-10">
-          {isSpotlight ? (
-            <Badge variant="spotlight">
-              {t("spotlight_badge")}
-            </Badge>
-          ) : (
-            <div />
-          )}
-
-          {project.category && (
-            <Badge variant="glass">
-              {project.category === "frontend"
-                ? t("category_frontend")
-                : project.category === "fullstack"
-                  ? t("category_fullstack")
-                  : t("category_realtime")}
-            </Badge>
-          )}
-        </div>
       </div>
 
       {/* Content body */}
       <div className="flex flex-1 flex-col p-5 sm:p-6 justify-between gap-4">
-        <div>
-          {/* Metrics telemetry tag */}
-          {project.metrics && (
-            <div className="mb-2 flex items-center gap-1.5 text-xs text-primary font-medium">
-              <span className="size-1.5 rounded-full bg-primary" />
-              <span>{project.metrics}</span>
-            </div>
-          )}
+        {/* Project Title */}
+        <h3 className="font-heading text-xl sm:text-2xl font-semibold tracking-tight text-foreground group-hover:text-primary group-active:text-primary transition-colors">
+          {project.title}
+        </h3>
 
-          {/* Project Title */}
-          <h3 className="font-heading text-xl sm:text-2xl font-semibold tracking-tight text-foreground group-hover:text-primary group-active:text-primary transition-colors">
-            {project.title}
-          </h3>
-
-          {/* Headline / Description */}
-          {project.headline && (
-            <p className="mt-1 text-sm font-medium text-muted-foreground">
-              {project.headline}
-            </p>
-          )}
-
-          <p className="mt-2 text-xs sm:text-sm text-muted-foreground/90 leading-relaxed line-clamp-3">
-            {project.description}
-          </p>
-
-          {/* Tech Stack Chips */}
-          <div className="mt-4 flex flex-wrap gap-1.5">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="inline-block rounded-md border border-border/60 bg-muted/40 px-2 py-0.5 text-[11px] font-medium text-muted-foreground"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Action Buttons adhering to shadcn UI */}
-        <div className="pt-3 border-t border-border/40 flex items-center gap-3">
+        {/* Action Buttons */}
+        <div className="pt-3 border-t border-border/40 flex items-center gap-2">
           {project.deployUrl && (
             <a
               href={project.deployUrl}

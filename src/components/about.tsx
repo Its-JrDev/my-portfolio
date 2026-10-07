@@ -63,17 +63,17 @@ export function About() {
 
           {/* Right Stats Strip — Monumental Typographic with Interactive Accent & Border */}
           <div className="lg:col-span-5 self-center lg:self-end">
-            <div className="grid grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+            <div className="grid grid-cols-3 gap-4 sm:gap-6 lg:gap-3 xl:gap-8">
               {STATS.map((stat, i) => (
                 <BlurFade key={stat.label} delay={0.1 + i * 0.08}>
-                  <div className="group flex flex-col border-l border-border/40 pl-4 sm:pl-6 py-2 transition-colors hover:border-primary/60 active:border-primary/60">
+                  <div className="group flex flex-col border-l border-border/40 pl-4 sm:pl-5 lg:pl-3 xl:pl-6 py-2 transition-colors hover:border-primary/60 active:border-primary/60">
                     <div className="flex items-baseline font-heading">
                       <NumberTicker
                         value={stat.value}
-                        className="font-heading text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter text-foreground"
+                        className="font-heading text-4xl sm:text-5xl lg:text-3xl xl:text-6xl font-black tracking-tighter text-foreground"
                       />
                       {stat.suffix && (
-                        <span className="ml-0.5 font-heading text-xl sm:text-2xl lg:text-3xl font-extrabold text-primary">
+                        <span className="ml-0.5 font-heading text-xl sm:text-2xl lg:text-lg xl:text-3xl font-extrabold text-primary">
                           {stat.suffix}
                         </span>
                       )}

@@ -137,11 +137,10 @@ flowchart TD
     GRID --> C2["BlurFade delay 0.20<br/>lg:col-span-4<br/>ProjectCard"]
     GRID --> C3["BlurFade delay 0.25<br/>lg:col-span-4<br/>ProjectCard"]
 
-    subgraph CARD["ProjectCard — inner, not exported"]
-        CARD --> MEDIA["aspect ratio<br/>spotlight 21/9, others 16/10"]
-        CARD --> IMGBADGE["img lazy + overlay + badges"]
-        CARD --> BODY["metrics, title, headline,<br/>description line-clamp-3, tag chips"]
-        CARD --> ACTIONS["deployUrl → buttonVariants sm<br/>githubUrl → outline if deploy exists"]
+    subgraph CARD["ProjectCard — streamlined per UXDI"]
+        CARD --> MEDIA["aspect ratio<br/>spotlight 21/9, others 16/10 + category badge"]
+        CARD --> BODY["title + spotlight badge, description line-clamp-3, clean tag chips"]
+        CARD --> ACTIONS["CTAs (deployUrl, githubUrl) + subtle telemetry"]
     end
 ```
 

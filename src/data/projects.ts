@@ -33,16 +33,16 @@ export interface Project {
  */
 export const PROJECTS: Project[] = [
   {
-    title: "Portfolio Website",
-    headline: "High-Performance Cyber Experience",
+    title: "Restaurant Management System",
+    headline: "Full-Stack Point of Sale & Operations",
     description:
-      "A responsive, cinematic developer portfolio built with React, Vite, Tailwind CSS, and interactive D3 force physics. High visual impact with optimized trust signals.",
-    tags: ["React", "TypeScript", "Tailwind CSS", "D3.js"],
-    image: "projects/portfolio-cinematic.svg",
-    metrics: "100% Responsive • Interactive Physics",
-    category: "frontend",
-    githubUrl: "https://github.com/Its-JrDev/my-portfolio",
-    deployUrl: "https://its-jrdev.github.io/my-portfolio/",
+      "A comprehensive restaurant management platform featuring order tracking, inventory management, interactive POS dashboard, and real-time operations synchronization.",
+    tags: ["React", "TypeScript", "Tailwind CSS", "Node.js"],
+    image: "projects/restaurant-management.webp",
+    metrics: "Real-time POS • Dynamic Inventory",
+    category: "fullstack",
+    githubUrl: "https://github.com/Its-JrDev/restaurant-management-system",
+    deployUrl: "https://restaurant-management-system-demo.vercel.app/",
   },
   {
     title: "E-commerce Platform",
