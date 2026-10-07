@@ -39,7 +39,7 @@ src/
 │   ├── hero.tsx / about.tsx / skills.tsx / featured-projects.tsx / contact.tsx
 │   └── skill-graph.tsx           # en ui/ — grafo d3-force
 ├── data/
-│   └── projects.ts               # ← EDITA AQUÍ tus proyectos
+│   └── projects.ts               # ← Mis proyectos
 ├── hooks/
 │   └── use-header-scroll.ts      # Opacidad del header scroll-linked
 ├── lib/
@@ -65,22 +65,27 @@ Edita `src/data/projects.ts`. Cada proyecto acepta:
   image?: string           // ruta en public/, p.ej. "projects/ecommerce-cinematic.svg"
   deployUrl?: string       // opcional → botón "Live demo"
   githubUrl?: string       // opcional → botón "Code"
+  status?: "published" | "draft"  // "draft" (u omitido) = oculto en producción
 }
 ```
 
-⚠️ **El grid es posicional, no por filtro:** `PROJECTS[0]` es el spotlight, `PROJECTS[1]` el secundario y `PROJECTS.slice(2, 5)` la fila de tres. Un sexto proyecto **no aparece** — habría que cambiar el slice en `featured-projects.tsx`.
+**Cómo lo manejo:** por ahora solo tengo un proyecto real para mostrar (el *Restaurant Management System*), así que es el único con `status: "published"`. Los demás los dejé en `"draft"` porque son placeholders y no quiero enseñar contenido falso en producción. Cuando tenga otro proyecto listo, le cambio el `status` a `"published"` y listo.
+
+⚠️ **El grid es posicional sobre lo visible, no por filtro:** `VISIBLE_PROJECTS[0]` es el spotlight, `VISIBLE_PROJECTS[1]` el secundario y `VISIBLE_PROJECTS.slice(2, 5)` la fila de tres. Un sexto proyecto publicado **no aparece** — habría que cambiar el slice en `featured-projects.tsx`. Con un solo proyecto publicado, el spotlight se centra a ancho completo (`max-w-4xl`) en vez de dejar una columna lateral vacía.
 
 - Si no hay `image`, la card muestra un placeholder.
 - Si no hay `deployUrl` ni `githubUrl`, la card no muestra botones.
-- Las imágenes van en `public/projects/` (créalas tú).
+- Las imágenes van en `public/projects/`.
+- Mi contador de "Projects Built" usa `VISIBLE_PROJECTS.length`, así que en producción marca 1 automáticamente.
 
 ## Deploy a GitHub Pages
 
 1. En el repo, **Settings → Pages → Source: "GitHub Actions"** (habilita el workflow).
 2. Sube los cambios a `dev` o `main`: el workflow `.github/workflows/deploy.yml` construye y publica `dist/`.
-3. El sitio queda en `https://its-jrdev.github.io/my-portfolio/`.
+3. El sitio queda en `https://its-jrdev.github.io/my-portfolio/` (o en mi dominio `its-jr.dev` si el `CNAME` de `main` está activo).
+4. **Regla para producción (`main`):** antes de mergear `dev → main`, dejo en `"draft"` todo lo que sea placeholder. Solo lo `"published"` llega al sitio público.
 
-El `base` de Vite está fijado a `/my-portfolio/` en `vite.config.ts`. Si algún día publicas desde un dominio raíz, cámbialo a `/` **y** `SITE_URL` en `src/lib/site.ts`.
+El `base` de Vite está fijado a `/my-portfolio/` en `vite.config.ts`. Si algún día publico desde un dominio raíz, lo cambio a `/` **y** `SITE_URL` en `src/lib/site.ts`.
 
 ## Notas
 

@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Local tooling caches — never commit
+.omo/
+.codegraph/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

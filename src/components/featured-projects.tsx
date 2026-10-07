@@ -1,13 +1,17 @@
 /**
- * Showcase section: a positional bento grid of up to five project cards.
+ * Showcase section: a positional bento grid of up to five visible project cards.
  *
- * Layout is driven by array index, not by the `featured` or `category` fields:
+ * Only `VISIBLE_PROJECTS` (status !== "draft") render, so placeholders kept in
+ * `PROJECTS` never leak to `main` / production. Layout is driven by array index:
  *
- * - `PROJECTS[0]` → spotlight card, `lg:col-span-8`, 21/9 media, badge
- * - `PROJECTS.slice(1, 2)` → secondary card, `lg:col-span-4`
- * - `PROJECTS.slice(2, 5)` → three equal cards, `lg:col-span-4` each
+ * - `VISIBLE[0]` → spotlight card, `lg:col-span-8`, 21/9 media, badge
+ * - `VISIBLE.slice(1, 2)` → secondary card, `lg:col-span-4`
+ * - `VISIBLE.slice(2, 5)` → three equal cards, `lg:col-span-4` each
  *
- * Index 5 and beyond never render. Adding a sixth project requires changing
+ * With a single visible project (current production state), the spotlight
+ * expands to full width instead of leaving an empty side column.
+ *
+ * Index 5 and beyond never render. Publishing a sixth project requires changing
  * that slice.
  *
  * The only section carrying `scroll-mt-16`, which offsets the fixed `h-16`
@@ -24,7 +28,7 @@ import { IconBrandGithub, IconExternalLink } from "@tabler/icons-react"
 import { BlurFade } from "@/components/ui/blur-fade"
 import { buttonVariants } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { PROJECTS, type Project } from "@/data/projects"
+import { VISIBLE_PROJECTS, type Project } from "@/data/projects"
 import { useTranslation } from "@/lib/i18n"
 import { cn } from "@/lib/utils"
 
@@ -33,9 +37,10 @@ const base = import.meta.env.BASE_URL
 export function FeaturedProjects() {
   const { t } = useTranslation()
 
-  const flagship = PROJECTS[0]
-  const secondary = PROJECTS.slice(1, 2)[0]
-  const tertiary = PROJECTS.slice(2, 5)
+  const flagship = VISIBLE_PROJECTS[0]
+  const secondary = VISIBLE_PROJECTS.slice(1, 2)[0]
+  const tertiary = VISIBLE_PROJECTS.slice(2, 5)
+  const isSingle = VISIBLE_PROJECTS.length === 1
 
   return (
     <section id="projects" className="scroll-mt-16 border-t border-border/40 py-16 md:py-24">
@@ -52,7 +57,14 @@ export function FeaturedProjects() {
           </div>
         </BlurFade>
 
-        {/* Adaptive Bento Grid */}
+        {/* Adaptive Bento Grid — single published project spans full width */}
+        {isSingle && flagship ? (
+          <div className="mt-10 mx-auto w-full max-w-4xl">
+            <BlurFade delay={0.05} className="flex">
+              <ProjectCard project={flagship} isSpotlight />
+            </BlurFade>
+          </div>
+        ) : (
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-start">
           {/* Left Column (Main Card + Bottom Cards) */}
           <div className="md:col-span-2 lg:col-span-8 flex flex-col gap-6">
@@ -90,6 +102,7 @@ export function FeaturedProjects() {
             )}
           </div>
         </div>
+        )}
       </div>
     </section>
   )

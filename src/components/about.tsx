@@ -4,7 +4,7 @@ import { BlurFade } from "@/components/ui/blur-fade"
 import { Card } from "@/components/ui/card"
 import { NumberTicker } from "@/components/ui/number-ticker"
 import { SKILLS } from "@/lib/site"
-import { PROJECTS } from "@/data/projects"
+import { VISIBLE_PROJECTS } from "@/data/projects"
 import { useTranslation } from "@/lib/i18n"
 
 export function About() {
@@ -13,7 +13,7 @@ export function About() {
   const STATS = [
     {
       label: t("stats_projects"),
-      value: PROJECTS.length,
+      value: VISIBLE_PROJECTS.length,
     },
     {
       label: t("stats_skills"),

@@ -15,17 +15,32 @@ export interface Project {
   category?: "frontend" | "fullstack" | "realtime"
   deployUrl?: string
   githubUrl?: string
+  /**
+   * Production gate for `main`.
+   *
+   * - `"published"` renders in `FeaturedProjects` and counts in `About`.
+   * - `"draft"` (or omitted) stays hidden until the project is real — this is
+   *   how placeholders are kept in `dev` without leaking to production.
+   *
+   * To publish a placeholder, flip it to `"published"`.
+   */
+  status?: "published" | "draft"
 }
 
 /**
- * The five showcase projects.
+ * The showcase projects.
+ *
+ * Only `status: "published"` entries render (see `VISIBLE_PROJECTS` below).
+ * Today that is just the Restaurant Management System — the real, configured
+ * project. The rest are placeholders kept as `"draft"` so `dev` retains them
+ * without leaking to `main` / production.
  *
  * Consumed in two places with different constraints:
  *
- * - `featured-projects.tsx` slices `PROJECTS[0]`, `PROJECTS.slice(1, 2)` and
- *   `PROJECTS.slice(2, 5)`. Index 5 and beyond never render. Adding a sixth
- *   project requires changing that slice.
- * - `about.tsx` reads `PROJECTS.length` for the "Projects Built" counter, so
+ * - `featured-projects.tsx` slices `VISIBLE_PROJECTS[0]`, `VISIBLE_PROJECTS.slice(1, 2)` and
+ *   `VISIBLE_PROJECTS.slice(2, 5)`. Index 5 and beyond never render. Adding a sixth
+ *   published project requires changing that slice.
+ * - `about.tsx` reads `VISIBLE_PROJECTS.length` for the "Projects Built" counter, so
  *   the count stays derived rather than hardcoded.
  *
  * `image` paths resolve through `import.meta.env.BASE_URL`, so they must stay
@@ -43,6 +58,7 @@ export const PROJECTS: Project[] = [
     category: "fullstack",
     githubUrl: "https://github.com/Its-JrDev/restaurant-management-system",
     deployUrl: "https://restaurant-management-system-demo.vercel.app/",
+    status: "published",
   },
   {
     title: "E-commerce Platform",
@@ -54,6 +70,7 @@ export const PROJECTS: Project[] = [
     metrics: "<120ms API Latency • Full Auth Pipeline",
     category: "fullstack",
     githubUrl: "https://github.com/Its-JrDev",
+    status: "draft",
   },
   {
     title: "Chat Application",
@@ -65,6 +82,7 @@ export const PROJECTS: Project[] = [
     metrics: "Sub-10ms Ping • Instant Multi-room",
     category: "realtime",
     githubUrl: "https://github.com/Its-JrDev",
+    status: "draft",
   },
   {
     title: "Weather App",
@@ -76,6 +94,7 @@ export const PROJECTS: Project[] = [
     metrics: "Live Geo-telemetry • 5-Day Radar",
     category: "frontend",
     githubUrl: "https://github.com/Its-JrDev",
+    status: "draft",
   },
   {
     title: "Blog Platform",
@@ -87,5 +106,15 @@ export const PROJECTS: Project[] = [
     metrics: "Edge Aggregated • Rich Markdown",
     category: "fullstack",
     githubUrl: "https://github.com/Its-JrDev",
+    status: "draft",
   },
 ]
+
+/**
+ * Production-visible projects: everything not explicitly marked as draft.
+ * `featured-projects.tsx` and `about.tsx` must consume this, never `PROJECTS`
+ * directly, so placeholders never reach `main`.
+ */
+export const VISIBLE_PROJECTS: Project[] = PROJECTS.filter(
+  (project) => project.status !== "draft",
+)
