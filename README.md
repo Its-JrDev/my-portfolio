@@ -1,113 +1,99 @@
 # My Portfolio
 
-A portfolio website built with HTML, CSS, and JavaScript — perfect for learning how the three core web technologies work together.
+Portfolio personal de **Jose D. Romero** (Its-JrDev), construido con **Vite + React + TypeScript + shadcn/ui** y blocks de los registries oficial y **Magic UI**. Desplegado en **GitHub Pages** con GitHub Actions.
 
-## What is this project?
+> 📖 **[Documentación técnica](docs/README.md)** — arquitectura, decisiones, sistema de estilos, i18n, animación y catálogo de problemas conocidos.
 
-This is a **starter portfolio** that showcases what I've built while learning web development. It's a multi-page website with a unified design that runs entirely in the browser — no backend or database required.
+## Stack
 
-The goal was to practice:
-- Structuring content with HTML
-- Styling pages with modern CSS
-- Adding interactivity with vanilla JavaScript
+- [Vite](https://vite.dev/) + React 19 + TypeScript
+- [shadcn/ui](https://ui.shadcn.com/) (base `base-nova` sobre **Base UI**, iconos Tabler)
+- [Tailwind CSS v4](https://tailwindcss.com/) — CSS-first, sin `tailwind.config.js`
+- [motion](https://motion.dev/) (re-export de framer-motion) — `BlurFade`, springs, `MotionValue`
+- [d3-force](https://github.com/d3/d3-force) — grafo de skills
+- Blocks de [Magic UI](https://www.magicui.design/) (blur-fade, text-animate, number-ticker, …)
 
-## What's inside?
+> **Sin router.** La landing es una sola página con anclas (`#about`, `#skills`, `#projects`, `#contact`). `react-router-dom` sigue instalado pero no se importa en ningún archivo — ver [known-issues](docs/known-issues.md).
 
-This portfolio includes **3 pages** that share the same header, footer, and design system:
+## Empezar
 
-1. **Home** (`index.html`) — Hero section, short bio, and contact form
-2. **Projects** (`projects.html`) — Cards showing my web development projects
-3. **My Pets** (`my_pets.html`) — Showcases my two real dogs (Max and Papi) alongside four fictional cartoon pets (Scooby-Doo, Courage, Perry the Platypus, and Charmander). Each pet has its own card with a photo/illustration and a short description.
-
-## Quick start (for beginners)
-
-**Option 1 — Just open it:**
-1. Download or clone this repository
-2. Double-click `index.html` — it will open in your browser
-3. That's it! No installation needed
-
-**Option 2 — Use a local server (recommended):**
 ```bash
-# If you have Python installed:
-python -m http.server 8000
-```
-Then open `http://localhost:8000` in your browser.
-
-## File structure
-
-```
-my-portfolio/
-├── index.html          ← Home page
-├── projects.html       ← Projects page
-├── my_pets.html        ← Pets page
-├── css/
-│   ├── styles.css      ← Shared styles (colors, fonts, layout)
-│   ├── index.css       ← Home page styles
-│   ├── projects.css    ← Projects page styles
-│   └── my_pets.css     ← Pets page styles
-├── js/
-│   └── script.js       ← All interactive behavior
-└── assets/
-    ├── icons/          ← Social media icons
-    └── illustrations/  ← Hero illustration
+npm install        # instalar dependencias
+npm run dev        # dev server en http://localhost:5173
+npm run build      # typecheck (tsc) + build a dist/
+npm run preview    # previsualizar el build
 ```
 
-**Tip:** Each page loads `styles.css` first (the foundation), then its own page-specific stylesheet. This keeps shared code in one place.
+## Estructura
 
-## How the code is organized
-
-This project uses **BEM naming** — a simple system that keeps CSS class names predictable:
-
-- `.header` → a standalone component (Block)
-- `.header__logo` → a piece inside the header (Element)
-- `.btn--primary` → a variation of the button (Modifier)
-
-**Real examples from the code:**
-```html
-<header class="header">
-  <div class="header__logo">Its-JrDev</div>
-  <a class="btn btn--primary header__link">Contact</a>
-</header>
+```
+src/
+├── App.tsx                       # Layout: SiteHeader / main / SiteFooter
+├── main.tsx                      # createRoot + StrictMode + I18nProvider
+├── index.css                     # Tailwind v4 + tokens OKLCH + keyframes propios
+├── components/
+│   ├── ui/                       # Componentes shadcn + Magic UI
+│   ├── seo.tsx                   # <title>/<meta>/OG (React 19)
+│   ├── site-header.tsx           # Nav + idioma + menú móvil (Sheet)
+│   ├── site-footer.tsx
+│   ├── hero.tsx / about.tsx / skills.tsx / featured-projects.tsx / contact.tsx
+│   └── skill-graph.tsx           # en ui/ — grafo d3-force
+├── data/
+│   └── projects.ts               # ← Mis proyectos
+├── hooks/
+│   └── use-header-scroll.ts      # Opacidad del header scroll-linked
+├── lib/
+│   ├── site.ts                   # Identidad, nav, skills, socials, SITE_URL
+│   ├── i18n.tsx                  # Context + diccionarios en/es
+│   └── utils.ts                  # Re-export de cn
+└── pages/
+    └── home.tsx                  # Compone Seo + las 5 secciones
 ```
 
-Why BEM helps:
-- Easy to find related styles
-- No guessing what a class does
-- Safe to reuse components without conflicts
+## Añadir / editar proyectos
 
-## Features (what you'll see)
+Edita `src/data/projects.ts`. Cada proyecto acepta:
 
-- **Responsive design** — looks good on mobile, tablet, and desktop
-- **Mobile menu** — hamburger button that opens on small screens
-- **Sticky header** — navigation stays at the top when scrolling
-- **Card components** — reusable design for projects and pets
-- **Hover effects** — subtle animations when you hover over buttons and cards
-- **Contact form** — validates input and shows a success message
-- **Scroll to top** — appears after scrolling down
-- **Page animations** — content fades in smoothly when a page loads
+```ts
+{
+  title: string
+  description: string
+  tags: string[]           // chips de tecnología
+  headline?: string        // línea secundaria bajo el título
+  metrics?: string         // línea de telemetría con punto naranja
+  category?: "frontend" | "fullstack" | "realtime"
+  image?: string           // ruta en public/, p.ej. "projects/ecommerce-cinematic.svg"
+  deployUrl?: string       // opcional → botón "Live demo"
+  githubUrl?: string       // opcional → botón "Code"
+  status?: "published" | "draft"  // "draft" (u omitido) = oculto en producción
+}
+```
 
-## Known limitations (what could be improved)
+**Cómo lo manejo:** por ahora solo tengo un proyecto real para mostrar (el *Restaurant Management System*), así que es el único con `status: "published"`. Los demás los dejé en `"draft"` porque son placeholders y no quiero enseñar contenido falso en producción. Cuando tenga otro proyecto listo, le cambio el `status` a `"published"` y listo.
 
-- Contact form doesn't send emails (no backend)
-- Some project links are placeholders
-- Images for Scooby, Courage, Perry, and Charmander are external illustrations (not my own photos)
-- Animations could be optimized for performance
+⚠️ **El grid es posicional sobre lo visible, no por filtro:** `VISIBLE_PROJECTS[0]` es el spotlight, `VISIBLE_PROJECTS[1]` el secundario y `VISIBLE_PROJECTS.slice(2, 5)` la fila de tres. Un sexto proyecto publicado **no aparece** — habría que cambiar el slice en `featured-projects.tsx`. Con un solo proyecto publicado, el spotlight se centra a ancho completo (`max-w-4xl`) en vez de dejar una columna lateral vacía.
 
-## Next steps I'm considering
+- Si no hay `image`, la card muestra un placeholder.
+- Si no hay `deployUrl` ni `githubUrl`, la card no muestra botones.
+- Las imágenes van en `public/projects/`.
+- Mi contador de "Projects Built" usa `VISIBLE_PROJECTS.length`, así que en producción marca 1 automáticamente.
 
-- Connect the contact form to a service like Formspree or EmailJS
-- Replace placeholder project links with actual live demos
-- Add project filtering by technology (HTML, CSS, JavaScript)
-- Implement a dark/light theme switcher
+## Deploy a GitHub Pages
 
-## Browser support
+1. En el repo, **Settings → Pages → Source: "GitHub Actions"** (habilita el workflow).
+2. Sube los cambios a `dev` o `main`: el workflow `.github/workflows/deploy.yml` construye y publica `dist/`.
+3. El sitio queda en `https://its-jrdev.github.io/my-portfolio/` (o en mi dominio `its-jr.dev` si el `CNAME` de `main` está activo).
+4. **Regla para producción (`main`):** antes de mergear `dev → main`, dejo en `"draft"` todo lo que sea placeholder. Solo lo `"published"` llega al sitio público.
 
-Works in all modern browsers (Chrome, Firefox, Safari, Edge). No polyfills or build step required.
+El `base` de Vite está fijado a `/my-portfolio/` en `vite.config.ts`. Si algún día publico desde un dominio raíz, lo cambio a `/` **y** `SITE_URL` en `src/lib/site.ts`.
 
-## Author
+## Notas
 
-Jose David Romero Lara
+- **Routing**: sin router. Navegación por anclas con `scrollIntoView({ behavior: "smooth" })` + `pushState`. `public/404.html` cubre rutas inexistentes.
+- **SEO**: `<title>`/`<meta>` + Open Graph + Twitter Card vía `Seo` (React 19 hoisting). Requiere `public/og-image.png`, generado desde `og-image.svg`.
+- **Tema**: solo oscuro. `index.html` fija `<html class="dark">` y **no hay toggle** — no existe componente de tema en `src/`. Ver [known-issues](docs/known-issues.md#b4--theme-never-persists-or-restores).
+- **Idioma**: `en`/`es` vía `I18nProvider`. El switcher está en el header.
 
----
+## Autor
 
-**Note:** This is a learning project. The code is intentionally kept simple and well-commented to make it easy to understand and modify.
+Jose David Romero Lara — [GitHub](https://github.com/Its-JrDev) · [LinkedIn](https://www.linkedin.com/in/jose-romero-7b37353b6) · [Discord](https://discordapp.com/users/1178506619345190996)

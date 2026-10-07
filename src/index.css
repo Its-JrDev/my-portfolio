@@ -1,0 +1,331 @@
+/**
+ * All project styling. Tailwind v4 is CSS-first: there is no
+ * `tailwind.config.js` and no PostCSS config, so every token, keyframe and
+ * utility override below is the full configuration.
+ *
+ * Contents:
+ *
+ *   1. Imports — Tailwind, tw-animate-css, shadcn preset, Geist variable font
+ *   2. `@custom-variant dark` — `:is(.dark *)`, so the variant matches
+ *      descendants of `.dark`, not only `.dark` itself
+ *   3. `@theme inline` — exposes `:root` / `.dark` tokens as utilities
+ *      (`bg-background`, `text-foreground`, …) and defines the radius scale
+ *      and animation tokens
+ *   4. `:root` / `.dark` — OKLCH token blocks, light and dark
+ *   5. `@layer base` — border colour, outline ring, body and html defaults
+ *   6. View-transition opt-out — disables the browser's default root
+ *      cross-fade so a themed component can own its own animation
+ *   7. `@layer components` — hero atmosphere classes (`hero-vignette`,
+ *      `hero-fade`, `tech-cloud-a/b/c`, `tech-sheen`, `tech-halo`)
+ *   8. `@keyframes` — the hero atmosphere animations
+ *
+ * Dark is the only active theme: `index.html` sets `class="dark"` and no
+ * toggle is mounted.
+ */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: var(--font-sans);
+    --font-sans: 'Geist Variable', sans-serif;
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+    --background: oklch(0.99 0.004 66);
+    --foreground: oklch(0.25 0.02 55);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.25 0.02 55);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.25 0.02 55);
+    --primary: oklch(0.66 0.19 45);
+    --primary-foreground: oklch(0.16 0.03 45);
+    --secondary: oklch(0.95 0.015 60);
+    --secondary-foreground: oklch(0.28 0.02 55);
+    --muted: oklch(0.95 0.015 60);
+    --muted-foreground: oklch(0.5 0.02 55);
+    --accent: oklch(0.94 0.03 60);
+    --accent-foreground: oklch(0.28 0.02 55);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.91 0.012 60);
+    --input: oklch(0.91 0.012 60);
+    --ring: oklch(0.62 0.15 45);
+    --chart-1: oklch(0.7 0.19 45);
+    --chart-2: oklch(0.62 0.15 75);
+    --chart-3: oklch(0.55 0.13 200);
+    --chart-4: oklch(0.6 0.15 330);
+    --chart-5: oklch(0.45 0.1 60);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.98 0.004 66);
+    --sidebar-foreground: oklch(0.25 0.02 55);
+    --sidebar-primary: oklch(0.66 0.19 45);
+    --sidebar-primary-foreground: oklch(0.16 0.03 45);
+    --sidebar-accent: oklch(0.95 0.015 60);
+    --sidebar-accent-foreground: oklch(0.28 0.02 55);
+    --sidebar-border: oklch(0.91 0.012 60);
+    --sidebar-ring: oklch(0.62 0.15 45);
+}
+
+.dark {
+    --background: oklch(0.17 0.012 55);
+    --foreground: oklch(0.96 0.012 60);
+    --card: oklch(0.21 0.014 55);
+    --card-foreground: oklch(0.96 0.012 60);
+    --popover: oklch(0.21 0.014 55);
+    --popover-foreground: oklch(0.96 0.012 60);
+    --primary: oklch(0.72 0.19 45);
+    --primary-foreground: oklch(0.16 0.03 45);
+    --secondary: oklch(0.25 0.016 55);
+    --secondary-foreground: oklch(0.97 0.01 60);
+    --muted: oklch(0.25 0.016 55);
+    --muted-foreground: oklch(0.72 0.02 60);
+    --accent: oklch(0.27 0.03 55);
+    --accent-foreground: oklch(0.97 0.01 60);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.68 0.16 45);
+    --chart-1: oklch(0.72 0.19 45);
+    --chart-2: oklch(0.65 0.16 75);
+    --chart-3: oklch(0.6 0.14 200);
+    --chart-4: oklch(0.65 0.16 330);
+    --chart-5: oklch(0.5 0.12 60);
+    --sidebar: oklch(0.21 0.014 55);
+    --sidebar-foreground: oklch(0.96 0.012 60);
+    --sidebar-primary: oklch(0.72 0.19 45);
+    --sidebar-primary-foreground: oklch(0.16 0.03 45);
+    --sidebar-accent: oklch(0.25 0.016 55);
+    --sidebar-accent-foreground: oklch(0.97 0.01 60);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.68 0.16 45);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  html,
+  body {
+    /* Kills page-level horizontal scroll: absolute decorations and
+       `whitespace-nowrap` graph tooltips (wider in Spanish) otherwise
+       stretch `document.scrollWidth` past 425px and the fixed header
+       looks broken. `clip` (not `hidden`) creates no scroll container,
+       so `position: fixed` / `sticky` descendants keep working. */
+    overflow-x: hidden;
+    overflow-x: clip;
+    }
+  body {
+    @apply bg-background text-foreground;
+    }
+  html {
+    @apply font-sans;
+    }
+}
+  ::view-transition-old(root), ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+@layer components {
+  .hero-vignette {
+    background: radial-gradient(
+        ellipse 85% 68% at 50% 45%,
+        transparent 40%,
+        rgba(2, 4, 7, 0.5) 75%,
+        var(--background) 100%
+    );
+  }
+
+  @media (min-width: 1024px) {
+    .hero-vignette {
+      background: radial-gradient(
+          ellipse 92% 72% at 50% 45%,
+          transparent 48%,
+          rgba(2, 4, 7, 0.5) 80%,
+          var(--background) 100%
+      );
+    }
+  }
+
+  .hero-fade {
+    background: linear-gradient(to top, var(--background), transparent);
+  }
+}
+
+@layer components {
+  .tech-cloud-a {
+    background: radial-gradient(
+        ellipse 55% 45% at 68% 22%,
+        rgba(255, 106, 0, 0.065) 0%,
+        rgba(255, 138, 61, 0.02) 50%,
+        transparent 100%
+    );
+    filter: blur(110px);
+    mix-blend-mode: screen;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    animation: tech-drift-a 24s ease-in-out infinite alternate;
+  }
+
+  .tech-cloud-b {
+    background: radial-gradient(
+        circle at 24% 62%,
+        rgba(255, 173, 92, 0.04) 0%,
+        rgba(224, 122, 30, 0.015) 55%,
+        transparent 80%
+    );
+    filter: blur(100px);
+    mix-blend-mode: screen;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    animation: tech-drift-b 19s ease-in-out infinite alternate;
+  }
+
+  .tech-cloud-c {
+    background: radial-gradient(
+        ellipse 75% 50% at 40% 100%,
+        rgba(194, 65, 12, 0.045) 0%,
+        rgba(255, 106, 0, 0.015) 60%,
+        transparent 100%
+    );
+    filter: blur(150px);
+    mix-blend-mode: screen;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    animation: tech-drift-c 30s ease-in-out infinite alternate;
+  }
+
+  .tech-sheen {
+    background: conic-gradient(
+        from 120deg at 50% 45%,
+        transparent 0deg,
+        rgba(255, 170, 90, 0.018) 90deg,
+        transparent 180deg,
+        rgba(255, 106, 0, 0.015) 270deg,
+        transparent 360deg
+    );
+    filter: blur(80px);
+    mix-blend-mode: screen;
+    will-change: transform;
+    animation: tech-spin 48s linear infinite;
+  }
+
+  .tech-halo {
+    background: radial-gradient(
+        circle at 50% 42%,
+        rgba(255, 217, 168, 0.025) 0%,
+        rgba(255, 138, 61, 0.012) 45%,
+        transparent 70%
+    );
+    filter: blur(60px);
+    will-change: opacity, transform;
+    animation: tech-halo-pulse 9s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes tech-drift-a {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(-6%, 5%, 0) scale(1.15);
+  }
+}
+
+@keyframes tech-drift-b {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(7%, -4%, 0) scale(0.94);
+  }
+}
+
+@keyframes tech-drift-c {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(5%, -6%, 0) scale(1.1);
+  }
+}
+
+@keyframes tech-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes tech-halo-pulse {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes node-halo-breathe {
+  0%, 100% {
+    transform: scale(0.75);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+
+.animate-halo-breathe {
+  animation: node-halo-breathe 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-halo-breathe {
+    animation: none;
+  }
+}

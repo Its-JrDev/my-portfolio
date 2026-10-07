@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
+  <!-- Full-bleed background -->
+  <rect width="1200" height="675" fill="#0d111a" />
+
+  <!-- Topbar -->
+  <rect width="1200" height="46" fill="#151b27" />
+  <line x1="0" y1="46" x2="1200" y2="46" stroke="rgba(255,255,255,0.08)" />
+
+  <circle cx="28" cy="23" r="5" fill="#ff5f56" />
+  <circle cx="46" cy="23" r="5" fill="#ffbd2e" />
+  <circle cx="64" cy="23" r="5" fill="#27c93f" />
+
+  <rect x="300" y="9" width="600" height="28" rx="6" fill="#0b0e16" stroke="rgba(255, 106, 0, 0.25)" stroke-width="1" />
+  <text x="600" y="27" fill="#ff9d42" font-family="sans-serif" font-size="12" text-anchor="middle">
+    https://taskflow.cyber-ops.internal/board/alpha
+  </text>
+
+  <!-- Header -->
+  <g transform="translate(60, 75)">
+    <text x="0" y="24" fill="#ffffff" font-family="sans-serif" font-size="22" font-weight="700">TaskFlow Sprint Board</text>
+    <text x="0" y="50" fill="#8893a4" font-family="sans-serif" font-size="13">Persistent Productivity Hub • LocalStorage • Drag &amp; Drop</text>
+
+    <!-- Progress -->
+    <g transform="translate(800, 10)">
+      <text x="0" y="20" fill="#ff9d42" font-family="sans-serif" font-size="13" font-weight="bold">82% COMPLETED</text>
+      <rect x="130" y="7" width="150" height="16" rx="8" fill="#1b2230" />
+      <rect x="130" y="7" width="123" height="16" rx="8" fill="#ff6a00" />
+    </g>
+    <line x1="0" y1="70" x2="1080" y2="70" stroke="rgba(255,255,255,0.06)" />
+  </g>
+
+  <!-- Kanban Columns -->
+  <g transform="translate(60, 175)">
+    <!-- Col 1: TO DO -->
+    <g transform="translate(0, 0)">
+      <rect width="340" height="440" rx="10" fill="#131824" stroke="rgba(255,255,255,0.06)" />
+      <text x="20" y="38" fill="#8893a4" font-family="sans-serif" font-size="14" font-weight="bold">TO DO (2)</text>
+      
+      <rect x="20" y="60" width="300" height="110" rx="8" fill="#1a2130" stroke="rgba(255,255,255,0.08)" />
+      <text x="35" y="95" fill="#fff" font-size="14" font-weight="600">Implement Webhooks</text>
+      <rect x="35" y="115" width="70" height="22" rx="4" fill="rgba(255,106,0,0.15)" stroke="rgba(255,106,0,0.4)" />
+      <text x="70" y="130" fill="#ff9d42" font-size="11" font-weight="bold" text-anchor="middle">BACKEND</text>
+
+      <rect x="20" y="190" width="300" height="110" rx="8" fill="#1a2130" stroke="rgba(255,255,255,0.08)" />
+      <text x="35" y="225" fill="#fff" font-size="14" font-weight="600">Audit Cache Eviction</text>
+      <rect x="35" y="245" width="60" height="22" rx="4" fill="rgba(255,255,255,0.06)" />
+      <text x="65" y="260" fill="#8893a4" font-size="11" font-weight="bold" text-anchor="middle">OPS</text>
+    </g>
+
+    <!-- Col 2: IN PROGRESS -->
+    <g transform="translate(370, 0)">
+      <rect width="340" height="440" rx="10" fill="#131824" stroke="rgba(255, 106, 0, 0.3)" />
+      <text x="20" y="38" fill="#ff9d42" font-family="sans-serif" font-size="14" font-weight="bold">IN PROGRESS (1)</text>
+
+      <rect x="20" y="60" width="300" height="150" rx="8" fill="#1d2638" stroke="#ff6a00" stroke-width="1.5" />
+      <circle cx="38" cy="90" r="6" fill="#ff6a00" />
+      <text x="54" y="94" fill="#fff" font-size="15" font-weight="bold">Full-Bleed Media Overhaul</text>
+      <text x="35" y="125" fill="#8893a4" font-size="13">Zero container boundaries &amp; clean layout</text>
+      <rect x="35" y="150" width="100" height="24" rx="4" fill="rgba(255,106,0,0.2)" />
+      <text x="85" y="166" fill="#ff9d42" font-size="11" font-weight="bold" text-anchor="middle">ACTIVE SPRINT</text>
+    </g>
+
+    <!-- Col 3: DONE -->
+    <g transform="translate(740, 0)">
+      <rect width="340" height="440" rx="10" fill="#131824" stroke="rgba(39, 201, 63, 0.2)" />
+      <text x="20" y="38" fill="#27c93f" font-family="sans-serif" font-size="14" font-weight="bold">COMPLETED (4)</text>
+
+      <rect x="20" y="60" width="300" height="95" rx="8" fill="#161e2b" />
+      <text x="35" y="100" fill="#8893a4" font-size="14" text-decoration="line-through">Setup LocalStorage Sync</text>
+      <circle cx="285" cy="96" r="10" fill="#27c93f" opacity="0.2" />
+      <path d="M 280 96 L 284 100 L 290 94" fill="none" stroke="#27c93f" stroke-width="2" />
+
+      <rect x="20" y="175" width="300" height="95" rx="8" fill="#161e2b" />
+      <text x="35" y="215" fill="#8893a4" font-size="14" text-decoration="line-through">TypeScript Migration</text>
+      <circle cx="285" cy="211" r="10" fill="#27c93f" opacity="0.2" />
+      <path d="M 280 211 L 284 215 L 290 209" fill="none" stroke="#27c93f" stroke-width="2" />
+    </g>
+  </g>
+</svg>
