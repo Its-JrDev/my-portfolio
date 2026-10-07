@@ -227,7 +227,7 @@ export function TechNebulaCanvas({
     <canvas
       ref={ref}
       className={cn(
-        "pointer-events-none absolute inset-0 size-full opacity-40",
+        "pointer-events-none absolute inset-0 size-full opacity-40 mix-blend-screen",
         className
       )}
       aria-hidden="true"

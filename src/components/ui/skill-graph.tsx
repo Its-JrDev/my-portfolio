@@ -282,6 +282,7 @@ export function SkillGraph() {
     event.stopPropagation()
     dragRef.current = { node, pointerId: event.pointerId }
     event.currentTarget.setPointerCapture(event.pointerId)
+    setHovered(node.id)
     simRef.current?.alphaTarget(DRAG_ALPHA_TARGET).restart()
   }
 
@@ -355,7 +356,14 @@ export function SkillGraph() {
           !hoveredNeighbors?.has(node.id)
         const vis = nodeSize(node.id) * nodeScale(size?.width ?? 0)
         const hit = Math.max(44, vis)
-        const tipBelow = (node.y ?? 0) >= (size?.height ?? HEIGHT_RATIO) / 2
+        const w = size?.width ?? WIDTH_RATIO
+        const tipBelow = (node.y ?? 0) < (size?.height ?? HEIGHT_RATIO) / 2
+        const xPos =
+          (node.x ?? 0) < 130
+            ? "left"
+            : (node.x ?? 0) > w - 130
+              ? "right"
+              : "center"
         const localizedDesc = t(`skill_${node.id}` as keyof Translations) || node.description
         return (
           <div
@@ -365,16 +373,30 @@ export function SkillGraph() {
             }}
             onPointerDown={(event) => startDrag(event, node)}
             onPointerMove={moveDrag}
-            onPointerUp={endDrag}
-            onPointerLeave={(event) => {
+            onPointerUp={(event) => {
               endDrag(event)
+              const rect = event.currentTarget.getBoundingClientRect()
+              const inside =
+                event.clientX >= rect.left &&
+                event.clientX <= rect.right &&
+                event.clientY >= rect.top &&
+                event.clientY <= rect.bottom
+              if (!inside) {
+                setHovered((h) => (h === node.id ? null : h))
+              }
+            }}
+            onPointerLeave={() => {
+              if (dragRef.current) return
               setHovered((h) => (h === node.id ? null : h))
             }}
-            onPointerEnter={() => setHovered(node.id)}
+            onPointerEnter={() => {
+              if (dragRef.current && dragRef.current.node.id !== node.id) return
+              setHovered(node.id)
+            }}
             style={{ left: 0, top: 0, opacity: started ? 1 : 0 }}
             className={cn(
               "absolute touch-none cursor-grab transition-opacity duration-300 active:cursor-grabbing z-10",
-              hovered === node.id && "z-30"
+              hovered === node.id && "z-50"
             )}
           >
             <div
@@ -385,22 +407,24 @@ export function SkillGraph() {
                 className="relative"
                 style={{ width: vis, height: vis }}
               >
-              {/* Hover halo */}
+              {/* Halo mayor (outer boundary, expands and contracts to its limit) */}
               <div
-                className="absolute rounded-full border border-primary/40 bg-primary/10 transition-all duration-300 ease-out"
+                className={cn(
+                  "absolute rounded-full border border-primary/40 bg-primary/10 transition-opacity duration-300 ease-out",
+                  hovered === node.id ? "opacity-100 animate-halo-breathe" : "opacity-0"
+                )}
                 style={{
                   inset: haloInset(node.id),
-                  opacity: hovered === node.id ? 1 : 0,
-                  scale: hovered === node.id ? "100%" : "75%",
                 }}
               />
-              {/* Hover bg tint */}
+              {/* Halo intermedio (middle halo, expands and contracts to its limit with original opacity) */}
               <div
-                className="absolute inset-0 rounded-full transition-colors duration-300"
+                className={cn(
+                  "pointer-events-none absolute inset-0 rounded-full transition-opacity duration-300",
+                  hovered === node.id ? "opacity-100 animate-halo-breathe" : "opacity-0"
+                )}
                 style={{
-                  backgroundColor: hovered === node.id
-                    ? "color-mix(in oklab, var(--primary) 15%, transparent)"
-                    : "transparent",
+                  backgroundColor: "color-mix(in oklab, var(--primary) 15%, transparent)",
                 }}
               />
               {/* Dot — solid, no transparency */}
@@ -434,8 +458,11 @@ export function SkillGraph() {
               {/* Tooltip */}
               <div
                 className={cn(
-                  "pointer-events-none absolute left-1/2 z-30 -translate-x-1/2 transition-all duration-200 ease-out",
-                  tipBelow ? "top-full mt-6" : "bottom-full mb-2"
+                  "pointer-events-none absolute z-50 transition-all duration-200 ease-out",
+                  tipBelow ? "top-full mt-6" : "bottom-full mb-2",
+                  xPos === "center" && "left-1/2 -translate-x-1/2",
+                  xPos === "left" && "left-0 -translate-x-3",
+                  xPos === "right" && "right-0 translate-x-3"
                 )}
                 style={{
                   opacity: hovered === node.id ? 1 : 0,
@@ -447,10 +474,13 @@ export function SkillGraph() {
                 </span>
                 <span
                   className={cn(
-                    "absolute left-1/2 size-2 -translate-x-1/2 rotate-45 border-border bg-popover",
+                    "absolute size-2 rotate-45 border-border bg-popover",
                     tipBelow
                       ? "-top-1 border-l border-t"
-                      : "top-full -mt-1 border-r border-b"
+                      : "top-full -mt-1 border-r border-b",
+                    xPos === "center" && "left-1/2 -translate-x-1/2",
+                    xPos === "left" && "left-[18px] -translate-x-1/2",
+                    xPos === "right" && "right-[18px] translate-x-1/2"
                   )}
                 />
               </div>

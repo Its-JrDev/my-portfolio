@@ -40,11 +40,11 @@ function HeroBackground() {
       <div className="absolute inset-0 tech-sheen" />
       <div className="absolute inset-0 tech-halo" />
       <TechNebulaCanvas
-        color="#b45309"
-        accent="#e7c9a5"
-        density={0.8}
-        linkDistance={130}
-        opacity={0.3}
+        color="#f97316"
+        accent="#fed7aa"
+        density={0.7}
+        linkDistance={135}
+        opacity={0.35}
         className="absolute inset-0 h-full w-full"
       />
       <div className="absolute inset-0 hero-vignette" />

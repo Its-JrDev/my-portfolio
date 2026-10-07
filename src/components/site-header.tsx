@@ -166,7 +166,7 @@ export function SiteHeader() {
                   {AUTHOR_ALIAS}
                 </p>
                 <p className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <span className="size-2 rounded-full bg-primary animate-pulse" />
+                  <span className="size-2 shrink-0 rounded-full bg-primary animate-pulse" />
                   {t("status_available")}
                 </p>
               </SheetHeader>

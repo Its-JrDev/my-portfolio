@@ -19,7 +19,7 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="scroll-mt-16 relative h-[calc(100svh-4rem)] max-h-[calc(100svh-4rem)] border-t border-border/40 flex flex-col justify-between overflow-hidden"
+      className="scroll-mt-16 relative z-10 h-[calc(100svh-4rem)] max-h-[calc(100svh-4rem)] border-t border-border/40 flex flex-col justify-between"
     >
       {/* Subtle radial glow background */}
       <div
@@ -45,7 +45,7 @@ export function Skills() {
 
           <BlurFade delay={0.1}>
             <div className="inline-flex items-center gap-2 text-xs text-muted-foreground">
-              <span className="size-2 rounded-full bg-primary animate-pulse" />
+              <span className="size-2 shrink-0 rounded-full bg-primary animate-pulse" />
               <span>{t("skills_hint")}</span>
             </div>
           </BlurFade>
