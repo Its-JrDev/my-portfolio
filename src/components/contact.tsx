@@ -52,7 +52,7 @@ export function Contact() {
                   rel="noopener noreferrer"
                   className="group"
                 >
-                  <Card className="h-full border border-border/80 bg-card/40 backdrop-blur-sm transition-all duration-300 hover:border-primary hover:shadow-md hover:shadow-primary/10 active:border-primary active:shadow-md active:shadow-primary/10 group-hover:border-primary group-hover:shadow-md group-hover:shadow-primary/10 group-hover:-translate-y-0.5 group-active:border-primary group-active:shadow-md group-active:shadow-primary/10 group-active:-translate-y-0.5">
+                  <Card variant="interactive" className="h-full">
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2 group-hover:text-primary group-active:text-primary transition-colors">
                         <Icon className="size-4 text-primary transition-transform duration-300 group-hover:scale-110 group-active:scale-110" />

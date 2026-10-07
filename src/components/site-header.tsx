@@ -137,7 +137,7 @@ export function SiteHeader() {
               key={item.label}
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
-              className={cn(buttonVariants({ variant: "ghost" }), "text-sm font-medium active:bg-muted active:text-foreground")}
+              className={buttonVariants({ variant: "ghost" })}
             >
               {navLabel(item.label, t as never)}
             </a>

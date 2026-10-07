@@ -92,11 +92,8 @@ function ProjectCard({
 
   return (
     <Card
-      className={cn(
-        "group relative flex flex-col w-full h-full overflow-hidden rounded-2xl border border-border/70",
-        "bg-card/40 backdrop-blur-md transition-all duration-300",
-        "hover:border-primary hover:shadow-md hover:shadow-primary/10 hover:-translate-y-0.5 active:border-primary active:shadow-md active:shadow-primary/10 active:-translate-y-0.5"
-      )}
+      variant="interactive"
+      className="group relative flex flex-col w-full h-full overflow-hidden py-0"
     >
       {/* Media container */}
       <div
@@ -124,7 +121,7 @@ function ProjectCard({
         {/* Top badges */}
         <div className="absolute top-3 inset-x-3 flex items-center justify-between gap-2 z-10">
           {isSpotlight ? (
-            <Badge className="bg-primary/90 text-primary-foreground text-[10px] tracking-wider uppercase backdrop-blur-sm">
+            <Badge variant="spotlight">
               {t("spotlight_badge")}
             </Badge>
           ) : (
@@ -132,10 +129,7 @@ function ProjectCard({
           )}
 
           {project.category && (
-            <Badge
-              variant="outline"
-              className="border-border/80 bg-background/80 text-foreground/90 backdrop-blur-sm text-[11px] capitalize"
-            >
+            <Badge variant="glass">
               {project.category === "frontend"
                 ? t("category_frontend")
                 : project.category === "fullstack"

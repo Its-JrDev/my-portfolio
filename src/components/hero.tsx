@@ -86,7 +86,7 @@ export function Hero() {
 
           {/* Text block */}
           <div className="flex flex-col justify-center gap-[clamp(0.85rem,2.8svh,2.25rem)] items-center text-center lg:items-start lg:text-left md:flex-1 min-w-0">
-            <Badge variant="outline" className="text-xs tracking-widest uppercase">
+            <Badge variant="kicker">
               {AUTHOR_ROLE}
             </Badge>
 
@@ -112,10 +112,10 @@ export function Hero() {
               <span className="hidden sm:inline">{t("hero_desc")}</span>
             </p>
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-center md:justify-start">
-              <Button size="lg" className="w-full sm:w-auto h-10 px-6 text-sm [@media(min-height:700px)]:h-11 sm:h-11 md:h-12 md:px-8 md:text-base font-medium" onClick={scrollToProjects}>
+              <Button size="hero" className="w-full sm:w-auto" onClick={scrollToProjects}>
                 {t("view_projects")}
               </Button>
-              <Button variant="outline" size="lg" className="w-full sm:w-auto h-10 px-6 text-sm [@media(min-height:700px)]:h-11 sm:h-11 md:h-12 md:px-8 md:text-base font-medium" onClick={scrollToContact}>
+              <Button variant="outline" size="hero" className="w-full sm:w-auto" onClick={scrollToContact}>
                 {t("get_in_touch")}
               </Button>
             </div>

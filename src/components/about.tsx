@@ -1,6 +1,7 @@
 import { IconCode, IconLayersLinked, IconRocket } from "@tabler/icons-react"
 
 import { BlurFade } from "@/components/ui/blur-fade"
+import { Card } from "@/components/ui/card"
 import { NumberTicker } from "@/components/ui/number-ticker"
 import { SKILLS } from "@/lib/site"
 import { PROJECTS } from "@/data/projects"
@@ -94,7 +95,7 @@ export function About() {
             const Icon = pillar.icon
             return (
               <BlurFade key={pillar.title} delay={0.15 + i * 0.08}>
-                <div className="h-full rounded-2xl border border-border/60 bg-card/30 backdrop-blur-sm p-6 transition-all duration-300 hover:border-primary hover:shadow-md hover:shadow-primary/10 hover:-translate-y-0.5 active:border-primary active:shadow-md active:shadow-primary/10 active:-translate-y-0.5 group">
+                <Card variant="interactive" className="h-full p-6">
                   <Icon className="size-6 text-primary mb-3 stroke-[1.75] transition-transform duration-300 group-hover:scale-110 group-active:scale-110" />
                   <h3 className="font-heading text-lg font-semibold text-foreground group-hover:text-primary group-active:text-primary transition-colors">
                     {pillar.title}
@@ -102,7 +103,7 @@ export function About() {
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                     {pillar.description}
                   </p>
-                </div>
+                </Card>
               </BlurFade>
             )
           })}

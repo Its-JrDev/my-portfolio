@@ -207,6 +207,9 @@ Non-root paths are composed as `SITE_URL + "#" + path`, a hash-based URL. That m
 
 | Component | Props |
 |---|---|
+| `Card` | `variant?: "default" \| "interactive"`, `size?: "default" \| "sm"` |
+| `Button` | `variant?: "default" \| "outline" \| "secondary" \| "ghost" \| "destructive" \| "link"`, `size?: "default" \| "xs" \| "sm" \| "lg" \| "hero" \| "icon" \| "icon-xs" \| "icon-sm" \| "icon-lg"` |
+| `Badge` | `variant?: "default" \| "secondary" \| "destructive" \| "outline" \| "ghost" \| "link" \| "kicker" \| "spotlight" \| "glass"` |
 | `Seo` | `title: string`, `description: string`, `path?: string` (default `/`) |
 | `TechNebulaCanvas` | `color`, `accent`, `density`, `linkDistance`, `opacity`, plus `HTMLAttributes<HTMLCanvasElement>` |
 | `ProjectCard` | `project: Project`, `isSpotlight?: boolean` — internal, not exported |
@@ -219,6 +222,5 @@ Non-root paths are composed as `SITE_URL + "#" + path`, a hash-based URL. That m
 | Section container | `mx-auto w-full max-w-7xl px-4 md:px-6` — duplicated in all five sections |
 | Section header | `BlurFade` wrapping `h2` + `t()` description |
 | Stagger | `delay={0.15 + i * 0.05}` or `{0.15 + i * 0.08}` |
-| Card surface | `rounded-2xl border bg-card/40 backdrop-blur-md` |
-| Card hover | `hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1` |
+| Card surface & hover | `Card` with `variant="interactive"` (`rounded-2xl border bg-card/40 backdrop-blur-md` + hover/active translate y elevación) |
 | Asset paths | `${import.meta.env.BASE_URL}${name}` in `hero.tsx` and `featured-projects.tsx` |
