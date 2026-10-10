@@ -56,7 +56,7 @@ const translations = {
     // Featured Projects
     featured_title: "Featured Projects",
     featured_desc: "Selected works engineered with performance, high visual fidelity, and clean code.",
-    show_project: "Live Demo",
+    show_project: "View Project",
     view_code: "Code",
     category_frontend: "Frontend",
     category_fullstack: "Full-Stack",
@@ -125,7 +125,7 @@ const translations = {
     // Featured Projects
     featured_title: "Proyectos Destacados",
     featured_desc: "Obras seleccionadas con alto rendimiento, máxima fidelidad visual y código limpio.",
-    show_project: "Ver Demo",
+    show_project: "Ver Proyecto",
     view_code: "Código",
     category_frontend: "Frontend",
     category_fullstack: "Full-Stack",
