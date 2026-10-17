@@ -1,8 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <!-- JR — Geist SemiBold 600 — inverted favicon: container primary oklch(0.66 0.19 45), letters white -->
-  <rect width="32" height="32" fill="oklch(0.66 0.19 45)" />
-  <g transform="scale(1.425) translate(-5.62 -7.19)">
-    <path d="M14.2 10H12.0V18.2C12.0 19.85 11.1 20.65 9.7 20.65C8.4 20.65 7.6 19.9 7.5 18.5H5.35C5.45 21.05 7.1 22.55 9.75 22.55C12.6 22.55 14.2 20.9 14.2 18.15V10Z" fill="#fff" />
-    <path d="M15.3 22.35H17.5V17.45H20.2L22.55 22.35H25.0L22.35 17.05C23.85 16.5 24.75 15.3 24.75 13.65C24.75 11.35 23.15 10 20.5 10H15.3V22.35ZM17.5 15.65V11.85H20.25C21.75 11.85 22.55 12.45 22.55 13.75C22.55 15.05 21.75 15.65 20.25 15.65H17.5Z" fill="#fff" />
+  <style>
+    rect {
+      fill: #ea580c;
+      fill: oklch(0.66 0.19 45);
+    }
+    .monogram {
+      fill: #ffffff;
+      stroke: #ffffff;
+      stroke-width: 0.65;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+  </style>
+  <rect width="32" height="32" rx="7" fill="oklch(0.66 0.19 45)" />
+  <g transform="translate(16, 16) scale(1.25) translate(-16.0, -16.2)" class="monogram">
+    <path d="M14.2 10H12.0V18.2C12.0 19.85 11.1 20.65 9.7 20.65C8.4 20.65 7.6 19.9 7.5 18.5H5.35C5.45 21.05 7.1 22.55 9.75 22.55C12.6 22.55 14.2 20.9 14.2 18.15V10Z" />
+    <path transform="translate(1, 0)" d="M15.3 22.35H17.5V17.45H20.2L22.55 22.35H25.0L22.35 17.05C23.85 16.5 24.75 15.3 24.75 13.65C24.75 11.35 23.15 10 20.5 10H15.3V22.35ZM17.5 15.65V11.85H20.25C21.75 11.85 22.55 12.45 22.55 13.75C22.55 15.05 21.75 15.65 20.25 15.65H17.5Z" />
   </g>
 </svg>
