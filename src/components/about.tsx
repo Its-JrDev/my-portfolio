@@ -4,16 +4,18 @@ import { BlurFade } from "@/components/ui/blur-fade"
 import { Card } from "@/components/ui/card"
 import { NumberTicker } from "@/components/ui/number-ticker"
 import { SKILLS } from "@/lib/site"
-import { VISIBLE_PROJECTS } from "@/data/projects"
+import { useGithubStats } from "@/hooks/use-github-stats"
 import { useTranslation } from "@/lib/i18n"
 
 export function About() {
   const { t } = useTranslation()
+  const { displayCount, suffix } = useGithubStats()
 
   const STATS = [
     {
       label: t("stats_projects"),
-      value: VISIBLE_PROJECTS.length,
+      value: displayCount,
+      suffix,
     },
     {
       label: t("stats_skills"),

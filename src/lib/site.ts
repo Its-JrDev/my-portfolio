@@ -16,6 +16,43 @@ export const AUTHOR_NAME = "Jose D. Romero"
 /** Short handle, used as the header wordmark and the Open Graph site name. */
 export const AUTHOR_ALIAS = "Its-JrDev"
 
+/** GitHub username for API queries and portfolio metrics. */
+export const GITHUB_USERNAME = "Its-JrDev"
+
+/** Associated GitHub organizations where the user has created or contributed repositories. */
+export const GITHUB_ORGS = [
+  "LUMEN-SH",
+  "FlowwStar",
+  "IoT-Billing-Service",
+  "SportComplex-Dev",
+] as const
+
+/**
+ * External or collaborative repositories worked on (non-personal ownership, e.g. AlegrIA).
+ * Used alongside personal public repos to provide an accurate total count of built projects.
+ */
+export const CONTRIBUTED_PROJECTS = [
+  "xDemoxz/AlegrIA",
+  "Riwi-Projects-Cohort-5/restaurant-management-system",
+  "Riwi-Projects-Cohort-5/react-cinema-app",
+  "LUMEN-SH/create-lumen",
+  "LUMEN-SH/lumen-cli",
+  "Cylo-Traders/Agrocylo-Global",
+  "FlowwStar/FlowStar",
+  "IoT-Billing-Service/IoT-Billing-Service",
+  "SportComplex-Dev/SportComplexApp",
+  "VeriNode-Labs/VeriNode-Frontend",
+] as const
+
+/** Safe fallback stats for instant SSR/paint and offline/rate-limited resilience. */
+export const FALLBACK_GITHUB_STATS = {
+  ownRepos: 34,
+  externalRepos: CONTRIBUTED_PROJECTS.length,
+  totalProjects: 34 + CONTRIBUTED_PROJECTS.length, // 44
+  displayCount: 40,
+  suffix: "+",
+} as const
+
 /**
  * Rendered directly as the hero badge, bypassing i18n.
  */

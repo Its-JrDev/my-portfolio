@@ -35,13 +35,13 @@ export interface Project {
  * project. The rest are placeholders kept as `"draft"` so `dev` retains them
  * without leaking to `main` / production.
  *
- * Consumed in two places with different constraints:
+ * Consumed in `featured-projects.tsx` with specific constraints:
  *
  * - `featured-projects.tsx` slices `VISIBLE_PROJECTS[0]`, `VISIBLE_PROJECTS.slice(1, 2)` and
  *   `VISIBLE_PROJECTS.slice(2, 5)`. Index 5 and beyond never render. Adding a sixth
  *   published project requires changing that slice.
- * - `about.tsx` reads `VISIBLE_PROJECTS.length` for the "Projects Built" counter, so
- *   the count stays derived rather than hardcoded.
+ * - Note: The "Projects Built" KPI in `about.tsx` is driven dynamically by GitHub metrics
+ *   and external contributions (`useGithubStats`), decoupled from this featured showcase.
  *
  * `image` paths resolve through `import.meta.env.BASE_URL`, so they must stay
  * relative to `public/`.
