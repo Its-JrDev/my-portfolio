@@ -74,6 +74,19 @@ export const PROJECTS: Project[] = [
     status: "published",
   },
   {
+    title: "La Buhardilla",
+    headline: "Headless Editorial Bookstore",
+    description:
+      "A high-performance headless bookstore for rare editions and collector items, featuring predictive search, dynamic priority navigation, and Shopify Oxygen edge deployment.",
+    tags: ["Hydrogen", "React Router", "Tailwind CSS", "Shopify"],
+    image: "projects/la-buhardilla.webp",
+    metrics: "Edge Oxygen • Extensible Checkout",
+    category: "fullstack",
+    githubUrl: "https://github.com/Its-JrDev/la-buhardilla",
+    deployUrl: "https://hydrogen-test-store-56170d706e8dbf0e0644.o2.myshopify.dev",
+    status: "published",
+  },
+  {
     title: "AlegrIA",
     headline: "Barrio Abajo Cultural AI",
     description:
